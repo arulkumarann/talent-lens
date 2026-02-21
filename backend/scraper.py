@@ -33,7 +33,7 @@ load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 gemini_client = genai.Client()
 
-JINA_API_KEY = "jina_9ae87a6710444db6aeff74dd61f32adcrxt9A6DcMlobI3aze-dQhIKCc8gt"
+JINA_API_KEY = os.getenv("JINA_API_KEY")
 GEMINI_FLASH = "gemini-2.5-flash"
 
 JINA_HEADERS = {
