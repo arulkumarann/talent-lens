@@ -1,0 +1,19 @@
+{
+  "roles": {
+    "4f0bb793": {
+      "name": "AI Engineer",
+      "jd": "About the Role\n\nWe are seeking a skilled AI Engineer to design, build, and deploy intelligent systems that solve real-world problems at scale. You will work closely with data scientists, software engineers, and product teams to develop production-ready machine learning and deep learning solutions.\n\nKey Responsibilities\n\nDesign and implement machine learning and deep learning models for real-world applications\n\nBuild scalable AI pipelines for data preprocessing, training, evaluation, and deployment\n\nOptimize model performance, latency, and inference efficiency\n\nDevelop APIs and integrate AI models into production systems\n\nConduct experiments and analyze results to improve model accuracy\n\nMaintain model monitoring, versioning, and retraining workflows\n\nStay updated with latest research and integrate relevant advancements\n\nRequired Skills\n\nStrong proficiency in Python\n\nHands-on experience with ML/DL frameworks such as PyTorch or TensorFlow\n\nSolid understanding of machine learning algorithms and statistics\n\nExperience with data processing libraries (NumPy, Pandas, etc.)\n\nKnowledge of REST APIs and backend frameworks (FastAPI, Flask, etc.)\n\nFamiliarity with SQL and NoSQL databases\n\nUnderstanding of software engineering best practices and Git workflows",
+      "ctc": "8LPA",
+      "positions": 4,
+      "tally_link": "https://tally.so/r/VL0xey",
+      "tally_form_id": "VL0xey",
+      "sheet_url": "https://docs.google.com/spreadsheets/d/1lkkJCy3C3tfbQXxr6-7au7UgVGnHMnREeMtSln3bGtw/edit?gid=0#gid=0",
+      "candidates": {},
+      "created_at": "2026-02-21T21:54:31.106193"
+    }
+  },
+  "sheet_last_ids": [
+    "7R6bNjz",
+    "zxPNGVZ"
+  ]
+}

@@ -25,6 +25,7 @@ from pydantic import BaseModel
 
 from scraper import run_scraper
 from analyzer import analyze_all_designers
+from dev_module import router as dev_router, start_sheets_poller
 
 # ─── App ──────────────────────────────────────────────────────────────────────
 
@@ -41,6 +42,14 @@ app.add_middleware(
 IMAGES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "scraped_images")
 os.makedirs(IMAGES_DIR, exist_ok=True)
 app.mount("/images", StaticFiles(directory=IMAGES_DIR), name="images")
+
+# Mount devs API router
+app.include_router(dev_router)
+
+# Start Google Sheets poller on startup
+@app.on_event("startup")
+async def startup_event():
+    start_sheets_poller()
 
 # In-memory store for last scan results
 last_results: List[dict] = []

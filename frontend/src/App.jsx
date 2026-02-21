@@ -5,6 +5,7 @@ import CandidateList from './components/CandidateList'
 import CandidateDetail from './components/CandidateDetail'
 import StatsDashboard from './components/StatsDashboard'
 import ExportSection from './components/ExportSection'
+import DevApp from './components/DevApp'
 
 export default function App() {
   const [profiles, setProfiles] = useState([])
@@ -15,6 +16,7 @@ export default function App() {
   const [keywordTags, setKeywordTags] = useState([])
   const [activeNav, setActiveNav] = useState('search')
   const [expandedUser, setExpandedUser] = useState(null)
+  const [mode, setMode] = useState('designers')
 
   const sectionRefs = {
     search: useRef(null),
@@ -141,56 +143,67 @@ export default function App() {
 
   return (
     <div className="app-layout">
-      <Sidebar activeNav={activeNav} onNavigate={scrollTo} />
+      <Sidebar
+        activeNav={activeNav}
+        onNavigate={scrollTo}
+        mode={mode}
+        onModeChange={setMode}
+      />
 
-      <main className="main-content">
-        {/* 01 SEARCH */}
-        <section className="section" ref={sectionRefs.search}>
-          <SearchSection
-            isScanning={isScanning}
-            keywordTags={keywordTags}
-            logLines={logLines}
-            onScan={startScan}
-          />
-        </section>
-
-        {/* 02 CANDIDATES */}
-        {profiles.length > 0 && (
-          <section className="section" ref={sectionRefs.candidates}>
-            <h1 className="section-heading">
-              {filteredProfiles.length} designer{filteredProfiles.length !== 1 ? 's' : ''}{' '}
-              <em>found.</em>
-            </h1>
-
-            <CandidateList
-              profiles={filteredProfiles}
-              statuses={statuses}
-              currentFilter={currentFilter}
-              expandedUser={expandedUser}
-              onFilterChange={setCurrentFilter}
-              onCycleStatus={cycleStatus}
-              onToggleDetail={toggleDetail}
+      {mode === 'devs' ? (
+        <main className="main-content">
+          <DevApp />
+        </main>
+      ) : (
+        <main className="main-content">
+          {/* 01 SEARCH */}
+          <section className="section" ref={sectionRefs.search}>
+            <SearchSection
+              isScanning={isScanning}
+              keywordTags={keywordTags}
+              logLines={logLines}
+              onScan={startScan}
             />
           </section>
-        )}
 
-        {/* 03 STATS */}
-        {profiles.length > 0 && (
-          <section className="section" ref={sectionRefs.stats}>
-            <h1 className="section-heading">
-              statistics <em>overview.</em>
-            </h1>
-            <StatsDashboard profiles={profiles} statuses={statuses} />
-          </section>
-        )}
+          {/* 02 CANDIDATES */}
+          {profiles.length > 0 && (
+            <section className="section" ref={sectionRefs.candidates}>
+              <h1 className="section-heading">
+                {filteredProfiles.length} designer{filteredProfiles.length !== 1 ? 's' : ''}{' '}
+                <em>found.</em>
+              </h1>
 
-        {/* 04 EXPORT */}
-        {profiles.length > 0 && (
-          <section ref={sectionRefs.export}>
-            <ExportSection profiles={profiles} statuses={statuses} />
-          </section>
-        )}
-      </main>
+              <CandidateList
+                profiles={filteredProfiles}
+                statuses={statuses}
+                currentFilter={currentFilter}
+                expandedUser={expandedUser}
+                onFilterChange={setCurrentFilter}
+                onCycleStatus={cycleStatus}
+                onToggleDetail={toggleDetail}
+              />
+            </section>
+          )}
+
+          {/* 03 STATS */}
+          {profiles.length > 0 && (
+            <section className="section" ref={sectionRefs.stats}>
+              <h1 className="section-heading">
+                statistics <em>overview.</em>
+              </h1>
+              <StatsDashboard profiles={profiles} statuses={statuses} />
+            </section>
+          )}
+
+          {/* 04 EXPORT */}
+          {profiles.length > 0 && (
+            <section ref={sectionRefs.export}>
+              <ExportSection profiles={profiles} statuses={statuses} />
+            </section>
+          )}
+        </main>
+      )}
     </div>
   )
 }
