@@ -56,12 +56,13 @@ export default function CandidateList({
                     const fa = profile.final_analysis || {}
                     const username = od.username || ''
                     const score = fa.overall_score || 0
-                    const defaultStatus = score >= 85 ? 'selected' : score < 60 ? 'rejected' : 'waitlisted'
+                    const defaultStatus = score >= 71 ? 'selected' : score <= 40 ? 'rejected' : 'waitlisted'
                     const status = statuses[username] || defaultStatus
                     const specs = (od.specializations || []).join(' · ') || '—'
                     const dribbbleUrl = username ? `https://dribbble.com/${username}` : null
                     const otherLinks = profile.social_media_links || []
                     const socialLinks = dribbbleUrl ? [dribbbleUrl, ...otherLinks] : otherLinks
+                    const availableForWork = od.available_for_work === true
                     const isExpanded = expandedUser === username
 
                     return (
@@ -70,7 +71,13 @@ export default function CandidateList({
                                 className="candidate-row"
                                 onClick={() => onToggleDetail(username)}
                             >
-                                <div className="c-name">{od.name || username}</div>
+                                <div className="c-name">
+                                    {od.name || username}
+                                    <span
+                                        className={`avail-dot ${availableForWork ? 'avail-yes' : 'avail-no'}`}
+                                        title={availableForWork ? 'Available for work' : 'Not available'}
+                                    />
+                                </div>
                                 <div className="c-meta">
                                     {specs.length > 60 ? specs.substring(0, 60) + '...' : specs}
                                     <br />

@@ -344,6 +344,38 @@ a:hover {
   font-weight: 400;
   letter-spacing: -0.3px;
   color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avail-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.avail-yes {
+  background: #4ade80;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.5);
+  animation: availPulse 2s ease-in-out infinite;
+}
+
+.avail-no {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@keyframes availPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 4px rgba(74, 222, 128, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.7);
+  }
 }
 
 .c-meta {

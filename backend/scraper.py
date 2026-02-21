@@ -34,7 +34,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or "
 gemini_client = genai.Client(api_key=GEMINI_API_KEY)
 
 JINA_API_KEY = os.getenv("JINA_API_KEY")
-GEMINI_FLASH = "gemini-2.5-flash"
+GEMINI_FLASH = os.getenv("GEMINI_SCRAPER_MODEL", "gemini-2.5-flash")
 
 JINA_HEADERS = {
     "Authorization": f"Bearer {JINA_API_KEY}",
@@ -183,16 +183,32 @@ def search_dribbble(keyword: str, num_users: int) -> List[Dict]:
     lines = raw.split("\n")
     current_shot_images = []
     designer_shots_map = {}
+    designer_shot_page_urls = {}
 
     for line in lines:
         shot_match = re.search(
-            r'!\[Image \d+: ([^\]]*)\]\((https://cdn\.dribbble\.com/userupload/[^\s\)]+)\).*?\[View ([^\]]*)\]',
+            r'!\[Image \d+: ([^\]]*)\]\((https://cdn\.dribbble\.com/userupload/[^\s\)]+)\).*?\[View ([^\]]*)\]\((https://dribbble\.com/shots/[^\)]+)\)',
             line
         )
         if shot_match:
             current_shot_images.append({
                 "title": shot_match.group(3),
                 "image_url": shot_match.group(2),
+            })
+            # Store shot page URL for availability check later
+            shot_page_url = shot_match.group(4)
+            # Will be assigned to the next designer we encounter
+            continue
+
+        # Fallback: try without shot page URL capture
+        shot_match_basic = re.search(
+            r'!\[Image \d+: ([^\]]*)\]\((https://cdn\.dribbble\.com/userupload/[^\s\)]+)\).*?\[View ([^\]]*)\]',
+            line
+        )
+        if shot_match_basic:
+            current_shot_images.append({
+                "title": shot_match_basic.group(3),
+                "image_url": shot_match_basic.group(2),
             })
             continue
 
@@ -210,8 +226,21 @@ def search_dribbble(keyword: str, num_users: int) -> List[Dict]:
             elif uname not in EXCLUDED_USERNAMES:
                 current_shot_images = []
 
+    # Also extract ALL shot page URLs from raw content per designer
+    # Pattern: [View ...](https://dribbble.com/shots/...) near [... username ...]
+    all_shot_urls = re.findall(r'https://dribbble\.com/shots/[^\s\)\]\"\'>]+', raw)
+    # Try to map shot URLs to designers by checking proximity in text
     for d in designers:
-        d["search_shots"] = designer_shots_map.get(d["username"], [])
+        uname = d["username"]
+        d["search_shots"] = designer_shots_map.get(uname, [])
+        # Find the first shot page URL near this designer's name
+        idx = raw.find(uname)
+        if idx >= 0:
+            nearby = raw[max(0, idx-200):idx+2000]
+            nearby_shots = re.findall(r'https://dribbble\.com/shots/[^\s\)\]\"\'>]+', nearby)
+            d["first_shot_page_url"] = nearby_shots[0] if nearby_shots else ""
+        else:
+            d["first_shot_page_url"] = all_shot_urls[0] if all_shot_urls else ""
 
     return designers[:num_users]
 
@@ -303,6 +332,25 @@ def scrape_designer_shots(username: str) -> List[Dict]:
 
     print(f"[Shots] Found {len(shots)} shots for {username}")
     return shots
+
+
+def check_available_for_work(username: str, shot_page_url: str = "") -> bool:
+    """
+    Check if a designer has the 'Available for work' badge by fetching
+    one of their shot pages and checking for the text.
+    """
+    if not shot_page_url:
+        print(f"  [Avail] {username}: No shot URL to check")
+        return False
+
+    print(f"  [Avail] Checking {username} via shot page...")
+    raw = _jina_fetch(shot_page_url)
+    if raw and re.search(r'available\s+for\s+work', raw, re.IGNORECASE):
+        print(f"  [Avail] {username}: Available for work ✓")
+        return True
+
+    print(f"  [Avail] {username}: Not available")
+    return False
 
 
 # ─── Step 4: Download Images ─────────────────────────────────────────────────
@@ -441,6 +489,12 @@ def run_scraper(keyword: str, num_users: int = 5, num_images: int = 3, base_dir:
         print(f"\n  [Step 4] Downloading up to {num_images} images...")
         downloaded_images = download_images(username, shots, num_images, base_dir=base_dir)
 
+        # Step 5: Check availability
+        print(f"\n  [Step 5] Checking availability...")
+        shot_url = designer_stub.get("first_shot_page_url", "")
+        available = check_available_for_work(username, shot_url)
+        time.sleep(1)
+
         # Assemble designer record
         social_links = profile.get("social_links", {})
         if isinstance(social_links, list):
@@ -463,6 +517,7 @@ def run_scraper(keyword: str, num_users: int = 5, num_images: int = 3, base_dir:
                 "portfolio_website": profile.get("portfolio_website"),
             },
             "skills": profile.get("skills", []),
+            "available_for_work": available,
             "social_links": social_links,
             "shots": downloaded_images,
             "total_shots_found": len(shots),

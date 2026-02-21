@@ -21,11 +21,13 @@ load_dotenv()
 # Explicitly pass API key — the SDK defaults to GOOGLE_API_KEY, not GEMINI_API_KEY
 _api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
 gemini_client = genai.Client(api_key=_api_key)
-GEMINI_FLASH = "gemini-2.5-flash"
+GEMINI_VISION_MODEL = os.getenv("GEMINI_VISION_MODEL", "gemini-2.5-flash")
+GEMINI_ASSESSMENT_MODEL = os.getenv("GEMINI_ASSESSMENT_MODEL", "gemini-2.5-flash")
 
 
-def _gemini_text(system: str, user: str, max_tokens: int = 3000, retries: int = 3, json_mode: bool = False) -> str:
+def _gemini_text(system: str, user: str, max_tokens: int = 3000, retries: int = 3, json_mode: bool = False, model: str = None) -> str:
     """Call Gemini with retries and exponential back-off."""
+    use_model = model or GEMINI_ASSESSMENT_MODEL
     for attempt in range(retries):
         try:
             config_args = dict(
@@ -36,7 +38,7 @@ def _gemini_text(system: str, user: str, max_tokens: int = 3000, retries: int = 
             if json_mode:
                 config_args["response_mime_type"] = "application/json"
             response = gemini_client.models.generate_content(
-                model=GEMINI_FLASH,
+                model=use_model,
                 contents=user,
                 config=types.GenerateContentConfig(**config_args),
             )
@@ -187,7 +189,7 @@ def analyze_image(filepath: str, work_title: str, skills: List[str], focus_area:
 
     try:
         response = gemini_client.models.generate_content(
-            model=GEMINI_FLASH,
+            model=GEMINI_VISION_MODEL,
             contents=[
                 types.Content(
                     role="user",
@@ -278,18 +280,18 @@ def analyze_designer(designer: Dict, focus_area: str) -> Dict:
         "You have image-by-image analyses of their actual design work. "
         "Produce a comprehensive evaluation as a JSON object.\n\n"
         "STRICT SCORING RULES — YOU MUST FOLLOW THESE:\n"
-        "1. Be HARSH and CRITICAL. A score of 3.0/5.0 means 'average'. Most designers are average.\n"
-        "2. Reserve 4.5+ ratings ONLY for truly world-class, award-winning caliber work.\n"
-        "3. Score 4.0-4.4 means 'very good but not exceptional'.\n"
-        "4. Score 3.0-3.9 means 'competent, professional, but unremarkable'.\n"
+        "1. Be CRITICAL but FAIR. A score of 3.0/5.0 means 'average'. Give credit where deserved.\n"
+        "2. Reserve 4.5+ ratings for truly world-class, award-winning caliber work.\n"
+        "3. Score 4.0-4.4 means 'very good with clear strengths'.\n"
+        "4. Score 3.0-3.9 means 'competent, professional'.\n"
         "5. Score below 3.0 means 'below expectations for a professional'.\n"
-        "6. overall_score mapping: 85+ = elite/HIRE, 60-84 = decent/CONSIDER, below 60 = weak/REJECT.\n"
-        "7. Do NOT inflate scores because of high follower counts alone — followers can be bought.\n"
-        "8. DEMAND concrete evidence of design excellence from the actual images analyzed.\n"
-        "9. Generic, template-looking, or derivative designs should score 2.5-3.5 max.\n"
-        "10. Only give HIRE recommendation if overall_score >= 85.\n"
-        "11. REJECT if overall_score < 60 or if design quality is genuinely poor.\n"
-        "12. CONSIDER for everything in between (60-84).\n"
+        "6. overall_score mapping: 71+ = strong/HIRE, 41-70 = decent/CONSIDER, 40 or below = weak/REJECT.\n"
+        "7. Follower counts are a positive signal but not the only factor.\n"
+        "8. Evaluate design excellence from the actual images analyzed.\n"
+        "9. Generic, template-looking designs should score 3.0-3.5.\n"
+        "10. Only give HIRE recommendation if overall_score >= 71.\n"
+        "11. REJECT if overall_score <= 40 or if design quality is genuinely poor.\n"
+        "12. CONSIDER for everything in between (41-70).\n"
         f"13. 'specialization_alignment' measures how well their UI/UX work aligns with '{focus_area}' — "
         f"a designer who has done car rental app UIs scores high for 'car', even if they also do other domains.\n"
         "14. KEEP ALL reasoning and feedback strings VERY SHORT — 1-2 sentences max per field. Be concise.\n"
@@ -330,11 +332,14 @@ Judge: (1) quality of their UI/UX design work, (2) relevance to the '{focus_area
 }}
 
 SCORING GUIDELINES:
-- Average professional UI/UX designer = overall_score 55-65
-- Good designer with solid portfolio = 65-75  
-- Very talented with standout work = 75-84
-- Elite, world-class portfolio = 85+
-- Do NOT give 85+ unless the work is genuinely exceptional and you have strong evidence.
+- Average professional UI/UX designer = overall_score 60-70
+- Good designer with solid portfolio = 70-80
+- Very talented with standout work = 80-90
+- Elite, world-class portfolio = 90+
+- Designers with strong visual quality and relevant domain work should score 71+.
+- Only REJECT (score <=40) if the work is genuinely poor.
+
+THRESHOLDS: HIRE >= 71, CONSIDER 41-70, REJECT <= 40
 
 DESIGNER DATA:
 {json.dumps(portfolio_context, indent=2, default=str)}"""

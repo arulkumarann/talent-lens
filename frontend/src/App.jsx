@@ -108,8 +108,8 @@ export default function App() {
         const username = p.original_data?.username || ''
         const score = p.final_analysis?.overall_score || 0
         let status = 'waitlisted'
-        if (score >= 85) status = 'selected'
-        else if (score < 60) status = 'rejected'
+        if (score >= 71) status = 'selected'
+        else if (score <= 40) status = 'rejected'
         else status = 'waitlisted'
         if (username) initialStatuses[username] = status
       })
