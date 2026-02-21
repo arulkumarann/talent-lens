@@ -22,23 +22,13 @@ export default function DevCandidateList({ role, onRefresh }) {
         rejected: 'REJECT',
     }
 
-    const cycleStatus = async (candidateId, currentStatus) => {
-        const cycle = ['selected', 'waitlisted', 'rejected']
-        const idx = cycle.indexOf(currentStatus)
-        const next = cycle[(idx + 1) % cycle.length]
-
-        // Prevent selection if slots are full
-        if (next === 'selected' && slotsFilled) {
-            alert(`All ${positions} positions are filled!`)
-            return
-        }
-
+    const updateStatus = async (candidateId, newStatus) => {
         setUpdatingStatus(candidateId)
         try {
             const res = await fetch(`/api/devs/roles/${role.id}/candidates/${candidateId}/status`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ status: next }),
+                body: JSON.stringify({ status: newStatus }),
             })
             const data = await res.json()
             if (data.error) {
@@ -51,6 +41,19 @@ export default function DevCandidateList({ role, onRefresh }) {
         } finally {
             setUpdatingStatus(null)
         }
+    }
+
+    const cycleStatus = (candidateId, currentStatus) => {
+        const cycle = ['selected', 'waitlisted', 'rejected']
+        const idx = cycle.indexOf(currentStatus)
+        const next = cycle[(idx + 1) % cycle.length]
+
+        if (next === 'selected' && slotsFilled) {
+            alert(`All ${positions} positions are filled!`)
+            return
+        }
+
+        updateStatus(candidateId, next)
     }
 
     return (
@@ -171,7 +174,33 @@ export default function DevCandidateList({ role, onRefresh }) {
                                 </div>
 
                                 {isExpanded && (
-                                    <DevCandidateDetail candidate={c} role={role} />
+                                    <div className="dev-expanded-wrapper">
+                                        {/* Status controls inside detail */}
+                                        <div className="dev-status-bar">
+                                            <span className="dev-status-bar-label">Status:</span>
+                                            {['selected', 'waitlisted', 'rejected'].map((s) => (
+                                                <button
+                                                    key={s}
+                                                    className={`dev-status-option ${status === s ? 'active' : ''}`}
+                                                    style={{
+                                                        '--status-color': statusColors[s],
+                                                    }}
+                                                    onClick={() => {
+                                                        if (s === status) return
+                                                        if (s === 'selected' && slotsFilled) {
+                                                            alert(`All ${positions} positions are filled!`)
+                                                            return
+                                                        }
+                                                        updateStatus(c.id, s)
+                                                    }}
+                                                    disabled={updatingStatus === c.id}
+                                                >
+                                                    {s === 'selected' ? '✓ Hire' : s === 'waitlisted' ? '◉ Consider' : '✕ Reject'}
+                                                </button>
+                                            ))}
+                                        </div>
+                                        <DevCandidateDetail candidate={c} role={role} />
+                                    </div>
                                 )}
                             </div>
                         )

@@ -132,9 +132,9 @@ async def get_role(role_id: str):
     for cid, c in role.get("candidates", {}).items():
         candidates_list.append({**c, "id": cid})
 
-    # Sort by score descending
+    # Sort by score descending (evaluation can be None while analysis is pending)
     candidates_list.sort(
-        key=lambda x: x.get("evaluation", {}).get("overall_score", 0),
+        key=lambda x: (x.get("evaluation") or {}).get("overall_score", 0),
         reverse=True
     )
 
@@ -178,14 +178,18 @@ async def update_candidate_status(role_id: str, candidate_id: str, req: StatusUp
 
     # Check slot limit for selection
     if req.status == "selected":
-        selected_count = sum(1 for c in role["candidates"].values()
-                             if c.get("status") == "selected" and c.get("id") != candidate_id)
+        selected_count = sum(
+            1 for cid, c in role["candidates"].items()
+            if c.get("status") == "selected" and cid != candidate_id
+        )
         if selected_count >= role["positions"]:
             return {"error": f"All {role['positions']} positions are filled. Cannot select more."}
 
+    old_status = candidate.get("status", "waitlisted")
     candidate["status"] = req.status
     _save()
-    return {"message": f"Status updated to {req.status}"}
+    print(f"[DevModule] {candidate.get('name', candidate_id)}: {old_status} → {req.status}")
+    return {"message": f"Status updated to {req.status}", "status": req.status}
 
 
 # ─── Tally Webhook ────────────────────────────────────────────────────────────
@@ -368,22 +372,67 @@ def _convert_sheet_url(url):
     return url
 
 
-def _import_from_sheet(target_role_id, sheet_url):
+def _clean_stale_sheet_ids():
+    """Remove IDs from sheet_last_ids that don't exist in any role's candidates."""
+    all_candidate_ids = set()
+    for role in store["roles"].values():
+        all_candidate_ids.update(role.get("candidates", {}).keys())
+
+    stale = store["sheet_last_ids"] - all_candidate_ids
+    if stale:
+        print(f"[Sheets] Clearing {len(stale)} stale sheet IDs: {stale}")
+        store["sheet_last_ids"] -= stale
+        _save()
+
+
+def _fuzzy_get(row, *possible_keys, default=""):
+    """Get value from row by trying multiple possible column header names (case-insensitive)."""
+    row_lower = {k.strip().lower(): v for k, v in row.items()}
+    for key in possible_keys:
+        val = row_lower.get(key.strip().lower(), "")
+        if val:
+            return str(val).strip()
+    return default
+
+
+def _import_from_sheet(target_role_id, sheet_url, trigger_analysis=True):
     """Fetch a sheet CSV and add new candidates to the role. Returns count added."""
     sheet_url = _convert_sheet_url(sheet_url)
     if not sheet_url:
         return 0
 
+    # Clean stale IDs first so previously failed imports can be retried
+    _clean_stale_sheet_ids()
+
     try:
         resp = requests.get(sheet_url, timeout=30)
         resp.raise_for_status()
-        reader = csv.DictReader(io.StringIO(resp.text))
+        text = resp.text
+        if not text.strip():
+            print(f"[Sheets] Empty response from sheet")
+            return 0
+
+        reader = csv.DictReader(io.StringIO(text))
+        headers = reader.fieldnames or []
+        print(f"[Sheets] Sheet columns: {headers}")
 
         new_count = 0
-        for row in reader:
-            sub_id = row.get("Submission ID", "").strip()
+        for row_idx, row in enumerate(reader):
+            # Try multiple possible column names for submission ID
+            sub_id = _fuzzy_get(
+                row,
+                "Submission ID", "submission_id", "submissionid",
+                "ID", "id", "Response ID"
+            )
             if not sub_id:
-                continue
+                # Generate a deterministic ID from name+email if no submission ID column
+                name_val = _fuzzy_get(row, "name", "full name", "what is your full name?", "what is your full name")
+                email_val = _fuzzy_get(row, "email", "your email", "email address")
+                if name_val or email_val:
+                    sub_id = f"sheet_{hash((name_val, email_val)) & 0xFFFFFFFF:08x}"
+                else:
+                    print(f"[Sheets] Row {row_idx}: no ID and no name/email, skipping")
+                    continue
 
             # Find target role
             actual_role_id = target_role_id
@@ -398,48 +447,52 @@ def _import_from_sheet(target_role_id, sheet_url):
             if not role:
                 continue
 
-            # Skip if already in this role OR already seen
+            # Skip ONLY if already in THIS role's candidates
             if sub_id in role["candidates"]:
-                continue
-            if sub_id in store["sheet_last_ids"]:
                 continue
 
             candidate = {
                 "submission_id": sub_id,
-                "name": row.get("What is your full name?", "").strip(),
-                "phone": row.get("Your number?", "").strip(),
-                "email": row.get("Your email", "").strip(),
-                "resume_url": row.get("Updated resume", "").strip(),
-                "github_username": row.get("Your github username", "").strip(),
-                "linkedin": row.get("Your linkedin", "").strip(),
-                "current_ctc": row.get("Current CTC", "").strip(),
+                "name": _fuzzy_get(row, "What is your full name?", "what is your full name", "name", "full name", "Name"),
+                "phone": _fuzzy_get(row, "Your number?", "your number", "phone", "phone number", "mobile", "Number"),
+                "email": _fuzzy_get(row, "Your email", "your email", "email", "email address", "Email"),
+                "resume_url": _fuzzy_get(row, "Updated resume", "updated resume", "resume", "resume url", "Resume"),
+                "github_username": _fuzzy_get(row, "Your github username", "your github username", "github", "github username", "GitHub"),
+                "linkedin": _fuzzy_get(row, "Your linkedin", "your linkedin", "linkedin", "linkedin url", "LinkedIn"),
+                "current_ctc": _fuzzy_get(row, "Current CTC", "current ctc", "ctc", "salary", "CTC"),
                 "status": "waitlisted",
-                "submitted_at": row.get("Submitted at", datetime.now().isoformat()),
+                "submitted_at": _fuzzy_get(row, "Submitted at", "submitted_at", "timestamp", "date",
+                                           default=datetime.now().isoformat()),
                 "evaluation": None,
                 "github_analysis": None,
                 "resume_analysis": None,
             }
 
             role["candidates"][sub_id] = candidate
-            # Only mark as seen AFTER successfully adding
             store["sheet_last_ids"].add(sub_id)
             new_count += 1
+            print(f"[Sheets] Added candidate: {candidate['name'] or sub_id}")
 
             # Trigger async analysis
-            threading.Thread(
-                target=_analyze_candidate_async,
-                args=(actual_role_id, sub_id),
-                daemon=True
-            ).start()
+            if trigger_analysis:
+                threading.Thread(
+                    target=_analyze_candidate_async,
+                    args=(actual_role_id, sub_id),
+                    daemon=True
+                ).start()
 
         if new_count > 0:
             _save()
             print(f"[Sheets] Added {new_count} new candidates from sheet")
+        else:
+            print(f"[Sheets] No new candidates found in sheet")
 
         return new_count
 
     except Exception as e:
         print(f"[Sheets] Error fetching sheet: {e}")
+        import traceback
+        traceback.print_exc()
         return 0
 
 
@@ -474,17 +527,32 @@ def start_sheets_poller():
 
 @router.post("/roles/{role_id}/analyze")
 async def analyze_role_candidates(role_id: str):
-    """Manually trigger analysis for all un-analyzed candidates in a role."""
+    """Manually trigger sheet import + analysis for all un-analyzed candidates in a role."""
     role = store["roles"].get(role_id)
     if not role:
         return {"error": "Role not found"}
 
+    # First, try to import new candidates from Google Sheet
+    imported = 0
+    sheet_url = role.get("sheet_url", "")
+    if sheet_url:
+        print(f"[Analyze] Importing from sheet for role '{role['name']}'...")
+        imported = _import_from_sheet(role_id, sheet_url, trigger_analysis=False)
+        # Re-read role after import (candidates may have been added)
+        role = store["roles"].get(role_id)
+
+    # Now find candidates that need (re-)analysis
+    # - No evaluation at all
+    # - Has github_username but no github_analysis (e.g. token was missing before)
     unanalyzed = [
         (cid, c) for cid, c in role["candidates"].items()
         if not c.get("evaluation")
+        or (c.get("github_username") and not c.get("github_analysis"))
     ]
 
     if not unanalyzed:
+        if not role["candidates"]:
+            return {"message": "No candidates found. Check that the Google Sheet is shared publicly (Anyone with the link) and has data."}
         return {"message": "All candidates already analyzed"}
 
     for cid, _ in unanalyzed:
@@ -494,7 +562,26 @@ async def analyze_role_candidates(role_id: str):
             daemon=True
         ).start()
 
-    return {"message": f"Triggered analysis for {len(unanalyzed)} candidates"}
+    msg = f"Triggered analysis for {len(unanalyzed)} candidates"
+    if imported > 0:
+        msg = f"Imported {imported} from sheet. {msg}"
+    return {"message": msg}
+
+
+@router.post("/roles/{role_id}/refresh-sheet")
+async def refresh_sheet(role_id: str):
+    """Manually trigger Google Sheet import for a role."""
+    role = store["roles"].get(role_id)
+    if not role:
+        return {"error": "Role not found"}
+
+    sheet_url = role.get("sheet_url", "")
+    if not sheet_url:
+        return {"message": "No Google Sheet URL configured for this role"}
+
+    imported = _import_from_sheet(role_id, sheet_url, trigger_analysis=True)
+    total = len(store["roles"].get(role_id, {}).get("candidates", {}))
+    return {"message": f"Imported {imported} new candidates ({total} total)", "imported": imported, "total": total}
 
 
 # ─── Initialize ───────────────────────────────────────────────────────────────

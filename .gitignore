@@ -10,6 +10,8 @@ build/
 .venv/
 venv/
 env/
+devs_data.json
+
 
 # ===== Node =====
 node_modules/

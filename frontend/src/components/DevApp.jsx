@@ -2,6 +2,29 @@ import { useState, useEffect, useCallback } from 'react'
 import RoleForm from './RoleForm'
 import DevCandidateList from './DevCandidateList'
 
+const JD_CHAR_LIMIT = 200
+
+function JdText({ text }) {
+    const [expanded, setExpanded] = useState(false)
+    if (!text) return null
+    const needsTruncate = text.length > JD_CHAR_LIMIT
+    const display = expanded || !needsTruncate ? text : text.slice(0, JD_CHAR_LIMIT).trimEnd() + '...'
+
+    return (
+        <div className="dev-role-jd-wrap">
+            <p className="dev-role-jd">{display}</p>
+            {needsTruncate && (
+                <button
+                    className="dev-jd-toggle"
+                    onClick={() => setExpanded(!expanded)}
+                >
+                    {expanded ? 'Show less' : 'Show more'}
+                </button>
+            )}
+        </div>
+    )
+}
+
 export default function DevApp() {
     const [roles, setRoles] = useState([])
     const [activeRoleId, setActiveRoleId] = useState(null)
@@ -68,14 +91,41 @@ export default function DevApp() {
         }
     }
 
+    const [analyzing, setAnalyzing] = useState(false)
+    const [refreshing, setRefreshing] = useState(false)
+
     const handleTriggerAnalysis = async () => {
         if (!activeRoleId) return
+        setAnalyzing(true)
         try {
             const res = await fetch(`/api/devs/roles/${activeRoleId}/analyze`, { method: 'POST' })
             const data = await res.json()
             alert(data.message || 'Analysis triggered')
+            // Refresh data after triggering
+            fetchRoles()
+            fetchRoleDetail()
         } catch (err) {
             console.error(err)
+            alert('Error triggering analysis')
+        } finally {
+            setAnalyzing(false)
+        }
+    }
+
+    const handleRefreshSheet = async () => {
+        if (!activeRoleId) return
+        setRefreshing(true)
+        try {
+            const res = await fetch(`/api/devs/roles/${activeRoleId}/refresh-sheet`, { method: 'POST' })
+            const data = await res.json()
+            alert(data.message || 'Refresh complete')
+            fetchRoles()
+            fetchRoleDetail()
+        } catch (err) {
+            console.error(err)
+            alert('Error refreshing from sheet')
+        } finally {
+            setRefreshing(false)
         }
     }
 
@@ -143,7 +193,7 @@ export default function DevApp() {
                             <div>
                                 <h1 className="dev-role-title">{activeRole.name}</h1>
                                 {activeRole.jd && (
-                                    <p className="dev-role-jd">{activeRole.jd}</p>
+                                    <JdText text={activeRole.jd} />
                                 )}
                                 <div className="dev-role-badges">
                                     {activeRole.ctc && (
@@ -163,14 +213,19 @@ export default function DevApp() {
                                 </div>
                             </div>
                             <div className="dev-header-actions">
-                                <button className="dev-action-btn" onClick={handleTriggerAnalysis}>
-                                    ▸ Analyze All
+                                <button
+                                    className="dev-action-btn"
+                                    onClick={handleTriggerAnalysis}
+                                    disabled={analyzing}
+                                >
+                                    {analyzing ? '⟳ Analyzing...' : '▸ Analyze All'}
                                 </button>
-                                <button className="dev-action-btn refresh" onClick={() => {
-                                    fetchRoles()
-                                    fetchRoleDetail()
-                                }}>
-                                    ↻ Refresh
+                                <button
+                                    className="dev-action-btn refresh"
+                                    onClick={handleRefreshSheet}
+                                    disabled={refreshing}
+                                >
+                                    {refreshing ? '⟳ Importing...' : '↻ Refresh'}
                                 </button>
                             </div>
                         </div>
