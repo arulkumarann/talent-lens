@@ -46,7 +46,9 @@ export default function CandidateList({
                     const od = profile.original_data || {}
                     const fa = profile.final_analysis || {}
                     const username = od.username || ''
-                    const status = statuses[username] || 'selected'
+                    const decision = (fa.recommendation?.decision || '').toUpperCase()
+                    const defaultStatus = decision === 'HIRE' ? 'selected' : decision === 'REJECT' ? 'rejected' : 'waitlisted'
+                    const status = statuses[username] || defaultStatus
                     const specs = (od.specializations || []).join(' · ') || '—'
                     const score = fa.overall_score || '—'
                     const isExpanded = expandedUser === username

@@ -30,8 +30,8 @@ load_dotenv()
 
 # ─── Config ───────────────────────────────────────────────────────────────────
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-gemini_client = genai.Client()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
+gemini_client = genai.Client(api_key=GEMINI_API_KEY)
 
 JINA_API_KEY = os.getenv("JINA_API_KEY")
 GEMINI_FLASH = "gemini-2.5-flash"

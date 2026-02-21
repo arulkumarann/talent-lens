@@ -752,8 +752,7 @@ def run_dribbble_portfolio_scraper(
     max_relevant_works: int = 5,
     max_images_per_work: int = 3,
     openai_api_key: str = None,
-    rapidapi_key: str = "
-    "
+    rapidapi_key: str = None
 ):
     if not openai_api_key:
         raise ValueError("OpenAI API key is required")

@@ -18,21 +18,36 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-gemini_client = genai.Client()
+# Explicitly pass API key — the SDK defaults to GOOGLE_API_KEY, not GEMINI_API_KEY
+_api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
+gemini_client = genai.Client(api_key=_api_key)
 GEMINI_FLASH = "gemini-2.5-flash"
 
 
-def _gemini_text(system: str, user: str, max_tokens: int = 3000) -> str:
-    response = gemini_client.models.generate_content(
-        model=GEMINI_FLASH,
-        contents=user,
-        config=types.GenerateContentConfig(
-            system_instruction=system,
-            max_output_tokens=max_tokens,
-            temperature=0.2,
-        ),
-    )
-    return response.text or ""
+def _gemini_text(system: str, user: str, max_tokens: int = 3000, retries: int = 3) -> str:
+    """Call Gemini with retries and exponential back-off."""
+    for attempt in range(retries):
+        try:
+            response = gemini_client.models.generate_content(
+                model=GEMINI_FLASH,
+                contents=user,
+                config=types.GenerateContentConfig(
+                    system_instruction=system,
+                    max_output_tokens=max_tokens,
+                    temperature=0.2,
+                ),
+            )
+            text = response.text or ""
+            if text:
+                return text
+            print(f"    [Analyzer] Empty Gemini response (attempt {attempt + 1}/{retries})")
+        except Exception as e:
+            print(f"    [Analyzer] Gemini API error (attempt {attempt + 1}/{retries}): {e}")
+        if attempt < retries - 1:
+            wait = 3 * (attempt + 1)
+            print(f"    [Analyzer] Retrying in {wait}s...")
+            time.sleep(wait)
+    return ""
 
 
 def _parse_json_from_text(text: str):
@@ -110,11 +125,17 @@ def analyze_image(filepath: str, work_title: str, skills: List[str], focus_area:
                     role="user",
                     parts=[
                         types.Part.from_text(text=
-                            f"Critically evaluate this {focus_area} design project titled '{work_title}' "
-                            f"by a designer specializing in: {skills_text}. "
-                            f"Provide a concise analysis covering: visual design quality, "
-                            f"UX/interaction design, technical sophistication, creativity, "
-                            f"and relevance to {focus_area}. Be specific about what you see."
+                            f"Evaluate this design project titled '{work_title}' "
+                            f"by a designer with skills in: {skills_text}. "
+                            f"The user searched for '{focus_area}'. "
+                            f"Focus your analysis on: "
+                            f"1) Overall visual design quality and aesthetics (most important), "
+                            f"2) Creativity and originality of the design, "
+                            f"3) Technical execution and polish, "
+                            f"4) Whether this level of design talent could produce great work in the '{focus_area}' domain. "
+                            f"IMPORTANT: Do NOT penalize the designer for not having prior experience in '{focus_area}'. "
+                            f"Great designers can transfer their skills across domains. "
+                            f"Judge the QUALITY of design work shown, not whether it matches the search domain exactly."
                         ),
                         types.Part.from_bytes(
                             data=base64.b64decode(b64),
@@ -180,12 +201,26 @@ def analyze_designer(designer: Dict, focus_area: str) -> Dict:
     }
 
     system = (
-        f"You are a senior design recruiter evaluating a {focus_area} designer's portfolio. "
+        f"You are a senior design recruiter evaluating a designer's portfolio. "
+        f"The user searched for '{focus_area}' designers. "
         "You have image-by-image analyses of their work. "
-        "Produce a comprehensive evaluation as a JSON object."
+        "Produce a comprehensive evaluation as a JSON object.\n\n"
+        "CRITICAL EVALUATION RULES:\n"
+        "1. PRIORITIZE visual design quality, aesthetics, creativity, and technical polish above all else.\n"
+        "2. A designer with high-quality work, strong followers, and great visual skills should score HIGH "
+        "even if their past work is not specifically in the searched domain.\n"
+        "3. Great designers can transfer their skills across domains. A talented web/app designer can "
+        "create excellent visuals for any domain including automotive, fashion, architecture, etc.\n"
+        "4. Consider follower count and engagement as positive signals of design quality.\n"
+        "5. Only REJECT a designer if the quality of their actual design work is genuinely poor — "
+        "NOT because their portfolio doesn't contain work in the specific searched domain.\n"
+        "6. The 'specialization_alignment' metric should evaluate whether the designer's DESIGN SKILLS "
+        "(layout, color, typography, composition) are transferable to the searched domain, "
+        "NOT whether they have prior domain-specific industry experience."
     )
 
-    user_prompt = f"""Evaluate this designer's portfolio for {focus_area} work and return ONLY a valid JSON object:
+    user_prompt = f"""Evaluate this designer's portfolio and return ONLY a valid JSON object.
+The user searched for '{focus_area}' designers. Remember: judge design QUALITY and TALENT, not domain-specific experience.
 
 {{
   "overall_rating": <float 1.0-5.0>,
@@ -215,23 +250,35 @@ def analyze_designer(designer: Dict, focus_area: str) -> Dict:
   }}
 }}
 
+IMPORTANT: A designer with strong visual portfolio and high follower count should be scored favorably.
+Only REJECT if the design work quality is genuinely low quality. Do NOT reject just because their past
+work is in a different design domain than '{focus_area}'.
+
 DESIGNER DATA:
 {json.dumps(portfolio_context, indent=2, default=str)}"""
 
     try:
         print(f"  [Analyzer] Generating final assessment for {username}...")
-        result_text = _gemini_text(system, user_prompt, max_tokens=3000)
-        parsed = _parse_json_from_text(result_text)
+        result_text = _gemini_text(system, user_prompt, max_tokens=3000, retries=3)
 
-        if isinstance(parsed, dict):
-            if "overall_score" not in parsed:
-                parsed["overall_score"] = round((parsed.get("overall_rating", 2.5) / 5.0) * 100)
-            print(f"  [Analyzer] Score: {parsed.get('overall_score', '?')} — {parsed.get('recommendation', {}).get('decision', '?')}")
-            return parsed
+        if not result_text:
+            print(f"  [Analyzer] WARNING: Gemini returned empty response for {username} after all retries")
+        else:
+            parsed = _parse_json_from_text(result_text)
+
+            if isinstance(parsed, dict):
+                if "overall_score" not in parsed:
+                    parsed["overall_score"] = round((parsed.get("overall_rating", 2.5) / 5.0) * 100)
+                print(f"  [Analyzer] Score: {parsed.get('overall_score', '?')} — {parsed.get('recommendation', {}).get('decision', '?')}")
+                return parsed
+            else:
+                print(f"  [Analyzer] WARNING: Could not parse JSON from Gemini response for {username}")
+                print(f"  [Analyzer] Raw response (first 500 chars): {result_text[:500]}")
     except Exception as e:
-        print(f"  [Analyzer] Error generating assessment: {e}")
+        print(f"  [Analyzer] Error generating assessment for {username}: {e}")
 
     # Fallback
+    print(f"  [Analyzer] Using fallback analysis for {username}")
     return {
         "overall_rating": 2.5,
         "overall_score": 50,
