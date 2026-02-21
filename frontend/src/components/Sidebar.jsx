@@ -1,6 +1,7 @@
 export default function Sidebar({
     activeNav, onNavigate, mode, onModeChange,
-    keywords = [], activeKeyword, onSelectKeyword, onDeleteKeyword
+    keywords = [], activeKeyword, onSelectKeyword, onDeleteKeyword,
+    mobileOpen = false
 }) {
     const designerNav = [
         { id: 'search', num: '01', label: 'search' },
@@ -17,7 +18,7 @@ export default function Sidebar({
     const navItems = mode === 'devs' ? devNav : designerNav
 
     return (
-        <aside className="sidebar">
+        <aside className={`sidebar ${mobileOpen ? 'sidebar-mobile-open' : ''}`}>
             <div className="sidebar-brand">
                 Talent<em>Lens</em>
             </div>

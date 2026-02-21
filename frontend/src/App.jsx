@@ -27,6 +27,7 @@ export default function App() {
   const [activeNav, setActiveNav] = useState('search')
   const [expandedUser, setExpandedUser] = useState(null)
   const [mode, setMode] = useState('designers')
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const sectionRefs = {
     search: useRef(null),
@@ -229,15 +230,35 @@ export default function App() {
 
   return (
     <div className="app-layout">
+      {/* Mobile hamburger */}
+      <button
+        className="mobile-menu-btn"
+        onClick={() => setSidebarOpen((v) => !v)}
+        aria-label="Toggle menu"
+      >
+        <span className={`hamburger ${sidebarOpen ? 'open' : ''}`} />
+      </button>
+
+      {/* Top-right home button */}
+      <button className="home-btn" onClick={() => setPage('landing')} aria-label="Back to home">
+        ← home
+      </button>
+
+      {/* Sidebar overlay backdrop */}
+      {sidebarOpen && (
+        <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />
+      )}
+
       <Sidebar
         activeNav={activeNav}
-        onNavigate={scrollTo}
+        onNavigate={(s) => { scrollTo(s); setSidebarOpen(false) }}
         mode={mode}
-        onModeChange={setMode}
+        onModeChange={(m) => { setMode(m); setSidebarOpen(false) }}
         keywords={keywords}
         activeKeyword={activeKeyword}
-        onSelectKeyword={handleSelectKeyword}
+        onSelectKeyword={(kw) => { handleSelectKeyword(kw); setSidebarOpen(false) }}
         onDeleteKeyword={handleDeleteKeyword}
+        mobileOpen={sidebarOpen}
       />
 
       {mode === 'devs' ? (
