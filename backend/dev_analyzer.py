@@ -22,9 +22,14 @@ load_dotenv()
 
 # ─── Config ───────────────────────────────────────────────────────────────────
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
-GEMINI_ASSESSMENT_MODEL = os.getenv("GEMINI_ASSESSMENT_MODEL", "gemini-2.5-flash")
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "")
+def _clean_env(key, default=""):
+    """Read env var, strip whitespace and accidental quotes."""
+    val = os.getenv(key, default) or default
+    return val.strip().strip('"').strip("'")
+
+GEMINI_API_KEY = _clean_env("GEMINI_API_KEY") or _clean_env("GOOGLE_API_KEY")
+GEMINI_ASSESSMENT_MODEL = _clean_env("GEMINI_ASSESSMENT_MODEL", "gemini-2.5-flash")
+GITHUB_TOKEN = _clean_env("GITHUB_TOKEN")
 
 gemini_client = genai.Client(api_key=GEMINI_API_KEY)
 

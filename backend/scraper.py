@@ -30,11 +30,16 @@ load_dotenv()
 
 # ─── Config ───────────────────────────────────────────────────────────────────
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
+def _clean_env(key, default=""):
+    """Read env var, strip whitespace and accidental quotes."""
+    val = os.getenv(key, default) or default
+    return val.strip().strip('"').strip("'")
+
+GEMINI_API_KEY = _clean_env("GEMINI_API_KEY") or _clean_env("GOOGLE_API_KEY")
 gemini_client = genai.Client(api_key=GEMINI_API_KEY)
 
-JINA_API_KEY = os.getenv("JINA_API_KEY")
-GEMINI_FLASH = os.getenv("GEMINI_SCRAPER_MODEL", "gemini-2.5-flash")
+JINA_API_KEY = _clean_env("JINA_API_KEY")
+GEMINI_FLASH = _clean_env("GEMINI_SCRAPER_MODEL", "gemini-2.5-flash")
 
 JINA_HEADERS = {
     "Authorization": f"Bearer {JINA_API_KEY}",

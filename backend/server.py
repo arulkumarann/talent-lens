@@ -368,7 +368,22 @@ async def export_results(format: str = Query("json"), keyword: str = Query("")):
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "service": "TalentLens API"}
+    # Show partial keys so we can verify env vars are loaded on Render
+    def _mask(key):
+        val = (os.getenv(key) or "").strip().strip('"').strip("'")
+        if not val:
+            return "NOT SET"
+        return f"{val[:8]}...{val[-4:]}" if len(val) > 12 else "***"
+    return {
+        "status": "ok",
+        "service": "TalentLens API",
+        "env": {
+            "GEMINI_API_KEY": _mask("GEMINI_API_KEY"),
+            "JINA_API_KEY": _mask("JINA_API_KEY"),
+            "GITHUB_TOKEN": _mask("GITHUB_TOKEN"),
+            "GEMINI_SCRAPER_MODEL": os.getenv("GEMINI_SCRAPER_MODEL", "(default)"),
+        }
+    }
 
 
 # ─── Initialize ───────────────────────────────────────────────────────────────

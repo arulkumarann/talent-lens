@@ -18,11 +18,16 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+def _clean_env(key, default=""):
+    """Read env var, strip whitespace and accidental quotes."""
+    val = os.getenv(key, default) or default
+    return val.strip().strip('"').strip("'")
+
 # Explicitly pass API key — the SDK defaults to GOOGLE_API_KEY, not GEMINI_API_KEY
-_api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
+_api_key = _clean_env("GEMINI_API_KEY") or _clean_env("GOOGLE_API_KEY")
 gemini_client = genai.Client(api_key=_api_key)
-GEMINI_VISION_MODEL = os.getenv("GEMINI_VISION_MODEL", "gemini-2.5-flash")
-GEMINI_ASSESSMENT_MODEL = os.getenv("GEMINI_ASSESSMENT_MODEL", "gemini-2.5-flash")
+GEMINI_VISION_MODEL = _clean_env("GEMINI_VISION_MODEL", "gemini-2.5-flash")
+GEMINI_ASSESSMENT_MODEL = _clean_env("GEMINI_ASSESSMENT_MODEL", "gemini-2.5-flash")
 
 
 def _gemini_text(system: str, user: str, max_tokens: int = 3000, retries: int = 3, json_mode: bool = False, model: str = None) -> str:
