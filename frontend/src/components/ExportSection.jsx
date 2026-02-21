@@ -1,4 +1,4 @@
-export default function ExportSection({ profiles, statuses }) {
+export default function ExportSection({ profiles, statuses, keyword }) {
     const exportJSON = () => {
         if (profiles.length === 0) return
         const exportData = profiles.map((p) => ({
@@ -8,12 +8,15 @@ export default function ExportSection({ profiles, statuses }) {
         const blob = new Blob([JSON.stringify(exportData, null, 2)], {
             type: 'application/json',
         })
-        downloadBlob(blob, 'talentlens_export.json')
+        downloadBlob(blob, `talentlens_${keyword || 'export'}.json`)
     }
 
     const exportCSV = () => {
         if (profiles.length === 0) return
-        window.open('/api/export?format=csv', '_blank')
+        const url = keyword
+            ? `/api/export?format=csv&keyword=${encodeURIComponent(keyword)}`
+            : '/api/export?format=csv'
+        window.open(url, '_blank')
     }
 
     const downloadBlob = (blob, filename) => {

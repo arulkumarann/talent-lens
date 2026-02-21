@@ -136,6 +136,87 @@ a:hover {
   text-transform: uppercase;
 }
 
+/* ───── SIDEBAR KEYWORDS ───── */
+.sidebar-keywords {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.sidebar-keywords-title {
+  font-family: var(--mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.sidebar-keywords-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.sidebar-keyword-item {
+  position: relative;
+  padding: 8px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.sidebar-keyword-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.sidebar-keyword-item.active {
+  background: rgba(200, 160, 90, 0.08);
+  border-left: 2px solid #c8a05a;
+}
+
+.sidebar-kw-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 16px;
+}
+
+.sidebar-kw-meta {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.sidebar-kw-delete {
+  position: absolute;
+  top: 8px;
+  right: 6px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .2s, color .2s;
+  line-height: 1;
+}
+
+.sidebar-keyword-item:hover .sidebar-kw-delete {
+  opacity: 1;
+}
+
+.sidebar-kw-delete:hover {
+  color: #f87171;
+}
+
 /* ═══════ MAIN ═══════ */
 .main-content {
   margin-left: var(--sidebar-w);
@@ -161,6 +242,23 @@ a:hover {
 
 .section-heading em {
   font-style: italic;
+}
+
+/* ─── Keyword Label ─── */
+.section-keyword-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: lowercase;
+  color: #c8a05a;
+  margin: -36px 0 48px;
+}
+
+/* ─── Metric bar active keyword label ─── */
+.metric-bar-label-active {
+  font-weight: 600;
+  color: #c8a05a;
 }
 
 /* ═══════ SEARCH ═══════ */

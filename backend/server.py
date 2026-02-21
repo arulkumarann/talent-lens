@@ -51,8 +51,57 @@ app.include_router(dev_router)
 async def startup_event():
     start_sheets_poller()
 
-# In-memory store for last scan results
+# ─── Designer Data Persistence ────────────────────────────────────────────────
+
+DESIGNERS_DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "designers_data.json")
+
+# Structure: { "keywords": { "<keyword>": { "profiles": [...], "statuses": {...}, "last_scanned": "..." } } }
+designers_store: dict = {"keywords": {}}
+
+
+def _load_designers():
+    """Load persisted designer data from JSON."""
+    global designers_store
+    if os.path.exists(DESIGNERS_DATA_FILE):
+        try:
+            with open(DESIGNERS_DATA_FILE, "r", encoding="utf-8") as f:
+                designers_store = json.load(f)
+            if "keywords" not in designers_store:
+                designers_store = {"keywords": {}}
+            kw_count = len(designers_store["keywords"])
+            total = sum(len(v.get("profiles", [])) for v in designers_store["keywords"].values())
+            print(f"[Designers] Loaded {kw_count} keywords, {total} profiles from {DESIGNERS_DATA_FILE}")
+        except Exception as e:
+            print(f"[Designers] Error loading data: {e}")
+            designers_store = {"keywords": {}}
+
+
+def _save_designers():
+    """Persist designer data to JSON."""
+    try:
+        with open(DESIGNERS_DATA_FILE, "w", encoding="utf-8") as f:
+            json.dump(designers_store, f, indent=2, default=str)
+    except Exception as e:
+        print(f"[Designers] Error saving data: {e}")
+
+
+def _merge_profiles(existing_profiles: list, new_profiles: list) -> list:
+    """Merge new profiles into existing, updating duplicates by username."""
+    by_username = {}
+    for p in existing_profiles:
+        uname = p.get("original_data", {}).get("username", "")
+        if uname:
+            by_username[uname] = p
+    for p in new_profiles:
+        uname = p.get("original_data", {}).get("username", "")
+        if uname:
+            by_username[uname] = p  # new data overwrites old
+    return list(by_username.values())
+
+
+# In-memory store for last scan results (for SSE compatibility)
 last_results: List[dict] = []
+last_keyword: str = ""
 
 # Number of work images to download per designer (env-controlled)
 NUM_IMAGES_PER_PROFILE = int(os.getenv("NUM_IMAGES_PER_PROFILE", "3"))
@@ -101,12 +150,13 @@ class LogCapture(io.TextIOBase):
 def run_pipeline_thread(keyword: str, max_profiles: int,
                         queue: asyncio.Queue, loop: asyncio.AbstractEventLoop):
     """Run scraper → analyzer in a background thread with log capture."""
+    global last_keyword
     old_stdout = sys.stdout
     capture = LogCapture(queue, loop)
     sys.stdout = capture
+    last_keyword = keyword
 
     try:
-        # The base_dir is the backend directory so images are saved in backend/scraped_images/
         base_dir = os.path.dirname(os.path.abspath(__file__))
 
         # 1. Scrape
@@ -117,12 +167,36 @@ def run_pipeline_thread(keyword: str, max_profiles: int,
             base_dir=base_dir,
         )
 
-        # 2. Analyze (uses Gemini vision on the saved images)
+        # 2. Analyze
         profiles = analyze_all_designers(scraped, focus_area=keyword)
+
+        # 3. Persist — merge into existing keyword data
+        kw_key = keyword.strip().lower()
+        existing = designers_store["keywords"].get(kw_key, {}).get("profiles", [])
+        merged = _merge_profiles(existing, profiles)
+        designers_store["keywords"][kw_key] = {
+            "profiles": merged,
+            "statuses": designers_store["keywords"].get(kw_key, {}).get("statuses", {}),
+            "last_scanned": __import__("datetime").datetime.now().isoformat(),
+        }
+        # Auto-assign statuses for new profiles
+        existing_statuses = designers_store["keywords"][kw_key].get("statuses", {})
+        for p in profiles:
+            uname = p.get("original_data", {}).get("username", "")
+            if uname and uname not in existing_statuses:
+                score = p.get("final_analysis", {}).get("overall_score", 0)
+                if score >= 71:
+                    existing_statuses[uname] = "selected"
+                elif score <= 40:
+                    existing_statuses[uname] = "rejected"
+                else:
+                    existing_statuses[uname] = "waitlisted"
+        designers_store["keywords"][kw_key]["statuses"] = existing_statuses
+        _save_designers()
 
         capture.flush()
         asyncio.run_coroutine_threadsafe(
-            queue.put(("result", profiles)), loop
+            queue.put(("result", merged)), loop
         )
     except Exception as e:
         capture.flush()
@@ -140,7 +214,7 @@ def run_pipeline_thread(keyword: str, max_profiles: int,
 
 @app.post("/api/scan")
 async def scan_designers(req: ScanRequest):
-    global last_results
+    global last_results, last_keyword
 
     queue: asyncio.Queue = asyncio.Queue()
     loop = asyncio.get_event_loop()
@@ -165,7 +239,7 @@ async def scan_designers(req: ScanRequest):
 
             elif msg_type == "result":
                 last_results = msg_data
-                yield f"event: result\ndata: {json.dumps({'profiles': msg_data}, default=str)}\n\n"
+                yield f"event: result\ndata: {json.dumps({'profiles': msg_data, 'keyword': keyword}, default=str)}\n\n"
 
             elif msg_type == "error":
                 yield f"event: error\ndata: {json.dumps({'error': msg_data})}\n\n"
@@ -185,9 +259,80 @@ async def scan_designers(req: ScanRequest):
     )
 
 
+# ─── Designer Keyword Endpoints ──────────────────────────────────────────────
+
+@app.get("/api/designers/keywords")
+async def list_keywords():
+    """Return all stored keywords with metadata."""
+    keywords = []
+    for kw, data in designers_store.get("keywords", {}).items():
+        profiles = data.get("profiles", [])
+        statuses = data.get("statuses", {})
+        selected = sum(1 for s in statuses.values() if s == "selected")
+        keywords.append({
+            "keyword": kw,
+            "total_profiles": len(profiles),
+            "selected": selected,
+            "last_scanned": data.get("last_scanned", ""),
+        })
+    # Sort by most recent scan
+    keywords.sort(key=lambda x: x.get("last_scanned", ""), reverse=True)
+    return {"keywords": keywords}
+
+
+@app.get("/api/designers/keyword/{keyword}")
+async def get_keyword_data(keyword: str):
+    """Return profiles and statuses for a specific keyword."""
+    kw_key = keyword.strip().lower()
+    data = designers_store.get("keywords", {}).get(kw_key)
+    if not data:
+        return JSONResponse({"error": "Keyword not found"}, status_code=404)
+    return {
+        "keyword": kw_key,
+        "profiles": data.get("profiles", []),
+        "statuses": data.get("statuses", {}),
+        "last_scanned": data.get("last_scanned", ""),
+    }
+
+
+@app.put("/api/designers/keyword/{keyword}/status/{username}")
+async def update_designer_status(keyword: str, username: str, status: str = Query(...)):
+    """Update a designer's status within a keyword group."""
+    kw_key = keyword.strip().lower()
+    data = designers_store.get("keywords", {}).get(kw_key)
+    if not data:
+        return JSONResponse({"error": "Keyword not found"}, status_code=404)
+
+    if status not in ("selected", "waitlisted", "rejected"):
+        return JSONResponse({"error": "Invalid status"}, status_code=400)
+
+    data.setdefault("statuses", {})[username] = status
+    _save_designers()
+    return {"message": f"{username} → {status}"}
+
+
+@app.delete("/api/designers/keyword/{keyword}")
+async def delete_keyword(keyword: str):
+    """Delete all data for a keyword."""
+    kw_key = keyword.strip().lower()
+    if kw_key in designers_store.get("keywords", {}):
+        del designers_store["keywords"][kw_key]
+        _save_designers()
+        return {"message": f"Deleted keyword '{kw_key}'"}
+    return JSONResponse({"error": "Keyword not found"}, status_code=404)
+
+
 @app.get("/api/export")
-async def export_results(format: str = Query("json")):
-    if not last_results:
+async def export_results(format: str = Query("json"), keyword: str = Query("")):
+    # If keyword specified, use that data; otherwise use last_results
+    if keyword:
+        kw_key = keyword.strip().lower()
+        data = designers_store.get("keywords", {}).get(kw_key, {})
+        export_profiles = data.get("profiles", [])
+    else:
+        export_profiles = last_results
+
+    if not export_profiles:
         return JSONResponse({"error": "No results to export"}, status_code=404)
 
     if format == "csv":
@@ -197,7 +342,7 @@ async def export_results(format: str = Query("json")):
             "Username", "Name", "Location", "Followers",
             "Score", "Decision", "Skills", "Profile URL",
         ])
-        for p in last_results:
+        for p in export_profiles:
             od = p.get("original_data", {})
             fa = p.get("final_analysis", {})
             rec = fa.get("recommendation", {})
@@ -218,12 +363,16 @@ async def export_results(format: str = Query("json")):
             headers={"Content-Disposition": "attachment; filename=talentlens_export.csv"},
         )
 
-    return JSONResponse(last_results)
+    return JSONResponse(export_profiles)
 
 
 @app.get("/api/health")
 async def health():
     return {"status": "ok", "service": "TalentLens API"}
+
+
+# ─── Initialize ───────────────────────────────────────────────────────────────
+_load_designers()
 
 
 if __name__ == "__main__":

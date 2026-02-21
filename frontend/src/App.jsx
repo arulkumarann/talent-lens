@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import Sidebar from './components/Sidebar'
 import SearchSection from './components/SearchSection'
 import CandidateList from './components/CandidateList'
@@ -8,12 +8,19 @@ import ExportSection from './components/ExportSection'
 import DevApp from './components/DevApp'
 
 export default function App() {
+  // ─── Keywords & data ───
+  const [keywords, setKeywords] = useState([])          // all stored keywords
+  const [activeKeyword, setActiveKeyword] = useState(null) // currently selected keyword
   const [profiles, setProfiles] = useState([])
   const [statuses, setStatuses] = useState({})
   const [currentFilter, setCurrentFilter] = useState('all')
+
+  // ─── Scan state ───
   const [isScanning, setIsScanning] = useState(false)
   const [logLines, setLogLines] = useState([])
   const [keywordTags, setKeywordTags] = useState([])
+
+  // ─── UI state ───
   const [activeNav, setActiveNav] = useState('search')
   const [expandedUser, setExpandedUser] = useState(null)
   const [mode, setMode] = useState('designers')
@@ -25,20 +32,58 @@ export default function App() {
     export: useRef(null),
   }
 
+  // ─── Load keywords on mount ───
+  const fetchKeywords = useCallback(async () => {
+    try {
+      const res = await fetch('/api/designers/keywords')
+      const data = await res.json()
+      setKeywords(data.keywords || [])
+    } catch (err) {
+      console.error('Error fetching keywords:', err)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchKeywords()
+  }, [])
+
+  // ─── Load keyword data when activeKeyword changes ───
+  const loadKeywordData = useCallback(async (kw) => {
+    if (!kw) {
+      setProfiles([])
+      setStatuses({})
+      return
+    }
+    try {
+      const res = await fetch(`/api/designers/keyword/${encodeURIComponent(kw)}`)
+      if (!res.ok) return
+      const data = await res.json()
+      setProfiles(data.profiles || [])
+      setStatuses(data.statuses || {})
+    } catch (err) {
+      console.error('Error loading keyword data:', err)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (activeKeyword) loadKeywordData(activeKeyword)
+  }, [activeKeyword, loadKeywordData])
+
   const scrollTo = useCallback((section) => {
     setActiveNav(section)
     sectionRefs[section]?.current?.scrollIntoView({ behavior: 'smooth' })
   }, [])
 
+  // ─── Scan ───
   const startScan = useCallback((queries, maxUsers = 5) => {
     if (isScanning || queries.length === 0) return
 
     setIsScanning(true)
     setLogLines([])
-    setProfiles([])
-    setStatuses({})
     setExpandedUser(null)
     setKeywordTags(queries)
+
+    const keyword = queries[0]
 
     fetch('/api/scan', {
       method: 'POST',
@@ -53,7 +98,7 @@ export default function App() {
         function readStream() {
           reader.read().then(({ done, value }) => {
             if (done) {
-              finishScan([])
+              finishScan([], keyword)
               return
             }
 
@@ -73,7 +118,7 @@ export default function App() {
                     setLogLines((prev) => [...prev, parsed.message])
                   } else if (eventType === 'result') {
                     const resultProfiles = parsed.profiles || []
-                    finishScan(resultProfiles)
+                    finishScan(resultProfiles, parsed.keyword || keyword)
                   } else if (eventType === 'error') {
                     setLogLines((prev) => [...prev, 'error: ' + parsed.error])
                   } else if (eventType === 'done') {
@@ -101,37 +146,46 @@ export default function App() {
       })
   }, [isScanning])
 
-  const finishScan = useCallback((resultProfiles) => {
+  const finishScan = useCallback((resultProfiles, keyword) => {
     setIsScanning(false)
     if (resultProfiles.length > 0) {
       setProfiles(resultProfiles)
-      const initialStatuses = {}
-      resultProfiles.forEach((p) => {
-        const username = p.original_data?.username || ''
-        const score = p.final_analysis?.overall_score || 0
-        let status = 'waitlisted'
-        if (score >= 71) status = 'selected'
-        else if (score <= 40) status = 'rejected'
-        else status = 'waitlisted'
-        if (username) initialStatuses[username] = status
-      })
-      setStatuses(initialStatuses)
+      // Build statuses from server (already auto-assigned)
+      const kwNorm = keyword?.trim().toLowerCase() || ''
+      setActiveKeyword(kwNorm)
+      fetchKeywords() // refresh sidebar keyword list
 
+      // Load the full persisted data (includes merged results + statuses)
       setTimeout(() => {
+        loadKeywordData(kwNorm)
         sectionRefs.candidates.current?.scrollIntoView({ behavior: 'smooth' })
         setActiveNav('candidates')
-      }, 400)
+      }, 500)
     }
-  }, [])
+  }, [fetchKeywords, loadKeywordData])
 
-  const cycleStatus = useCallback((username) => {
-    setStatuses((prev) => {
-      const cycle = ['selected', 'waitlisted', 'rejected']
-      const current = prev[username] || 'selected'
-      const idx = cycle.indexOf(current)
-      return { ...prev, [username]: cycle[(idx + 1) % cycle.length] }
-    })
-  }, [])
+  // ─── Status management (persisted to backend) ───
+  const cycleStatus = useCallback(async (username) => {
+    const cycle = ['selected', 'waitlisted', 'rejected']
+    const current = statuses[username] || 'waitlisted'
+    const idx = cycle.indexOf(current)
+    const next = cycle[(idx + 1) % cycle.length]
+
+    // Optimistic update
+    setStatuses((prev) => ({ ...prev, [username]: next }))
+
+    // Persist to backend
+    if (activeKeyword) {
+      try {
+        await fetch(
+          `/api/designers/keyword/${encodeURIComponent(activeKeyword)}/status/${encodeURIComponent(username)}?status=${next}`,
+          { method: 'PUT' }
+        )
+      } catch (err) {
+        console.error('Error persisting status:', err)
+      }
+    }
+  }, [statuses, activeKeyword])
 
   const toggleDetail = useCallback((username) => {
     setExpandedUser((prev) => (prev === username ? null : username))
@@ -141,6 +195,31 @@ export default function App() {
     ? profiles
     : profiles.filter((p) => statuses[p.original_data?.username] === currentFilter)
 
+  const handleSelectKeyword = useCallback((kw) => {
+    setActiveKeyword(kw)
+    setExpandedUser(null)
+    setCurrentFilter('all')
+    setActiveNav('candidates')
+    setTimeout(() => {
+      sectionRefs.candidates.current?.scrollIntoView({ behavior: 'smooth' })
+    }, 100)
+  }, [])
+
+  const handleDeleteKeyword = useCallback(async (kw) => {
+    if (!confirm(`Delete all data for "${kw}"?`)) return
+    try {
+      await fetch(`/api/designers/keyword/${encodeURIComponent(kw)}`, { method: 'DELETE' })
+      if (activeKeyword === kw) {
+        setActiveKeyword(null)
+        setProfiles([])
+        setStatuses({})
+      }
+      fetchKeywords()
+    } catch (err) {
+      console.error(err)
+    }
+  }, [activeKeyword, fetchKeywords])
+
   return (
     <div className="app-layout">
       <Sidebar
@@ -148,6 +227,10 @@ export default function App() {
         onNavigate={scrollTo}
         mode={mode}
         onModeChange={setMode}
+        keywords={keywords}
+        activeKeyword={activeKeyword}
+        onSelectKeyword={handleSelectKeyword}
+        onDeleteKeyword={handleDeleteKeyword}
       />
 
       {mode === 'devs' ? (
@@ -173,6 +256,7 @@ export default function App() {
                 {filteredProfiles.length} designer{filteredProfiles.length !== 1 ? 's' : ''}{' '}
                 <em>found.</em>
               </h1>
+              {activeKeyword && <p className="section-keyword-label">{activeKeyword}</p>}
 
               <CandidateList
                 profiles={filteredProfiles}
@@ -192,18 +276,28 @@ export default function App() {
               <h1 className="section-heading">
                 statistics <em>overview.</em>
               </h1>
-              <StatsDashboard profiles={profiles} statuses={statuses} />
+              <StatsDashboard
+                profiles={profiles}
+                statuses={statuses}
+                allKeywords={designers_store_keywords_for_stats(keywords)}
+                activeKeyword={activeKeyword}
+              />
             </section>
           )}
 
           {/* 04 EXPORT */}
           {profiles.length > 0 && (
             <section ref={sectionRefs.export}>
-              <ExportSection profiles={profiles} statuses={statuses} />
+              <ExportSection profiles={profiles} statuses={statuses} keyword={activeKeyword} />
             </section>
           )}
         </main>
       )}
     </div>
   )
+}
+
+// Helper — keywords summary for stats component (just pass the list)
+function designers_store_keywords_for_stats(keywords) {
+  return keywords
 }

@@ -324,10 +324,14 @@ def _analyze_candidate_async(role_id: str, candidate_id: str):
 
         result = analyze_dev_candidate(candidate, role)
 
-        # Update candidate with results
-        candidate["github_analysis"] = result.get("github_analysis")
-        candidate["resume_analysis"] = result.get("resume_analysis")
-        candidate["evaluation"] = result.get("evaluation")
+        # Update candidate with results — only overwrite if new data is present,
+        # so we don't lose existing data when re-analyzing for a single missing piece
+        if result.get("github_analysis") is not None:
+            candidate["github_analysis"] = result["github_analysis"]
+        if result.get("resume_analysis") is not None:
+            candidate["resume_analysis"] = result["resume_analysis"]
+        if result.get("evaluation") is not None:
+            candidate["evaluation"] = result["evaluation"]
 
         # Set initial status based on score
         score = (result.get("evaluation") or {}).get("overall_score", 50)
@@ -544,10 +548,12 @@ async def analyze_role_candidates(role_id: str):
     # Now find candidates that need (re-)analysis
     # - No evaluation at all
     # - Has github_username but no github_analysis (e.g. token was missing before)
+    # - Has resume_url but no resume_analysis (e.g. PDF download failed)
     unanalyzed = [
         (cid, c) for cid, c in role["candidates"].items()
         if not c.get("evaluation")
         or (c.get("github_username") and not c.get("github_analysis"))
+        or (c.get("resume_url") and not c.get("resume_analysis"))
     ]
 
     if not unanalyzed:

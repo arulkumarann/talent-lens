@@ -1,9 +1,299 @@
 {
-  "roles": {},
+  "roles": {
+    "63671d41": {
+      "name": "AI Engineer",
+      "jd": "We are seeking a skilled AI Engineer to design, build, and deploy intelligent systems that solve real-world problems at scale. You will work closely with data scientists, software engineers, and product teams to develop production-ready machine learning and deep learning solutions.\n\nKey Responsibilities\n\nDesign and implement machine learning and deep learning models for real-world applications\n\nBuild scalable AI pipelines for data preprocessing, training, evaluation, and deployment\n\nOptimize model performance, latency, and inference efficiency\n\nDevelop APIs and integrate AI models into production systems\n\nConduct experiments and analyze results to improve model accuracy\n\nMaintain model monitoring, versioning, and retraining workflows\n\nStay updated with latest research and integrate relevant advancements\n\nRequired Skills\n\nStrong proficiency in Python\n\nHands-on experience with ML/DL frameworks such as PyTorch or TensorFlow\n\nSolid understanding of machine learning algorithms and statistics\n\nExperience with data processing libraries (NumPy, Pandas, etc.)\n\nKnowledge of REST APIs and backend frameworks (FastAPI, Flask, etc.)\n\nFamiliarity with SQL and NoSQL databases\n\nUnderstanding of software engineering best practices and Git workflows",
+      "ctc": "10LPA",
+      "positions": 5,
+      "tally_link": "https://tally.so/r/VL0xey",
+      "tally_form_id": "VL0xey",
+      "sheet_url": "https://docs.google.com/spreadsheets/d/1lkkJCy3C3tfbQXxr6-7au7UgVGnHMnREeMtSln3bGtw/edit?usp=sharing",
+      "candidates": {
+        "gDKeRgO": {
+          "submission_id": "gDKeRgO",
+          "name": "Arul Kumaran",
+          "phone": "918489976758",
+          "email": "arulkumaranp02@gmail.com",
+          "resume_url": "https://storage.tally.so/private/Arul_Resume_Jan26.pdf?id=7p5NLz&accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdwNU5MeiIsImZvcm1JZCI6IlZMMHhleSIsImlhdCI6MTc3MTY5NzQ2NX0.ZoQMWRfMkk-D7qdQ5k99bM9F4rarrlt6OdyVaFxXDjU&signature=7033966ba1ec94700d8dd2d95a8b8e4552f6d4f33a0f2f484af314f2fb2293de",
+          "github_username": "arulkumarann",
+          "linkedin": "https://www.linkedin.com/in/arul-kumaran-p/",
+          "current_ctc": "6LPA",
+          "status": "selected",
+          "submitted_at": "2026-02-21 18:11:02",
+          "evaluation": {
+            "overall_rating": 4.4,
+            "overall_score": 88,
+            "metrics": {
+              "technical_depth": {
+                "rating": 4.5,
+                "reasoning": "Candidate demonstrates strong understanding of various DL architectures (CNNs, GANs, LLMs) and frameworks (PyTorch, TensorFlow) through impressive projects."
+              },
+              "project_quality": {
+                "rating": 4.5,
+                "reasoning": "Projects like 'legalRAG' are highly relevant, showcasing practical application of advanced AI concepts (RAG, LLMs, FastAPI) with good technical depth."
+              },
+              "experience_relevance": {
+                "rating": 4.0,
+                "reasoning": "Despite being a student, internships and projects are directly relevant to AI/ML engineering, covering RAG, deep learning workflows, and API integration."
+              },
+              "github_activity": {
+                "rating": 4.0,
+                "reasoning": "Good number of repositories, consistent commits, and highly relevant pinned projects, indicating active engagement in AI/ML development."
+              },
+              "skill_match": {
+                "rating": 4.8,
+                "reasoning": "Excellent match with required skills including Python, PyTorch/TensorFlow, ML algorithms, data processing, FastAPI, and Git, all demonstrated in projects."
+              },
+              "overall_fit": {
+                "rating": 4.5,
+                "reasoning": "Strong fit for an AI Engineer role, especially given the focus on practical application of LLMs, RAG, and deep learning, aligning well with the JD."
+              }
+            },
+            "strengths": [
+              "Strong ML/DL project portfolio",
+              "Practical RAG/LLM experience",
+              "Proficiency in Python/PyTorch/TensorFlow",
+              "Experience with FastAPI",
+              "Good GitHub activity"
+            ],
+            "areas_for_improvement": [
+              "Limited full-time professional experience (due to student status)",
+              "Potentially less experience with large-scale production deployment"
+            ],
+            "recommendation": {
+              "decision": "HIRE",
+              "confidence": "HIGH",
+              "reasoning": "Candidate demonstrates exceptional practical skills in AI/ML, particularly with LLMs and RAG, backed by strong projects and relevant internships, making them a strong hire."
+            },
+            "detailed_feedback": {
+              "technical_assessment": "Excellent grasp of deep learning architectures and practical implementation skills, especially with RAG systems and FastAPI.",
+              "culture_fit": "Proactive, self-learner, and project-driven, suggesting a good fit for an innovative team.",
+              "growth_potential": "High growth potential given the strong foundation and demonstrated ability to learn and apply advanced concepts.",
+              "salary_alignment": "Current CTC is well below the role's offer, indicating good alignment and potential for a significant increase."
+            }
+          },
+          "github_analysis": {
+            "username": "arulkumarann",
+            "name": "Arul ",
+            "bio": "deep in learning\r\n",
+            "company": "SRM Institue of Science and Technology",
+            "location": "Chennai, India",
+            "created_at": "2022-09-11T10:58:48Z",
+            "followers": 19,
+            "following": 44,
+            "total_repos": 54,
+            "own_repos": 50,
+            "total_stars": 17,
+            "top_languages": [
+              {
+                "language": "Python",
+                "count": 25
+              },
+              {
+                "language": "Jupyter Notebook",
+                "count": 14
+              },
+              {
+                "language": "TypeScript",
+                "count": 3
+              },
+              {
+                "language": "HTML",
+                "count": 2
+              },
+              {
+                "language": "JavaScript",
+                "count": 1
+              },
+              {
+                "language": "Dockerfile",
+                "count": 1
+              }
+            ],
+            "pinned_repos": [
+              {
+                "name": "legalRAG",
+                "description": "A FastAPI-based Retrieval-Augmented Generation (RAG) system for legal document analysis, powered by Pinecone, LangChain, and Llama 3.3",
+                "stars": 9,
+                "language": "Python",
+                "url": "https://github.com/arulkumarann/legalRAG"
+              },
+              {
+                "name": "cgan-augumentation",
+                "description": "Generate synthetic images using Conditional GANs to balance imbalanced datasets and improve classification performance.",
+                "stars": 1,
+                "language": "Python",
+                "url": "https://github.com/arulkumarann/cgan-augumentation"
+              },
+              {
+                "name": "u-net-implementation",
+                "description": "A comprehensive PyTorch implementation U-Net architecture for image segmentation tasks, including data preparation, model training, and result visualization.",
+                "stars": 0,
+                "language": "Jupyter Notebook",
+                "url": "https://github.com/arulkumarann/u-net-implementation"
+              },
+              {
+                "name": "vqa_implementation",
+                "description": "vanilla vqa_v1 PyTorch implementation",
+                "stars": 0,
+                "language": "Jupyter Notebook",
+                "url": "https://github.com/arulkumarann/vqa_implementation"
+              },
+              {
+                "name": "indian_sign_language_recognition",
+                "description": "This project employs Convolutional Neural Networks (CNNs) to recognize Indian Sign Language (ISL) gestures and translate them into text ",
+                "stars": 0,
+                "language": "Python",
+                "url": "https://github.com/arulkumarann/indian_sign_language_recognition"
+              },
+              {
+                "name": "qnn",
+                "description": "Benchmarking Convolutional Neural Networks (CNNs) and Quantum Neural Networks (QNNs) on image classification tasks",
+                "stars": 1,
+                "language": "Python",
+                "url": "https://github.com/arulkumarann/qnn"
+              }
+            ],
+            "contributions": {
+              "total": 231,
+              "commits": 204,
+              "pull_requests": 6,
+              "issues": 0,
+              "repos_created": 21
+            },
+            "top_repos": [
+              {
+                "name": "legalRAG",
+                "description": "A FastAPI-based Retrieval-Augmented Generation (RAG) system for legal document analysis, powered by ",
+                "stars": 9,
+                "forks": 2,
+                "language": "Python"
+              },
+              {
+                "name": "visual-sense",
+                "description": "",
+                "stars": 3,
+                "forks": 2,
+                "language": "Python"
+              },
+              {
+                "name": "safetrip-intern",
+                "description": "",
+                "stars": 1,
+                "forks": 0,
+                "language": "Python"
+              },
+              {
+                "name": "cgan-augumentation",
+                "description": "Generate synthetic images using Conditional GANs to balance imbalanced datasets and improve classifi",
+                "stars": 1,
+                "forks": 0,
+                "language": "Python"
+              },
+              {
+                "name": "qnn",
+                "description": "Benchmarking Convolutional Neural Networks (CNNs) and Quantum Neural Networks (QNNs) on image classi",
+                "stars": 1,
+                "forks": 0,
+                "language": "Python"
+              }
+            ]
+          },
+          "resume_analysis": {
+            "skills": [
+              "PyTorch",
+              "Tensorflow",
+              "Computer Vision",
+              "Transformers",
+              "CNNs",
+              "GANs",
+              "LLMs",
+              "Python",
+              "C",
+              "C++",
+              "Java",
+              "FastAPI",
+              "Git",
+              "GitHub",
+              "VS Code",
+              "Vector Databases",
+              "Jupyter Notebook",
+              "Linux/UNIX",
+              "APIs",
+              "Selenium",
+              "Excel",
+              "Database Management",
+              "Web Scraping"
+            ],
+            "experience_years": 1,
+            "education": [
+              {
+                "degree": "B. Tech Computer Science and Engineering w/s AIML",
+                "institution": "SRM Institute of Science and Technology",
+                "year": "2027"
+              }
+            ],
+            "work_experience": [
+              {
+                "title": "ML Development Consultant",
+                "company": "Hexo AI",
+                "duration": "Oct 2025 - Present",
+                "highlights": "Built and optimized deep learning workflows for model training, evaluation, and benchmarking across multiple model architectures, while also implementing custom performance analysis and reproducibility frameworks and benchmarking LLM agents on various evaluation techniques."
+              },
+              {
+                "title": "Software Development Intern",
+                "company": "Hyundai Motor India Ltd.",
+                "duration": "1 month",
+                "highlights": "Developed a RAG system enabling natural language queries to relational databases, implementing SQL query generation with 95%+ accuracy, intelligent fallback mechanisms, and error handling for enterprise data access."
+              },
+              {
+                "title": "Research Intern",
+                "company": "Indian Institute of Technology (IIT) Roorkee",
+                "duration": "5 months",
+                "highlights": "Analyzed vehicle trajectory data at roundabouts to detect anomalies and perform multiple analyses including lane discipline, speed compliance, speed violations and gap acceptance, supporting predictive traffic safety systems."
+              },
+              {
+                "title": "Junior AI Engineer",
+                "company": "Share Ventures",
+                "duration": "3 months",
+                "highlights": "Conceptualized and developed automation processes integrating multiple APIs for data ingestion, building custom databases with intelligent fallback mechanisms to improve operational efficiency for FinTech and VC clients, and also documented and maintained automated agent systems reducing manual effort by 60%."
+              }
+            ],
+            "projects": [
+              {
+                "name": "Legal Document RAG Chatbot",
+                "description": "Designed a legal document RAG system using Pinecone for semantic search, FastAPI for scalable backend, and LangChain with Llama 3.3, improving retrieval accuracy by 7% while enabling contextual legal understanding.",
+                "tech_stack": [
+                  "Pinecone",
+                  "FastAPI",
+                  "LangChain",
+                  "Llama 3.3"
+                ]
+              },
+              {
+                "name": "GAN-based Augmentation for Imbalanced Datasets",
+                "description": "Constructed a Conditional GAN to generate high-quality synthetic samples for underrepresented minority classes, significantly improving overall classification performance by 22% under class imbalance scenarios.",
+                "tech_stack": [
+                  "Conditional GAN"
+                ]
+              },
+              {
+                "name": "U-Net Image Segmentation Implementation",
+                "description": "Engineered U-Net architecture for image segmentation, achieving 98% accuracy and 95% IoU through careful model design, loss optimization, and extensive evaluation across datasets benchmarks consistently at scale.",
+                "tech_stack": [
+                  "U-Net"
+                ]
+              }
+            ],
+            "certifications": [],
+            "summary": "Highly motivated B.Tech Computer Science and Engineering student specializing in AIML, with a strong foundation in deep learning, programming, and development tools. Possessing practical experience through internships in ML development, software development, and research, focusing on building AI/ML systems, RAG, and automation. Eager to apply expertise in artificial intelligence and machine learning to innovative projects and contribute to cutting-edge technological advancements."
+          }
+        }
+      },
+      "created_at": "2026-02-21T23:27:38.877704"
+    }
+  },
   "sheet_last_ids": [
-    "7R6bNjz",
-    "LZRzrXy",
-    "b5b9JBo",
-    "zxPNGVZ"
+    "gDKeRgO"
   ]
 }

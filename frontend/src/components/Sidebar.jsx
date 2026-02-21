@@ -1,4 +1,7 @@
-export default function Sidebar({ activeNav, onNavigate, mode, onModeChange }) {
+export default function Sidebar({
+    activeNav, onNavigate, mode, onModeChange,
+    keywords = [], activeKeyword, onSelectKeyword, onDeleteKeyword
+}) {
     const designerNav = [
         { id: 'search', num: '01', label: 'search' },
         { id: 'candidates', num: '02', label: 'candidates' },
@@ -48,6 +51,37 @@ export default function Sidebar({ activeNav, onNavigate, mode, onModeChange }) {
                     </li>
                 ))}
             </ul>
+
+            {/* Keywords list (designer mode only) */}
+            {mode === 'designers' && keywords.length > 0 && (
+                <div className="sidebar-keywords">
+                    <div className="sidebar-keywords-title">Keywords</div>
+                    <div className="sidebar-keywords-list">
+                        {keywords.map((kw) => (
+                            <div
+                                key={kw.keyword}
+                                className={`sidebar-keyword-item ${activeKeyword === kw.keyword ? 'active' : ''}`}
+                                onClick={() => onSelectKeyword?.(kw.keyword)}
+                            >
+                                <div className="sidebar-kw-name">{kw.keyword}</div>
+                                <div className="sidebar-kw-meta">
+                                    {kw.total_profiles} designer{kw.total_profiles !== 1 ? 's' : ''}
+                                </div>
+                                <button
+                                    className="sidebar-kw-delete"
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        onDeleteKeyword?.(kw.keyword)
+                                    }}
+                                    title="Delete keyword"
+                                >
+                                    ×
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
 
             <div className="sidebar-footer">
                 {mode === 'devs' ? 'developer intelligence' : 'designer intelligence'}

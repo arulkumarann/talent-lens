@@ -1,0 +1,1118 @@
+{
+  "keywords": {
+    "financial dashboard": {
+      "profiles": [
+        {
+          "original_data": {
+            "name": "Basebern Team",
+            "username": "basebernteam",
+            "location": "Indonesia",
+            "bio": "Crafting complexity into intuitive and efficient B2B SaaS\nAt Basebern, we crafting complexity into intuitive and efficient B2B SaaS product and solutions.\nWith the tagline \"Creative Thinking, Intuitive Digital Journey!\", we\u2019re ready to help your team transform ideas into usable products from dashboards and internal tools to marketing sites and mobile apps with UI/UX design and no-code web development.\nOur Services \n\u2022 Designing MVP from scratch \n\u2022 Redesigning existing products or features \n\u2022 Continuing and supporting ongoing product work\nWhat we do: \n\u2022 UI/UX Design for web apps, dashboards, mobile apps, and websites \n\u2022 Web development using Framer and Webflow\nLet\u2019s build your digital product design that not only look great, but actually work better",
+            "followers_count": "148",
+            "specializations": [
+              "app",
+              "app design",
+              "dashboard",
+              "framer",
+              "landing page",
+              "landing page design",
+              "mobile design",
+              "saas",
+              "ui",
+              "user interface design",
+              "ux",
+              "web app",
+              "web design",
+              "webflow",
+              "website"
+            ],
+            "available_for_work": true,
+            "social_links": [],
+            "contact": {
+              "email": null,
+              "phone": null,
+              "portfolio_website": null
+            },
+            "profile_url": "https://dribbble.com/basebernteam"
+          },
+          "final_analysis": {
+            "overall_rating": 1.7,
+            "overall_score": 34,
+            "metrics": {
+              "design_excellence": {
+                "rating": 1.0,
+                "reasoning": "No design work was provided for evaluation, making assessment impossible."
+              },
+              "ux_mastery": {
+                "rating": 1.0,
+                "reasoning": "Without visual projects, there is no basis to evaluate UX principles or user flow mastery."
+              },
+              "industry_expertise": {
+                "rating": 2.0,
+                "reasoning": "Bio mentions B2B SaaS and dashboards, but no specific financial domain work is visible to confirm expertise."
+              },
+              "technical_sophistication": {
+                "rating": 2.0,
+                "reasoning": "Mentions Framer/Webflow skills, but no visual evidence of sophisticated technical UI implementation."
+              },
+              "innovation_creativity": {
+                "rating": 1.0,
+                "reasoning": "No design work was provided, thus creativity and innovative solutions cannot be assessed."
+              },
+              "specialization_alignment": {
+                "rating": 2.0,
+                "reasoning": "Bio mentions 'dashboards,' but no actual financial dashboard designs are available for review, limiting alignment."
+              },
+              "market_positioning": {
+                "rating": 3.0,
+                "reasoning": "Bio outlines services and tech stack clearly, but a low follower count suggests limited market presence or visibility."
+              }
+            },
+            "strengths": [
+              "Clear service offerings in bio",
+              "Mentions dashboard design capability",
+              "Offers no-code development skills (Framer/Webflow)"
+            ],
+            "areas_for_improvement": [
+              "Provide actual design work for evaluation",
+              "Showcase relevant domain projects, especially financial dashboards",
+              "Increase portfolio visibility and engagement"
+            ],
+            "recommendation": {
+              "decision": "REJECT",
+              "confidence": "HIGH",
+              "reasoning": "No design work was provided for evaluation, making it impossible to assess UI/UX skills or domain relevance for a financial dashboard role.",
+              "suitable_roles": []
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The bio clearly articulates service offerings and technical skills like Framer/Webflow development.",
+              "biggest_concerns": "The complete absence of visual design work makes any meaningful evaluation of design quality or UX impossible.",
+              "growth_potential": "Significant, by populating the portfolio with high-quality, relevant design projects to demonstrate capabilities.",
+              "industry_fit": "Undetermined without any portfolio examples, despite keywords in the bio suggesting some potential alignment."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "close",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/assets/icon-shot-x-light-05e45af08fe143f0ef18842bb2e94c2f4959000d3f1fda176220a2e6409c2f01.png",
+                  "local_path": "scraped_images/basebernteam/close_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [],
+          "processed_at": "2026-02-21T23:26:30.168707"
+        },
+        {
+          "original_data": {
+            "name": "Aminur Rahman",
+            "username": "aminurui",
+            "location": "Bangladesh",
+            "bio": "Hi,\n\nI\u2019m a UI/UX designer and developer with 5 years of experience. I love turning ideas into clean, intuitive, and engaging websites, web apps, and mobile apps that users enjoy.\n\nI provide\n\nUI/UX design for web & mobile\n\nResponsive website design & development\n\nWordPress, Shopify & WooCommerce development\n\nWebflow development & customization\n\nI believe great design is about solving real problems. I combine creativity and technical skills to deliver digital experiences that are not only beautiful but also functional and user-friendly.",
+            "followers_count": "623",
+            "specializations": [
+              "dashboard",
+              "figma",
+              "landingpage",
+              "mobile app ui",
+              "product design",
+              "saas",
+              "ui",
+              "uidesign",
+              "uiux design",
+              "user interface (ui)",
+              "ux",
+              "ux design",
+              "web design",
+              "web ui",
+              "wireframe"
+            ],
+            "available_for_work": true,
+            "social_links": [],
+            "contact": {
+              "email": null,
+              "phone": null,
+              "portfolio_website": null
+            },
+            "profile_url": "https://dribbble.com/aminurui"
+          },
+          "final_analysis": {
+            "overall_rating": 3.7,
+            "overall_score": 74,
+            "metrics": {
+              "design_excellence": {
+                "rating": 3.4,
+                "reasoning": "Assumed professional and clean based on experience, but specific visual quality cannot be fully assessed without detailed analysis."
+              },
+              "ux_mastery": {
+                "rating": 3.5,
+                "reasoning": "Bio mentions intuitive design, suggesting a focus on user experience, but no specific UX process or research is detailed."
+              },
+              "industry_expertise": {
+                "rating": 4.2,
+                "reasoning": "The 'Financial Dashboard' project title directly indicates relevant industry exposure and understanding."
+              },
+              "technical_sophistication": {
+                "rating": 3.8,
+                "reasoning": "Designer also has development skills, implying a practical understanding of technical constraints and implementation."
+              },
+              "innovation_creativity": {
+                "rating": 3.2,
+                "reasoning": "No specific details suggest groundbreaking innovation; likely a competent, standard professional approach."
+              },
+              "specialization_alignment": {
+                "rating": 4.5,
+                "reasoning": "The portfolio explicitly features a 'Financial Dashboard' project, perfectly aligning with the desired domain."
+              },
+              "market_positioning": {
+                "rating": 3.6,
+                "reasoning": "Five years of experience and a broad skill set position the designer as a reliable generalist with relevant domain work."
+              }
+            },
+            "strengths": [
+              "Direct experience with financial dashboard design",
+              "Combines UI/UX design with development skills",
+              "Focus on clean and intuitive user experiences"
+            ],
+            "areas_for_improvement": [
+              "Portfolio needs more detailed case studies and process insights",
+              "Should showcase more innovative or complex problem-solving"
+            ],
+            "recommendation": {
+              "decision": "HIRE",
+              "confidence": "MEDIUM",
+              "reasoning": "The designer directly aligns with the 'financial dashboard' domain and demonstrates professional experience, making them a strong candidate despite limited visual analysis."
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The explicit 'Financial Dashboard' project is a direct and highly relevant match for the search criteria.",
+              "biggest_concerns": "The lack of detailed image analysis prevents a thorough evaluation of the actual design quality and innovation.",
+              "growth_potential": "Could significantly enhance their portfolio by adding comprehensive case studies and demonstrating more innovative visual solutions.",
+              "industry_fit": "Strong fit for roles requiring financial dashboard design due to direct project experience and relevant skills."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Financial Dashboard",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/16359517/file/original-61ac05b5a2c83ec9c1222a0aba80e98f.png?crop=0x0-3201x2401&format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/aminurui/financial_dashboard_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [],
+          "processed_at": "2026-02-21T23:26:44.392711"
+        },
+        {
+          "original_data": {
+            "name": "Uxerflow",
+            "username": "uxerflow",
+            "location": "Indonesia",
+            "bio": "Uxerflow is a design partner that helps find solutions with a human-centered design approach. We create digital products for startups and leading global companies, ensuring high-quality service.",
+            "followers_count": "1,485",
+            "specializations": [
+              "branding",
+              "dashboard",
+              "design systems",
+              "figma",
+              "framer",
+              "graphic design",
+              "landing page",
+              "logo design",
+              "mobile design",
+              "motion design",
+              "responsive design",
+              "ui design",
+              "ux design",
+              "web design",
+              "webflow",
+              "wireframe"
+            ],
+            "available_for_work": true,
+            "social_links": [],
+            "contact": {
+              "email": null,
+              "phone": null,
+              "portfolio_website": null
+            },
+            "profile_url": "https://dribbble.com/uxerflow"
+          },
+          "final_analysis": {
+            "overall_rating": 3.9,
+            "overall_score": 78,
+            "metrics": {
+              "design_excellence": {
+                "rating": 3.8,
+                "reasoning": "Assumed clean, professional visual design based on project title and general designer profile."
+              },
+              "ux_mastery": {
+                "rating": 3.8,
+                "reasoning": "Implied good information architecture and usability for a complex financial dashboard."
+              },
+              "industry_expertise": {
+                "rating": 4.2,
+                "reasoning": "Direct experience with a 'Financial Dashboard' project indicates relevant domain knowledge."
+              },
+              "technical_sophistication": {
+                "rating": 3.8,
+                "reasoning": "Proficient in modern design tools like Figma and Framer, suggesting strong execution capabilities."
+              },
+              "innovation_creativity": {
+                "rating": 3.6,
+                "reasoning": "Likely solid and functional, but without visuals, groundbreaking innovation cannot be confirmed."
+              },
+              "specialization_alignment": {
+                "rating": 4.5,
+                "reasoning": "The project 'Finnie - Financial Dashboard' is a perfect match for the requested domain."
+              },
+              "market_positioning": {
+                "rating": 3.7,
+                "reasoning": "Professional bio and decent follower count, with clear domain focus, position them well."
+              }
+            },
+            "strengths": [
+              "Strong domain alignment with financial dashboards",
+              "Professional approach to UI/UX design",
+              "Good range of technical skills"
+            ],
+            "areas_for_improvement": [
+              "Portfolio depth (only one project analyzed)",
+              "Demonstrate more innovative solutions with visual evidence"
+            ],
+            "recommendation": {
+              "decision": "HIRE",
+              "confidence": "MEDIUM",
+              "reasoning": "Directly relevant project and professional skill set make them a strong candidate for financial dashboard roles.",
+              "suitable_roles": [
+                "UI/UX Designer",
+                "Product Designer (Fintech)",
+                "Dashboard Specialist"
+              ]
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The explicit 'Finnie - Financial Dashboard' project title directly addresses the search criteria.",
+              "biggest_concerns": "Limited portfolio depth for evaluation, as only one project was analyzed.",
+              "growth_potential": "Could further showcase the UX process and impact of their financial dashboard designs.",
+              "industry_fit": "Excellent fit for roles requiring expertise in financial data visualization and dashboard design."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Finnie - Financial Dashboard",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/44019585/file/still-685d979ab4ff135b89a43dbf48b7c018.png?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/uxerflow/finnie_-_financial_dashboard_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [],
+          "processed_at": "2026-02-21T23:26:55.753048"
+        },
+        {
+          "original_data": {
+            "name": "Odama",
+            "username": "odamastudio",
+            "location": "Indonesia",
+            "bio": "Underrated agency with passionate people in the industry. Odama is a passionate design agency crafting digital experiences that blend creativity and performance since 2020. In more than 4 years, we\u2019ve partnered with 120+ businesses and 200+ brands worldwide, many of which achieved up to 40% higher user engagement and stronger brand recognition through our work. Our Services \u2022 Branding & Logo Design \u2022 Product Design \u2022 Web & App Design \u2022 Development \u2022 Illustrations \u2022 3D Design \u2022 Motion Design \u2022 Pitch Deck Our expertise spans across SaaS, eCommerce, Fintech, Healthcare, Real Estate, Social Media, Education, Sports & Fitness, POS, and more. Bring your ideas we\u2019ll make it real. Trusted by: Trustpilot.com",
+            "followers_count": 12516,
+            "specializations": [
+              "animation",
+              "app design",
+              "branding",
+              "dashboard",
+              "editorial design",
+              "icon",
+              "illustration",
+              "interaction design",
+              "landing page",
+              "logo design",
+              "product design",
+              "saas",
+              "ui",
+              "ux",
+              "web design",
+              "websites"
+            ],
+            "available_for_work": true,
+            "social_links": [],
+            "contact": {
+              "email": null,
+              "phone": null,
+              "portfolio_website": null
+            },
+            "profile_url": "https://dribbble.com/odamastudio"
+          },
+          "final_analysis": {
+            "overall_rating": 3.7,
+            "overall_score": 74,
+            "metrics": {
+              "design_excellence": {
+                "rating": 3.2,
+                "reasoning": "Cannot fully assess visual quality without detailed image analysis; assuming professional baseline."
+              },
+              "ux_mastery": {
+                "rating": 3.2,
+                "reasoning": "No specific UX details provided in the analysis; assuming standard professional practices."
+              },
+              "industry_expertise": {
+                "rating": 4.5,
+                "reasoning": "Bio explicitly mentions Fintech, and a project is titled 'Web App Financial Dashboard'."
+              },
+              "technical_sophistication": {
+                "rating": 3.3,
+                "reasoning": "Implied by 'Web App' and agency status, but no specific technical details are available."
+              },
+              "innovation_creativity": {
+                "rating": 3.0,
+                "reasoning": "No data to suggest high innovation or unique creative approaches; assuming standard."
+              },
+              "specialization_alignment": {
+                "rating": 4.8,
+                "reasoning": "Direct project title 'Crowz - Web App Financial Dashboard' is a perfect match for the domain."
+              },
+              "market_positioning": {
+                "rating": 4.0,
+                "reasoning": "Strong follower count and agency experience indicate good market presence."
+              }
+            },
+            "strengths": [
+              "Direct domain relevance (financial dashboard)",
+              "Experience with Fintech projects",
+              "Professional agency background"
+            ],
+            "areas_for_improvement": [
+              "Provide detailed case studies for design decisions",
+              "Showcase more visual examples for full assessment"
+            ],
+            "recommendation": {
+              "decision": "HIRE",
+              "confidence": "MEDIUM",
+              "reasoning": "Strong domain alignment with a dedicated financial dashboard project, despite limited visual analysis data."
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The explicit 'Crowz - Web App Financial Dashboard' project title directly addresses the required domain.",
+              "biggest_concerns": "The lack of detailed visual analysis prevents a thorough evaluation of design and UX quality.",
+              "growth_potential": "Showcasing more in-depth project details and visual breakdowns would significantly strengthen the portfolio.",
+              "industry_fit": "Excellent fit for roles requiring expertise in financial dashboards and general Fintech UI/UX design."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Crowz - Web App Financial Dashboard",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/35571752/file/still-f6bc8201148322e5961adad3692534d1.png?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/odamastudio/crowz_-_web_app_financial_dashboard_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [],
+          "processed_at": "2026-02-21T23:27:10.506473"
+        },
+        {
+          "original_data": {
+            "name": "Vikki N",
+            "username": "vikki__n",
+            "location": "San Francisco, CA",
+            "bio": "Hey! \ud83d\udc4b I specialize in SaaS and Fintech products for 7+ years. My focus are established companies where design maturity and scalability drive measurable impact. I accelerate growth and strengthen market position thought transforming complex systems into clear, user-centered solutions. I simplify processes for the team with design systems and UX patterns. If you have a project in mind - contact me for future cooperation \u2709\ufe0f novak.viktoriia.13@gmail.",
+            "followers_count": 219,
+            "specializations": [
+              "landing page",
+              "mobile design",
+              "product design",
+              "ui design",
+              "ux analysis",
+              "ux design",
+              "ux research",
+              "uxui",
+              "web design",
+              "website redesign"
+            ],
+            "available_for_work": true,
+            "social_links": [],
+            "contact": {
+              "email": "novak.viktoriia.13@gmail.",
+              "phone": null,
+              "portfolio_website": null
+            },
+            "profile_url": "https://dribbble.com/vikki__n"
+          },
+          "final_analysis": {
+            "overall_rating": 3.9,
+            "overall_score": 78,
+            "metrics": {
+              "design_excellence": {
+                "rating": 3.5,
+                "reasoning": "Professional quality is implied by experience, but visual evidence is missing for a higher rating."
+              },
+              "ux_mastery": {
+                "rating": 3.9,
+                "reasoning": "7+ years in complex SaaS/Fintech suggests strong user-centered problem-solving and system thinking."
+              },
+              "industry_expertise": {
+                "rating": 4.5,
+                "reasoning": "Direct specialization in Fintech for 7+ years is highly relevant to financial dashboards."
+              },
+              "technical_sophistication": {
+                "rating": 3.7,
+                "reasoning": "Experience with design systems and scalability indicates a structured, robust approach."
+              },
+              "innovation_creativity": {
+                "rating": 3.4,
+                "reasoning": "Bio emphasizes clarity and systems over explicit groundbreaking visual innovation."
+              },
+              "specialization_alignment": {
+                "rating": 4.8,
+                "reasoning": "Explicit 'Financial Dashboard' project and 7+ years in Fintech perfectly align with the domain."
+              },
+              "market_positioning": {
+                "rating": 3.6,
+                "reasoning": "Strong niche expertise, but portfolio depth and visibility (followers) are moderate."
+              }
+            },
+            "strengths": [
+              "Deep Fintech/SaaS specialization",
+              "Direct experience with financial dashboards",
+              "Proficiency in design systems"
+            ],
+            "areas_for_improvement": [
+              "Showcase more diverse projects",
+              "Provide visual evidence of design quality"
+            ],
+            "recommendation": {
+              "decision": "HIRE",
+              "confidence": "MEDIUM",
+              "reasoning": "Exceptional domain alignment and relevant experience in Fintech and financial dashboards, assuming competent visual execution.",
+              "suitable_roles": [
+                "Senior Product Designer (Fintech)",
+                "UX Lead (Financial Services)",
+                "UI/UX Designer (SaaS)"
+              ]
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The designer's explicit specialization and project experience in financial dashboards are highly relevant.",
+              "biggest_concerns": "The evaluation is limited by the lack of actual visual design work to assess quality directly.",
+              "growth_potential": "Could enhance portfolio with more detailed case studies and visual examples of complex problem-solving.",
+              "industry_fit": "An excellent fit for roles requiring deep expertise in financial dashboard and SaaS product design."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Datanist - Financial Dashboard",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/40885265/file/original-a0a8c1421fd955644a94fa9ec313058f.png?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/vikki__n/datanist_-_financial_dashboard_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [],
+          "processed_at": "2026-02-21T23:27:26.072358"
+        }
+      ],
+      "statuses": {
+        "basebernteam": "rejected",
+        "aminurui": "selected",
+        "uxerflow": "selected",
+        "odamastudio": "selected",
+        "vikki__n": "selected"
+      },
+      "last_scanned": "2026-02-21T23:29:20.040250"
+    },
+    "healthcare": {
+      "profiles": [
+        {
+          "original_data": {
+            "name": "Eloqwnt",
+            "username": "eloqwnt_global",
+            "location": "New York City, NY",
+            "bio": "We work with ambitious companies on the design, product, and marketing layer of their business.\n\nFrom brand strategy to digital platforms and growth systems, we help teams build long-term value, not short-term visuals.",
+            "followers_count": 1768,
+            "specializations": [
+              "animation",
+              "brand identity",
+              "branding",
+              "e commerce design",
+              "landing page design",
+              "logo design",
+              "marketing",
+              "mobile app design",
+              "motion design",
+              "motion graphics",
+              "product design",
+              "ux ui",
+              "web design",
+              "web development"
+            ],
+            "available_for_work": true,
+            "social_links": [
+              "https://www.linkedin.com/company/eloqwnt",
+              "https://twitter.com/eloqwnt",
+              "https://instagram.com/eloqwnt",
+              "https://www.behance.net/eloqwnt",
+              "https://calendly.com/eloqwnt"
+            ],
+            "contact": {
+              "email": null,
+              "phone": "+971 52 943 2962",
+              "portfolio_website": "https://eloqwnt.com/dribbble"
+            },
+            "profile_url": "https://dribbble.com/eloqwnt_global"
+          },
+          "final_analysis": {
+            "overall_rating": 3.67,
+            "overall_score": 73,
+            "metrics": {
+              "design_excellence": {
+                "rating": 3.8,
+                "reasoning": "The design concept appears clean and professional, adhering to modern UI standards suitable for a startup."
+              },
+              "ux_mastery": {
+                "rating": 3.5,
+                "reasoning": "While a concept, it implies foundational UX thinking; however, a single image limits assessment of user flows or interaction design."
+              },
+              "industry_expertise": {
+                "rating": 4.0,
+                "reasoning": "Directly addresses the healthcare domain, indicating a clear focus and understanding of the industry's context."
+              },
+              "technical_sophistication": {
+                "rating": 3.5,
+                "reasoning": "Utilizes standard modern UI components; no advanced technical implementations are evident from the concept image alone."
+              },
+              "innovation_creativity": {
+                "rating": 3.4,
+                "reasoning": "The concept is solid and well-executed but doesn't immediately showcase groundbreaking or highly innovative solutions."
+              },
+              "specialization_alignment": {
+                "rating": 4.8,
+                "reasoning": "The project 'Healthcare Startup Design Concept' is perfectly aligned with the 'healthcare' domain keyword."
+              },
+              "market_positioning": {
+                "rating": 3.7,
+                "reasoning": "Professional bio and clear project titling contribute to good market positioning, supported by a decent follower count."
+              }
+            },
+            "strengths": [
+              "Direct relevance to healthcare domain",
+              "Clean and professional UI design",
+              "Clear project focus and presentation"
+            ],
+            "areas_for_improvement": [
+              "Showcase more detailed UX flows and problem-solving",
+              "Demonstrate deeper understanding of complex healthcare challenges",
+              "Expand portfolio depth beyond a single concept image"
+            ],
+            "recommendation": {
+              "decision": "HIRE",
+              "confidence": "MEDIUM",
+              "reasoning": "The designer shows direct relevance and professional execution in the healthcare domain, making them a strong candidate despite limited portfolio depth."
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The explicit focus on a 'Healthcare Startup Design Concept' and the clean, professional aesthetic are notable.",
+              "biggest_concerns": "The evaluation is based on a single image and incomplete analysis, limiting a full assessment of UX depth and technical execution.",
+              "growth_potential": "Could significantly grow by showcasing more comprehensive case studies, user research, and complex healthcare system designs.",
+              "industry_fit": "Strong fit for healthcare roles due to direct domain experience and a clear interest in the sector."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Healthcare Startup Design Concept",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/12899351/file/original-3015df16521a69623096369a31d56ee9.png?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/eloqwnt_global/healthcare_startup_design_concept_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [
+            "https://www.linkedin.com/company/eloqwnt",
+            "https://twitter.com/eloqwnt",
+            "https://instagram.com/eloqwnt",
+            "https://www.behance.net/eloqwnt",
+            "https://calendly.com/eloqwnt"
+          ],
+          "processed_at": "2026-02-21T23:30:53.400232"
+        },
+        {
+          "original_data": {
+            "name": "OnPoint Studio",
+            "username": "OnPoint_Std",
+            "location": "Indonesia",
+            "bio": "We Help SaaS, AI & Web3 Startups\nProviding various design services for 8+ years \nwith affordable price & satisfaction guaranteed!",
+            "followers_count": "3,294",
+            "specializations": [
+              "androiddesign",
+              "figma",
+              "icon",
+              "illustation",
+              "iosdesign",
+              "mobiledesign",
+              "ui",
+              "uiuxdesign",
+              "ux",
+              "uxdesign",
+              "web design"
+            ],
+            "available_for_work": true,
+            "social_links": [],
+            "contact": {
+              "email": null,
+              "phone": null,
+              "portfolio_website": null
+            },
+            "profile_url": "https://dribbble.com/OnPoint_Std"
+          },
+          "final_analysis": {
+            "overall_rating": 3.8,
+            "overall_score": 76,
+            "metrics": {
+              "design_excellence": {
+                "rating": 3.8,
+                "reasoning": "Visually clean and professional, demonstrating a good grasp of modern UI principles for dashboards."
+              },
+              "ux_mastery": {
+                "rating": 3.7,
+                "reasoning": "Dashboard design implies attention to information hierarchy and user flow, suggesting competent UX application."
+              },
+              "industry_expertise": {
+                "rating": 4.2,
+                "reasoning": "Directly showcases work in the healthcare domain, indicating relevant industry exposure."
+              },
+              "technical_sophistication": {
+                "rating": 3.6,
+                "reasoning": "Utilizes standard design tools and practices, demonstrating professional technical execution."
+              },
+              "innovation_creativity": {
+                "rating": 3.4,
+                "reasoning": "Competent design, but without specific details, innovation appears functional rather than groundbreaking."
+              },
+              "specialization_alignment": {
+                "rating": 4.5,
+                "reasoning": "The 'Healthcare Dashboard' project is a perfect match for the requested healthcare domain specialization."
+              },
+              "market_positioning": {
+                "rating": 3.5,
+                "reasoning": "Positions as a versatile studio for startups, with a decent follower count, indicating professional market presence."
+              }
+            },
+            "strengths": [
+              "Direct healthcare domain experience",
+              "Professional UI/UX execution",
+              "Clear understanding of dashboard design"
+            ],
+            "areas_for_improvement": [
+              "Showcase more diverse healthcare projects",
+              "Demonstrate deeper UX research/strategy"
+            ],
+            "recommendation": {
+              "decision": "HIRE",
+              "confidence": "HIGH",
+              "reasoning": "The designer's direct experience with a 'Healthcare Dashboard' project makes them highly relevant and competent for the domain.",
+              "suitable_roles": [
+                "Product Designer (Healthcare)",
+                "UI/UX Designer (Medical)",
+                "Dashboard UI/UX Specialist"
+              ]
+            },
+            "detailed_feedback": {
+              "what_stands_out": "Direct experience designing a healthcare-specific dashboard is a significant asset.",
+              "biggest_concerns": "Limited portfolio visibility (only one image analyzed) and depth of UX process are not fully evident.",
+              "growth_potential": "Could expand on case studies, showing problem-solving and user impact in healthcare contexts.",
+              "industry_fit": "Excellent fit due to direct project relevance in the healthcare domain."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Healthcare Dashboard",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/19422146/file/original-9356903ee9c632f9a4af12021e167e4a.png?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/OnPoint_Std/healthcare_dashboard_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [],
+          "processed_at": "2026-02-21T23:31:13.136644"
+        },
+        {
+          "original_data": {
+            "name": "Arounda",
+            "username": "arounda",
+            "location": "New York City, NY",
+            "bio": "Arounda: Design and Development Agency for High-Impact Digital Products\n\nWe are your design and dev partner that unites branding, websites, and UX/UI into one holistic digital product. Our approach is human-centered, goal-oriented, rooted in deep industry knowledge, data-driven methodologies, and a commitment to measurable outcomes.\n\nWith over 250 projects and 9+ years on the market, we\u2019ve partnered with SMEs and enterprises worldwide to deliver products that convert, scale, and outperform. WordPress.com, VOXE, Myso Finance, Player's Health, and many other global brands trusted us to build their products.\n\nResults our clients got:\n\n+170% Engagement rate \n4.6\u00d7 Revenue growth \n\u221237% churn\n\nYou bring the vision - we\u2019ll handle the rest.",
+            "followers_count": "15,431",
+            "specializations": [
+              "3d graphics",
+              "animation",
+              "app design",
+              "branding",
+              "digital design",
+              "graphic design",
+              "illustration",
+              "interaction design",
+              "logo design",
+              "mobile",
+              "product design",
+              "ui",
+              "ux",
+              "ux design",
+              "web design"
+            ],
+            "available_for_work": true,
+            "social_links": [
+              "https://www.linkedin.com/company/arounda",
+              "https://twitter.com/arounda_agency",
+              "https://instagram.com/arounda.agency",
+              "https://facebook.com/arounda.agency",
+              "https://www.behance.net/arounda",
+              "https://github.com/arounda",
+              "https://arounda.dribbble.com/"
+            ],
+            "contact": {
+              "email": "info@arounda.agency",
+              "phone": "+372 5829 6459",
+              "portfolio_website": "https://arounda.agency/contact"
+            },
+            "profile_url": "https://dribbble.com/arounda"
+          },
+          "final_analysis": {
+            "overall_rating": 3.7,
+            "overall_score": 74,
+            "metrics": {
+              "design_excellence": {
+                "rating": 3.5,
+                "reasoning": "Professional visual design is assumed, but specific quality details are not discernible from the provided data."
+              },
+              "ux_mastery": {
+                "rating": 3.5,
+                "reasoning": "Competent UX principles are likely applied, but specific user flows or problem-solving are not visible."
+              },
+              "industry_expertise": {
+                "rating": 3.8,
+                "reasoning": "Direct experience in healthcare is indicated by the project title, suggesting domain understanding."
+              },
+              "technical_sophistication": {
+                "rating": 3.5,
+                "reasoning": "Standard web design implementation is expected; no specific advanced technical features are highlighted."
+              },
+              "innovation_creativity": {
+                "rating": 3.0,
+                "reasoning": "No specific innovative elements are evident from the project title alone; likely a solid, functional approach."
+              },
+              "specialization_alignment": {
+                "rating": 4.5,
+                "reasoning": "Excellent alignment with the 'healthcare' domain, as it's a direct project example."
+              },
+              "market_positioning": {
+                "rating": 4.2,
+                "reasoning": "Strong agency presence, significant project history, and clear client results demonstrate robust market positioning."
+              }
+            },
+            "strengths": [
+              "Direct healthcare domain experience",
+              "Strong agency background and client results",
+              "Professional approach to web design"
+            ],
+            "areas_for_improvement": [
+              "Lack of detailed project insights (visuals, process)",
+              "Innovation not clearly demonstrated"
+            ],
+            "recommendation": {
+              "decision": "HIRE",
+              "confidence": "MEDIUM",
+              "reasoning": "Direct experience in the healthcare domain combined with a strong agency track record makes them a suitable candidate.",
+              "suitable_roles": [
+                "UI/UX Designer",
+                "Product Designer",
+                "Web Designer"
+              ]
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The direct relevance to the healthcare domain and the agency's established market presence are notable.",
+              "biggest_concerns": "The evaluation is limited by the absence of actual design visuals to assess quality and innovation.",
+              "growth_potential": "Could further showcase specific UX challenges and innovative solutions within healthcare projects.",
+              "industry_fit": "Highly suitable for healthcare UI/UX roles due to demonstrated domain experience."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Web-design for Healthcare - Healium",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/37302283/file/original-d3cc3cc436bb87fa7d17d37734443495.png?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/arounda/web-design_for_healthcare_-_healium_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [
+            "https://www.linkedin.com/company/arounda",
+            "https://twitter.com/arounda_agency",
+            "https://instagram.com/arounda.agency",
+            "https://facebook.com/arounda.agency",
+            "https://www.behance.net/arounda",
+            "https://github.com/arounda",
+            "https://arounda.dribbble.com/"
+          ],
+          "processed_at": "2026-02-21T23:31:40.835010"
+        },
+        {
+          "original_data": {
+            "name": "Korsa",
+            "username": "korsaagency",
+            "location": "Indonesia",
+            "bio": "With over 90+ projects completed in the last 3 years, our passion, fantasy, and creativity in design have become the foundation for creating fantastic works with excellent functionality.\n\nWe collaborate closely with clients worldwide, transforming their fantastic ideas into fantasy-inspired, high-quality products and designs. From short-term projects to long-term partnerships, we always prioritize clear communication and strong cooperation to achieve client expectations and goals.\n\nOur Expertise: \n\u2022 Mobile App Design \n\u2022 Web Design \n\u2022 Logo & Brand Guidelines \n\u2022 Illustration \n\u2022 Animation \n\u2022 Product Design\n\n\u2728 Have a project in mind? Let\u2019s make your fantasy come true!",
+            "followers_count": "3,395",
+            "specializations": [
+              "animation",
+              "app design",
+              "branding",
+              "dashboard",
+              "illustration",
+              "landing page",
+              "logo design",
+              "mobile design",
+              "product design",
+              "responsive design",
+              "shopify",
+              "ui design",
+              "ux design",
+              "web design",
+              "webflow",
+              "website design"
+            ],
+            "available_for_work": true,
+            "social_links": [],
+            "contact": {
+              "email": null,
+              "phone": null,
+              "portfolio_website": null
+            },
+            "profile_url": "https://dribbble.com/korsaagency"
+          },
+          "final_analysis": {
+            "overall_rating": 3.4,
+            "overall_score": 67,
+            "metrics": {
+              "design_excellence": {
+                "rating": 3.3,
+                "reasoning": "The 'Healtrust' landing page suggests competent visual design, but without images, exceptional quality cannot be confirmed."
+              },
+              "ux_mastery": {
+                "rating": 3.2,
+                "reasoning": "Focus on a landing page implies basic UX principles like information hierarchy, but lacks evidence of complex user flows or research."
+              },
+              "industry_expertise": {
+                "rating": 3.5,
+                "reasoning": "Direct experience with a 'Healthcare Landing Page' is a strong positive for domain relevance."
+              },
+              "technical_sophistication": {
+                "rating": 3.1,
+                "reasoning": "Designing a landing page typically involves standard web UI/UX techniques, not necessarily advanced technical implementations."
+              },
+              "innovation_creativity": {
+                "rating": 3.0,
+                "reasoning": "The bio mentions 'fantasy,' but there's no evidence of truly innovative or unique solutions applied to the healthcare domain."
+              },
+              "specialization_alignment": {
+                "rating": 4.0,
+                "reasoning": "The explicit 'Healtrust - Healthcare Landing Page' project directly aligns with the requested domain."
+              },
+              "market_positioning": {
+                "rating": 3.5,
+                "reasoning": "A decent follower count and broad skill set indicate a professional agency presence, but not top-tier market leadership."
+              }
+            },
+            "strengths": [
+              "Direct healthcare domain project",
+              "Professional visual design capabilities",
+              "Broad skill set including branding and illustration"
+            ],
+            "areas_for_improvement": [
+              "Showcase more complex UX case studies beyond landing pages",
+              "Provide detailed process and problem-solving for projects",
+              "Diversify healthcare projects to include app or dashboard UIs"
+            ],
+            "recommendation": {
+              "decision": "CONSIDER",
+              "confidence": "MEDIUM",
+              "reasoning": "The designer shows direct relevance to healthcare and professional design skills, but the portfolio lacks depth in complex UX or detailed case studies to warrant a 'HIRE' without further review.",
+              "suitable_roles": [
+                "UI Designer",
+                "Web Designer",
+                "Product Designer (Marketing/Informational)"
+              ]
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The explicit 'Healtrust - Healthcare Landing Page' project directly addresses the domain requirement.",
+              "biggest_concerns": "Lack of visual evidence and detailed UX process for complex interactions limits a full assessment of their capabilities.",
+              "growth_potential": "Could significantly improve by showcasing more in-depth healthcare application UIs and detailed problem-solving approaches.",
+              "industry_fit": "Good fit for visually appealing healthcare marketing sites or informational platforms, less so for complex clinical applications without further evidence."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Healtrust - Healthcare Landing Page",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/16404366/file/original-2c7e9fe7ef9ae279b64abf0f64dc050c.png?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/korsaagency/healtrust_-_healthcare_landing_page_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [],
+          "processed_at": "2026-02-21T23:32:04.090294"
+        },
+        {
+          "original_data": {
+            "name": "Awsmd",
+            "username": "awsmd",
+            "location": "San Francisco, CA",
+            "bio": "We Design Products, Interfaces and Brands\nUX, product design and advanced analytics for e-commerce and SaaS \nOur key clients - Intel, Uber, Oracle, Nutanix, Gofundme, Upside travel, CrossLead, New Balance, State Farm \nNeed help with your project? \n\ud83d\udc4b Let\u2019s talk\ud83d\udc47",
+            "followers_count": "64,621",
+            "specializations": [
+              "artificial intelligence",
+              "blockchain",
+              "branding",
+              "casino",
+              "crypto",
+              "defi",
+              "eco",
+              "ecommerce",
+              "finance",
+              "fintech",
+              "gambling",
+              "landing page",
+              "mobile app",
+              "saas",
+              "shopify",
+              "website"
+            ],
+            "available_for_work": true,
+            "social_links": [
+              "https://www.linkedin.com/company/awsmd",
+              "https://twitter.com/bogdan_qclay",
+              "https://instagram.com/awsmd_com",
+              "https://www.behance.net/awsmd",
+              "https://awsmd.dribbble.com/"
+            ],
+            "contact": {
+              "email": "info@awsmd.com",
+              "phone": null,
+              "portfolio_website": "https://awsmd.com/"
+            },
+            "profile_url": "https://dribbble.com/awsmd"
+          },
+          "final_analysis": {
+            "overall_rating": 3.4,
+            "overall_score": 69,
+            "metrics": {
+              "design_excellence": {
+                "rating": 3.0,
+                "reasoning": "Cannot assess visual quality due to missing image analysis. Assuming professional baseline from client list."
+              },
+              "ux_mastery": {
+                "rating": 3.0,
+                "reasoning": "No specific UX analysis provided. Inferred professional competence from general portfolio context."
+              },
+              "industry_expertise": {
+                "rating": 3.0,
+                "reasoning": "One project in healthcare, but no deep specialization evident in bio or skills list."
+              },
+              "technical_sophistication": {
+                "rating": 3.5,
+                "reasoning": "Experience with major clients suggests ability to handle complex technical requirements."
+              },
+              "innovation_creativity": {
+                "rating": 3.0,
+                "reasoning": "No specific examples of innovative solutions or creative approaches were provided."
+              },
+              "specialization_alignment": {
+                "rating": 4.0,
+                "reasoning": "Directly aligns with the 'healthcare' domain through a dedicated project titled 'Healthcare App'."
+              },
+              "market_positioning": {
+                "rating": 4.5,
+                "reasoning": "Impressive client list and high follower count indicate strong market presence and reputation."
+              }
+            },
+            "strengths": [
+              "Strong client portfolio (Intel, Uber, Oracle)",
+              "High social media following",
+              "Direct project in the healthcare domain",
+              "Broad experience across various industries"
+            ],
+            "areas_for_improvement": [
+              "Lack of detailed case studies for healthcare projects",
+              "No explicit mention of healthcare UX/UI expertise in bio/skills",
+              "Visual design quality and UX depth cannot be fully assessed from provided data"
+            ],
+            "recommendation": {
+              "decision": "CONSIDER",
+              "confidence": "MEDIUM",
+              "reasoning": "While they have a relevant project and strong market presence, the actual quality and depth of their healthcare UX/UI work cannot be fully evaluated.",
+              "suitable_roles": [
+                "Product Designer (Generalist)",
+                "UX/UI Designer (Agency)",
+                "Mobile App Designer"
+              ]
+            },
+            "detailed_feedback": {
+              "what_stands_out": "Their impressive client roster and a specific project titled 'Healthcare App' are notable.",
+              "biggest_concerns": "The absence of detailed visual and UX analysis for the healthcare project makes it hard to gauge actual design quality.",
+              "growth_potential": "Could strengthen their healthcare portfolio with detailed case studies and specific domain insights.",
+              "industry_fit": "Has a relevant project, but needs to demonstrate deeper understanding of healthcare specific UX challenges."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Healthcare App",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/11301349/file/original-dca1a2088309bb8833681678c5418580.png?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/awsmd/healthcare_app_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [
+            "https://www.linkedin.com/company/awsmd",
+            "https://twitter.com/bogdan_qclay",
+            "https://instagram.com/awsmd_com",
+            "https://www.behance.net/awsmd",
+            "https://awsmd.dribbble.com/"
+          ],
+          "processed_at": "2026-02-21T23:32:24.788443"
+        }
+      ],
+      "statuses": {
+        "eloqwnt_global": "selected",
+        "OnPoint_Std": "selected",
+        "arounda": "selected",
+        "korsaagency": "waitlisted",
+        "awsmd": "waitlisted"
+      },
+      "last_scanned": "2026-02-21T23:34:17.016551"
+    }
+  }
+}
