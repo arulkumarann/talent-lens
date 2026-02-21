@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import API_BASE from '../config'
 import DevCandidateDetail from './DevCandidateDetail'
 
 export default function DevCandidateList({ role, onRefresh }) {
@@ -25,7 +26,7 @@ export default function DevCandidateList({ role, onRefresh }) {
     const updateStatus = async (candidateId, newStatus) => {
         setUpdatingStatus(candidateId)
         try {
-            const res = await fetch(`/api/devs/roles/${role.id}/candidates/${candidateId}/status`, {
+            const res = await fetch(`${API_BASE}/api/devs/roles/${role.id}/candidates/${candidateId}/status`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: newStatus }),

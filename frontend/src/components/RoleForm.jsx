@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import API_BASE from '../config'
 
 export default function RoleForm({ onClose, onCreated, editRole }) {
     const [name, setName] = useState(editRole?.name || '')
@@ -16,7 +17,7 @@ export default function RoleForm({ onClose, onCreated, editRole }) {
         setSubmitting(true)
 
         try {
-            const res = await fetch('/api/devs/roles', {
+            const res = await fetch(`${API_BASE}/api/devs/roles`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

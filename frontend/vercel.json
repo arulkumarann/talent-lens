@@ -1,6 +1,5 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://talentlens-api.onrender.com/api/:path*" },
-    { "source": "/images/:path*", "destination": "https://talentlens-api.onrender.com/images/:path*" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }

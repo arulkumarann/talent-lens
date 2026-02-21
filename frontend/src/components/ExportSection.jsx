@@ -1,3 +1,5 @@
+import API_BASE from '../config'
+
 export default function ExportSection({ profiles, statuses, keyword }) {
     const exportJSON = () => {
         if (profiles.length === 0) return
@@ -14,8 +16,8 @@ export default function ExportSection({ profiles, statuses, keyword }) {
     const exportCSV = () => {
         if (profiles.length === 0) return
         const url = keyword
-            ? `/api/export?format=csv&keyword=${encodeURIComponent(keyword)}`
-            : '/api/export?format=csv'
+            ? `${API_BASE}/api/export?format=csv&keyword=${encodeURIComponent(keyword)}`
+            : `${API_BASE}/api/export?format=csv`
         window.open(url, '_blank')
     }
 

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import API_BASE from '../config'
 import RoleForm from './RoleForm'
 import DevCandidateList from './DevCandidateList'
 
@@ -35,7 +36,7 @@ export default function DevApp() {
     // Fetch roles list
     const fetchRoles = useCallback(async () => {
         try {
-            const res = await fetch('/api/devs/roles')
+            const res = await fetch(`${API_BASE}/api/devs/roles`)
             const data = await res.json()
             setRoles(data.roles || [])
             if (!activeRoleId && data.roles?.length > 0) {
@@ -55,7 +56,7 @@ export default function DevApp() {
             return
         }
         try {
-            const res = await fetch(`/api/devs/roles/${activeRoleId}`)
+            const res = await fetch(`${API_BASE}/api/devs/roles/${activeRoleId}`)
             const data = await res.json()
             setActiveRole(data)
         } catch (err) {
@@ -83,7 +84,7 @@ export default function DevApp() {
     const handleDeleteRole = async (roleId) => {
         if (!confirm('Delete this role and all its candidates?')) return
         try {
-            await fetch(`/api/devs/roles/${roleId}`, { method: 'DELETE' })
+            await fetch(`${API_BASE}/api/devs/roles/${roleId}`, { method: 'DELETE' })
             if (activeRoleId === roleId) setActiveRoleId(null)
             fetchRoles()
         } catch (err) {
@@ -98,7 +99,7 @@ export default function DevApp() {
         if (!activeRoleId) return
         setAnalyzing(true)
         try {
-            const res = await fetch(`/api/devs/roles/${activeRoleId}/analyze`, { method: 'POST' })
+            const res = await fetch(`${API_BASE}/api/devs/roles/${activeRoleId}/analyze`, { method: 'POST' })
             const data = await res.json()
             alert(data.message || 'Analysis triggered')
             // Refresh data after triggering
@@ -116,7 +117,7 @@ export default function DevApp() {
         if (!activeRoleId) return
         setRefreshing(true)
         try {
-            const res = await fetch(`/api/devs/roles/${activeRoleId}/refresh-sheet`, { method: 'POST' })
+            const res = await fetch(`${API_BASE}/api/devs/roles/${activeRoleId}/refresh-sheet`, { method: 'POST' })
             const data = await res.json()
             alert(data.message || 'Refresh complete')
             fetchRoles()

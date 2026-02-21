@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
+import API_BASE from './config'
 import LandingPage from './components/LandingPage'
 import Sidebar from './components/Sidebar'
 import SearchSection from './components/SearchSection'
@@ -39,7 +40,7 @@ export default function App() {
   // ─── Load keywords on mount ───
   const fetchKeywords = useCallback(async () => {
     try {
-      const res = await fetch('/api/designers/keywords')
+      const res = await fetch(`${API_BASE}/api/designers/keywords`)
       const data = await res.json()
       setKeywords(data.keywords || [])
     } catch (err) {
@@ -59,7 +60,7 @@ export default function App() {
       return
     }
     try {
-      const res = await fetch(`/api/designers/keyword/${encodeURIComponent(kw)}`)
+      const res = await fetch(`${API_BASE}/api/designers/keyword/${encodeURIComponent(kw)}`)
       if (!res.ok) return
       const data = await res.json()
       setProfiles(data.profiles || [])
@@ -89,7 +90,7 @@ export default function App() {
 
     const keyword = queries[0]
 
-    fetch('/api/scan', {
+    fetch(`${API_BASE}/api/scan`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ queries, max_profiles: maxUsers }),
@@ -182,7 +183,7 @@ export default function App() {
     if (activeKeyword) {
       try {
         await fetch(
-          `/api/designers/keyword/${encodeURIComponent(activeKeyword)}/status/${encodeURIComponent(username)}?status=${next}`,
+          `${API_BASE}/api/designers/keyword/${encodeURIComponent(activeKeyword)}/status/${encodeURIComponent(username)}?status=${next}`,
           { method: 'PUT' }
         )
       } catch (err) {
@@ -212,7 +213,7 @@ export default function App() {
   const handleDeleteKeyword = useCallback(async (kw) => {
     if (!confirm(`Delete all data for "${kw}"?`)) return
     try {
-      await fetch(`/api/designers/keyword/${encodeURIComponent(kw)}`, { method: 'DELETE' })
+      await fetch(`${API_BASE}/api/designers/keyword/${encodeURIComponent(kw)}`, { method: 'DELETE' })
       if (activeKeyword === kw) {
         setActiveKeyword(null)
         setProfiles([])

@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
+import API_BASE from '../config'
 import RadarChart from './RadarChart'
 
 const METRIC_LABELS = {
@@ -213,7 +214,7 @@ export default function CandidateDetail({ profile }) {
                         {works.flatMap((w) =>
                             (w.images || []).map((img, i) => {
                                 const localSrc = img.local_path
-                                    ? `/images/${img.local_path.replace('scraped_images/', '')}`
+                                    ? `${API_BASE}/images/${img.local_path.replace('scraped_images/', '')}`
                                     : null
                                 const src = localSrc || img.original_url
                                 return src ? (
