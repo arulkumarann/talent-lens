@@ -429,6 +429,7 @@ def analyze_all_designers(scraped_data: Dict, focus_area: str) -> List[Dict]:
                 "bio": designer.get("bio", ""),
                 "followers_count": designer.get("metrics", {}).get("followers_count", "0"),
                 "specializations": designer.get("skills", []),
+                "available_for_work": designer.get("available_for_work", False),
                 "social_links": flat_links,
                 "contact": designer.get("contact", {}),
                 "profile_url": designer.get("profile_url", ""),
