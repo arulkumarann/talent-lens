@@ -39,6 +39,7 @@ frontend/dist/
 # ===== Scraped Data & Images =====
 backend/scraped_images/
 backend/dribbble_scraped_*.json
+backend/designers_data.json
 
 # ===== Misc =====
 *.log

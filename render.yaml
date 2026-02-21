@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: talentlens-api
+    runtime: python
+    region: oregon
+    rootDir: backend
+    buildCommand: "./build.sh"
+    startCommand: "uvicorn server:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: JINA_API_KEY
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GOOGLE_SHEET_URL
+        sync: false
+      - key: NUM_IMAGES_PER_PROFILE
+        value: "3"
+      - key: GEMINI_SCRAPER_MODEL
+        value: "gemini-2.5-flash"
+      - key: GEMINI_VISION_MODEL
+        value: "gemini-2.5-flash"
+      - key: GEMINI_ASSESSMENT_MODEL
+        value: "gemini-2.5-flash"
+      - key: PYTHON_VERSION
+        value: "3.10.13"
