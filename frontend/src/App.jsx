@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
+import LandingPage from './components/LandingPage'
 import Sidebar from './components/Sidebar'
 import SearchSection from './components/SearchSection'
 import CandidateList from './components/CandidateList'
@@ -8,7 +9,9 @@ import ExportSection from './components/ExportSection'
 import DevApp from './components/DevApp'
 
 export default function App() {
-  // ─── Keywords & data ───
+  const [page, setPage] = useState('landing') // 'landing' | 'app'
+
+  // ─── Keywords & data ─── 
   const [keywords, setKeywords] = useState([])          // all stored keywords
   const [activeKeyword, setActiveKeyword] = useState(null) // currently selected keyword
   const [profiles, setProfiles] = useState([])
@@ -219,6 +222,10 @@ export default function App() {
       console.error(err)
     }
   }, [activeKeyword, fetchKeywords])
+
+  if (page === 'landing') {
+    return <LandingPage onEnter={() => setPage('app')} />
+  }
 
   return (
     <div className="app-layout">
