@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar'
 import SearchSection from './components/SearchSection'
 import CandidateList from './components/CandidateList'
 import CandidateDetail from './components/CandidateDetail'
+import StatsDashboard from './components/StatsDashboard'
 import ExportSection from './components/ExportSection'
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
   const sectionRefs = {
     search: useRef(null),
     candidates: useRef(null),
+    stats: useRef(null),
     export: useRef(null),
   }
 
@@ -104,10 +106,10 @@ export default function App() {
       const initialStatuses = {}
       resultProfiles.forEach((p) => {
         const username = p.original_data?.username || ''
-        const decision = (p.final_analysis?.recommendation?.decision || '').toUpperCase()
+        const score = p.final_analysis?.overall_score || 0
         let status = 'waitlisted'
-        if (decision === 'HIRE') status = 'selected'
-        else if (decision === 'REJECT') status = 'rejected'
+        if (score >= 85) status = 'selected'
+        else if (score < 60) status = 'rejected'
         else status = 'waitlisted'
         if (username) initialStatuses[username] = status
       })
@@ -169,6 +171,16 @@ export default function App() {
               onCycleStatus={cycleStatus}
               onToggleDetail={toggleDetail}
             />
+          </section>
+        )}
+
+        {/* 03 STATS */}
+        {profiles.length > 0 && (
+          <section className="section" ref={sectionRefs.stats}>
+            <h1 className="section-heading">
+              statistics <em>overview.</em>
+            </h1>
+            <StatsDashboard profiles={profiles} statuses={statuses} />
           </section>
         )}
 

@@ -8,6 +8,15 @@ function formatNumber(n) {
     return String(num)
 }
 
+function extractDomain(url) {
+    try {
+        const hostname = new URL(url).hostname.replace('www.', '')
+        return hostname.split('.')[0]
+    } catch {
+        return 'link'
+    }
+}
+
 export default function CandidateList({
     profiles,
     statuses,
@@ -34,23 +43,25 @@ export default function CandidateList({
             </div>
 
             <ul className="candidate-list">
-                <li className="candidate-row" style={{ borderBottom: '1px solid var(--border)', paddingBottom: '8px', cursor: 'default' }}>
-                    <div className="c-meta" style={{ color: 'var(--text-secondary)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '1.5px' }}>name</div>
-                    <div className="c-meta" style={{ color: 'var(--text-secondary)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '1.5px' }}>specializations</div>
-                    <div className="c-meta" style={{ color: 'var(--text-secondary)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '1.5px' }}>score</div>
-                    <div className="c-meta" style={{ color: 'var(--text-secondary)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '1.5px' }}>status</div>
-                    <div className="c-meta" style={{ color: 'var(--text-secondary)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '1.5px' }}>skills</div>
-                    <div className="c-meta" style={{ color: 'var(--text-secondary)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '1.5px', textAlign: 'right' }}>followers</div>
+                <li className="candidate-header-row">
+                    <div>name</div>
+                    <div>specializations</div>
+                    <div>score</div>
+                    <div>status</div>
+                    <div>links</div>
+                    <div style={{ textAlign: 'right' }}>followers</div>
                 </li>
                 {profiles.map((profile) => {
                     const od = profile.original_data || {}
                     const fa = profile.final_analysis || {}
                     const username = od.username || ''
-                    const decision = (fa.recommendation?.decision || '').toUpperCase()
-                    const defaultStatus = decision === 'HIRE' ? 'selected' : decision === 'REJECT' ? 'rejected' : 'waitlisted'
+                    const score = fa.overall_score || 0
+                    const defaultStatus = score >= 85 ? 'selected' : score < 60 ? 'rejected' : 'waitlisted'
                     const status = statuses[username] || defaultStatus
                     const specs = (od.specializations || []).join(' · ') || '—'
-                    const score = fa.overall_score || '—'
+                    const dribbbleUrl = username ? `https://dribbble.com/${username}` : null
+                    const otherLinks = profile.social_media_links || []
+                    const socialLinks = dribbbleUrl ? [dribbbleUrl, ...otherLinks] : otherLinks
                     const isExpanded = expandedUser === username
 
                     return (
@@ -78,7 +89,17 @@ export default function CandidateList({
                                 >
                                     {status}
                                 </button>
-                                <div className="c-keywords">{specs}</div>
+                                <div className="c-social-links" onClick={(e) => e.stopPropagation()}>
+                                    {socialLinks.length > 0 ? (
+                                        socialLinks.slice(0, 4).map((url, i) => (
+                                            <a key={i} href={url} target="_blank" rel="noopener noreferrer" title={url}>
+                                                {extractDomain(url)}
+                                            </a>
+                                        ))
+                                    ) : (
+                                        <span style={{ color: 'var(--text-secondary)', fontSize: '10px' }}>—</span>
+                                    )}
+                                </div>
                                 <div className="c-followers">{formatNumber(od.followers_count)}</div>
                             </div>
 

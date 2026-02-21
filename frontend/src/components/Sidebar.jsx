@@ -2,7 +2,7 @@ export default function Sidebar({ activeNav, onNavigate }) {
     const navItems = [
         { id: 'search', num: '01', label: 'search' },
         { id: 'candidates', num: '02', label: 'candidates' },
-        { id: 'detail', num: '03', label: 'detail' },
+        { id: 'stats', num: '03', label: 'stats' },
         { id: 'export', num: '04', label: 'export' },
     ]
 

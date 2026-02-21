@@ -24,18 +24,21 @@ gemini_client = genai.Client(api_key=_api_key)
 GEMINI_FLASH = "gemini-2.5-flash"
 
 
-def _gemini_text(system: str, user: str, max_tokens: int = 3000, retries: int = 3) -> str:
+def _gemini_text(system: str, user: str, max_tokens: int = 3000, retries: int = 3, json_mode: bool = False) -> str:
     """Call Gemini with retries and exponential back-off."""
     for attempt in range(retries):
         try:
+            config_args = dict(
+                system_instruction=system,
+                max_output_tokens=max_tokens,
+                temperature=0.2,
+            )
+            if json_mode:
+                config_args["response_mime_type"] = "application/json"
             response = gemini_client.models.generate_content(
                 model=GEMINI_FLASH,
                 contents=user,
-                config=types.GenerateContentConfig(
-                    system_instruction=system,
-                    max_output_tokens=max_tokens,
-                    temperature=0.2,
-                ),
+                config=types.GenerateContentConfig(**config_args),
             )
             text = response.text or ""
             if text:
@@ -51,30 +54,95 @@ def _gemini_text(system: str, user: str, max_tokens: int = 3000, retries: int = 
 
 
 def _parse_json_from_text(text: str):
+    """
+    Robust JSON parser that handles:
+    - Clean JSON
+    - Markdown ```json ... ``` blocks
+    - Truncated code blocks (missing closing ```)
+    - Truncated JSON (missing closing braces)
+    """
+    if not text or not text.strip():
+        return None
+
+    # Strategy 1: Direct parse (works when response_mime_type is set)
     try:
-        return json.loads(text)
+        return json.loads(text.strip())
     except json.JSONDecodeError:
         pass
-    if "```json" in text:
-        s = text.find("```json") + 7
-        e = text.find("```", s)
-        try:
-            return json.loads(text[s:e].strip())
-        except Exception:
-            pass
-    if "```" in text:
-        s = text.find("```") + 3
-        e = text.find("```", s)
-        try:
-            return json.loads(text[s:e].strip())
-        except Exception:
-            pass
-    m = re.search(r'\{.*\}', text, re.DOTALL)
+
+    # Strategy 2: Extract from markdown code block (```json ... ```)
+    for marker in ("```json", "```"):
+        if marker in text:
+            s = text.find(marker) + len(marker)
+            # Skip optional newline after marker
+            if s < len(text) and text[s] == '\n':
+                s += 1
+            e = text.find("```", s)
+            # If closing ``` is missing (truncated), take everything after marker
+            block = text[s:e].strip() if e != -1 else text[s:].strip()
+            try:
+                return json.loads(block)
+            except json.JSONDecodeError:
+                repaired = _repair_json(block)
+                if repaired is not None:
+                    return repaired
+
+    # Strategy 3: Find first { and try to parse from there
+    m = re.search(r'\{', text)
     if m:
+        candidate = text[m.start():]
+        # Remove any trailing ``` that might be after the JSON
+        candidate = re.sub(r'```\s*$', '', candidate).strip()
         try:
-            return json.loads(m.group())
-        except Exception:
+            return json.loads(candidate)
+        except json.JSONDecodeError:
+            repaired = _repair_json(candidate)
+            if repaired is not None:
+                return repaired
+
+    return None
+
+
+def _repair_json(text: str):
+    """Try to repair truncated JSON by closing open braces/brackets."""
+    text = text.strip()
+    if not text.startswith('{'):
+        return None
+
+    # Remove trailing commas
+    text = re.sub(r',\s*$', '', text)
+
+    # Count open vs close braces/brackets
+    open_braces = text.count('{') - text.count('}')
+    open_brackets = text.count('[') - text.count(']')
+
+    # If balanced, try parsing directly
+    if open_braces == 0 and open_brackets == 0:
+        try:
+            return json.loads(text)
+        except json.JSONDecodeError:
             pass
+
+    # Try to close truncated JSON
+    repaired = text.rstrip()
+
+    # Fix unbalanced quotes (truncated string)
+    if repaired.count('"') % 2 != 0:
+        last_quote = repaired.rfind('"')
+        repaired = repaired[:last_quote + 1]
+
+    # Remove trailing comma
+    repaired = re.sub(r',\s*$', '', repaired)
+
+    # Close brackets then braces
+    repaired += ']' * max(0, open_brackets)
+    repaired += '}' * max(0, open_braces)
+
+    try:
+        return json.loads(repaired)
+    except json.JSONDecodeError:
+        pass
+
     return None
 
 
@@ -201,65 +269,79 @@ def analyze_designer(designer: Dict, focus_area: str) -> Dict:
     }
 
     system = (
-        f"You are a senior design recruiter evaluating a designer's portfolio. "
-        f"The user searched for '{focus_area}' designers. "
-        "You have image-by-image analyses of their work. "
+        f"You are a brutally honest, elite-level design critic evaluating UI/UX designers' portfolios. "
+        f"The user searched for '{focus_area}' — this is a KEYWORD describing the UI/UX design DOMAIN they need. "
+        f"For example, if the keyword is 'car', the user wants UI/UX designers who create CAR-related digital experiences "
+        f"(car rental apps, automotive dashboards, vehicle configurators, car dealership websites, EV charging UIs, etc). "
+        f"The keyword '{focus_area}' is NOT about the designer's job title — ALL candidates are UI/UX designers. "
+        f"It IS about whether their portfolio shows relevant work in the '{focus_area}' domain.\n\n"
+        "You have image-by-image analyses of their actual design work. "
         "Produce a comprehensive evaluation as a JSON object.\n\n"
-        "CRITICAL EVALUATION RULES:\n"
-        "1. PRIORITIZE visual design quality, aesthetics, creativity, and technical polish above all else.\n"
-        "2. A designer with high-quality work, strong followers, and great visual skills should score HIGH "
-        "even if their past work is not specifically in the searched domain.\n"
-        "3. Great designers can transfer their skills across domains. A talented web/app designer can "
-        "create excellent visuals for any domain including automotive, fashion, architecture, etc.\n"
-        "4. Consider follower count and engagement as positive signals of design quality.\n"
-        "5. Only REJECT a designer if the quality of their actual design work is genuinely poor — "
-        "NOT because their portfolio doesn't contain work in the specific searched domain.\n"
-        "6. The 'specialization_alignment' metric should evaluate whether the designer's DESIGN SKILLS "
-        "(layout, color, typography, composition) are transferable to the searched domain, "
-        "NOT whether they have prior domain-specific industry experience."
+        "STRICT SCORING RULES — YOU MUST FOLLOW THESE:\n"
+        "1. Be HARSH and CRITICAL. A score of 3.0/5.0 means 'average'. Most designers are average.\n"
+        "2. Reserve 4.5+ ratings ONLY for truly world-class, award-winning caliber work.\n"
+        "3. Score 4.0-4.4 means 'very good but not exceptional'.\n"
+        "4. Score 3.0-3.9 means 'competent, professional, but unremarkable'.\n"
+        "5. Score below 3.0 means 'below expectations for a professional'.\n"
+        "6. overall_score mapping: 85+ = elite/HIRE, 60-84 = decent/CONSIDER, below 60 = weak/REJECT.\n"
+        "7. Do NOT inflate scores because of high follower counts alone — followers can be bought.\n"
+        "8. DEMAND concrete evidence of design excellence from the actual images analyzed.\n"
+        "9. Generic, template-looking, or derivative designs should score 2.5-3.5 max.\n"
+        "10. Only give HIRE recommendation if overall_score >= 85.\n"
+        "11. REJECT if overall_score < 60 or if design quality is genuinely poor.\n"
+        "12. CONSIDER for everything in between (60-84).\n"
+        f"13. 'specialization_alignment' measures how well their UI/UX work aligns with '{focus_area}' — "
+        f"a designer who has done car rental app UIs scores high for 'car', even if they also do other domains.\n"
+        "14. KEEP ALL reasoning and feedback strings VERY SHORT — 1-2 sentences max per field. Be concise.\n"
     )
 
-    user_prompt = f"""Evaluate this designer's portfolio and return ONLY a valid JSON object.
-The user searched for '{focus_area}' designers. Remember: judge design QUALITY and TALENT, not domain-specific experience.
+    user_prompt = f"""Evaluate this UI/UX designer's portfolio and return ONLY a valid JSON object.
+The user is looking for UI/UX designers in the '{focus_area}' domain. Be STRICT — most designers should score 55-75.
+
+REMEMBER: '{focus_area}' is the DOMAIN keyword. All candidates are UI/UX designers.
+Judge: (1) quality of their UI/UX design work, (2) relevance to the '{focus_area}' domain.
 
 {{
   "overall_rating": <float 1.0-5.0>,
-  "overall_score": <integer 20-100>,
+  "overall_score": <int 20-100>,
   "metrics": {{
-    "design_excellence": {{ "rating": <float 1.0-5.0>, "reasoning": "..." }},
-    "ux_mastery": {{ "rating": <float 1.0-5.0>, "reasoning": "..." }},
-    "industry_expertise": {{ "rating": <float 1.0-5.0>, "reasoning": "..." }},
-    "technical_sophistication": {{ "rating": <float 1.0-5.0>, "reasoning": "..." }},
-    "innovation_creativity": {{ "rating": <float 1.0-5.0>, "reasoning": "..." }},
-    "specialization_alignment": {{ "rating": <float 1.0-5.0>, "reasoning": "..." }},
-    "market_positioning": {{ "rating": <float 1.0-5.0>, "reasoning": "..." }}
+    "design_excellence": {{ "rating": <float>, "reasoning": "1-2 sentences" }},
+    "ux_mastery": {{ "rating": <float>, "reasoning": "1-2 sentences" }},
+    "industry_expertise": {{ "rating": <float>, "reasoning": "1-2 sentences" }},
+    "technical_sophistication": {{ "rating": <float>, "reasoning": "1-2 sentences" }},
+    "innovation_creativity": {{ "rating": <float>, "reasoning": "1-2 sentences" }},
+    "specialization_alignment": {{ "rating": <float>, "reasoning": "1-2 sentences" }},
+    "market_positioning": {{ "rating": <float>, "reasoning": "1-2 sentences" }}
   }},
-  "strengths": ["strength 1", "strength 2", "strength 3"],
-  "areas_for_improvement": ["area 1", "area 2"],
+  "strengths": ["short", "short", "short"],
+  "areas_for_improvement": ["short", "short"],
   "recommendation": {{
-    "decision": "HIRE" or "CONSIDER" or "REJECT",
-    "confidence": "HIGH" or "MEDIUM" or "LOW",
-    "reasoning": "...",
-    "suitable_roles": ["Role 1", "Role 2"]
+    "decision": "HIRE|CONSIDER|REJECT",
+    "confidence": "HIGH|MEDIUM|LOW",
+    "reasoning": "1-2 sentences",
+    "suitable_roles": ["Role"]
   }},
   "detailed_feedback": {{
-    "what_stands_out": "...",
-    "biggest_concerns": "...",
-    "growth_potential": "...",
-    "industry_fit": "..."
+    "what_stands_out": "1 sentence",
+    "biggest_concerns": "1 sentence",
+    "growth_potential": "1 sentence",
+    "industry_fit": "1 sentence"
   }}
 }}
 
-IMPORTANT: A designer with strong visual portfolio and high follower count should be scored favorably.
-Only REJECT if the design work quality is genuinely low quality. Do NOT reject just because their past
-work is in a different design domain than '{focus_area}'.
+SCORING GUIDELINES:
+- Average professional UI/UX designer = overall_score 55-65
+- Good designer with solid portfolio = 65-75  
+- Very talented with standout work = 75-84
+- Elite, world-class portfolio = 85+
+- Do NOT give 85+ unless the work is genuinely exceptional and you have strong evidence.
 
 DESIGNER DATA:
 {json.dumps(portfolio_context, indent=2, default=str)}"""
 
     try:
         print(f"  [Analyzer] Generating final assessment for {username}...")
-        result_text = _gemini_text(system, user_prompt, max_tokens=3000, retries=3)
+        result_text = _gemini_text(system, user_prompt, max_tokens=8192, retries=3, json_mode=True)
 
         if not result_text:
             print(f"  [Analyzer] WARNING: Gemini returned empty response for {username} after all retries")
