@@ -386,6 +386,39 @@ async def health():
     }
 
 
+@app.get("/api/debug-gemini")
+async def debug_gemini():
+    """Minimal Gemini test — call with the raw env var to pinpoint the issue."""
+    from google import genai as _genai
+
+    raw_val = os.getenv("GEMINI_API_KEY", "")
+    cleaned = raw_val.strip().strip('"').strip("'")
+
+    info = {
+        "raw_length": len(raw_val),
+        "cleaned_length": len(cleaned),
+        "raw_repr": repr(raw_val[:20]) + "..." if len(raw_val) > 20 else repr(raw_val),
+        "has_newline": "\n" in raw_val or "\r" in raw_val,
+        "has_space": " " in raw_val,
+        "starts_with_AIza": cleaned.startswith("AIza"),
+    }
+
+    # Try a minimal Gemini call
+    try:
+        client = _genai.Client(api_key=cleaned)
+        resp = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents="Say hello in one word.",
+        )
+        info["gemini_test"] = "SUCCESS"
+        info["gemini_response"] = resp.text[:100] if resp.text else "(empty)"
+    except Exception as e:
+        info["gemini_test"] = "FAILED"
+        info["gemini_error"] = str(e)[:300]
+
+    return info
+
+
 # ─── Initialize ───────────────────────────────────────────────────────────────
 _load_designers()
 
