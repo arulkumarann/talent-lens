@@ -264,7 +264,7 @@ export default function App() {
 
       {mode === 'devs' ? (
         <main className="main-content">
-          <DevApp />
+          <DevApp activeNav={activeNav} />
         </main>
       ) : (
         <main className="main-content">

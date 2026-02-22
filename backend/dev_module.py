@@ -79,6 +79,10 @@ class StatusUpdate(BaseModel):
     status: str  # selected, waitlisted, rejected
 
 
+class AssessmentStatusUpdate(BaseModel):
+    assessment_status: str  # assessment_sent, in_review, failed
+
+
 # ─── Role Endpoints ──────────────────────────────────────────────────────────
 
 @router.get("/roles")
@@ -190,6 +194,28 @@ async def update_candidate_status(role_id: str, candidate_id: str, req: StatusUp
     _save()
     print(f"[DevModule] {candidate.get('name', candidate_id)}: {old_status} → {req.status}")
     return {"message": f"Status updated to {req.status}", "status": req.status}
+
+
+@router.put("/roles/{role_id}/candidates/{candidate_id}/assessment-status")
+async def update_assessment_status(role_id: str, candidate_id: str, req: AssessmentStatusUpdate):
+    """Update the assessment pipeline stage for a candidate."""
+    VALID = {"assessment_sent", "in_review", "failed"}
+    if req.assessment_status not in VALID:
+        return {"error": f"Invalid assessment_status. Must be one of: {', '.join(sorted(VALID))}"}
+
+    role = store["roles"].get(role_id)
+    if not role:
+        return {"error": "Role not found"}
+
+    candidate = role["candidates"].get(candidate_id)
+    if not candidate:
+        return {"error": "Candidate not found"}
+
+    old = candidate.get("assessment_status", "assessment_sent")
+    candidate["assessment_status"] = req.assessment_status
+    _save()
+    print(f"[DevModule] {candidate.get('name', candidate_id)}: assessment {old} → {req.assessment_status}")
+    return {"message": f"Assessment status updated to {req.assessment_status}", "assessment_status": req.assessment_status}
 
 
 # ─── Tally Webhook ────────────────────────────────────────────────────────────
@@ -530,8 +556,11 @@ def start_sheets_poller():
 # ─── Trigger analysis for a role ──────────────────────────────────────────────
 
 @router.post("/roles/{role_id}/analyze")
-async def analyze_role_candidates(role_id: str):
-    """Manually trigger sheet import + analysis for all un-analyzed candidates in a role."""
+async def analyze_role_candidates(role_id: str, force: bool = False):
+    """Manually trigger sheet import + analysis for candidates in a role.
+    If force=True, re-analyzes ALL candidates (clears previous results first).
+    Otherwise only analyzes un-analyzed candidates.
+    """
     role = store["roles"].get(role_id)
     if not role:
         return {"error": "Role not found"}
@@ -545,30 +574,38 @@ async def analyze_role_candidates(role_id: str):
         # Re-read role after import (candidates may have been added)
         role = store["roles"].get(role_id)
 
-    # Now find candidates that need (re-)analysis
-    # - No evaluation at all
-    # - Has github_username but no github_analysis (e.g. token was missing before)
-    # - Has resume_url but no resume_analysis (e.g. PDF download failed)
-    unanalyzed = [
-        (cid, c) for cid, c in role["candidates"].items()
-        if not c.get("evaluation")
-        or (c.get("github_username") and not c.get("github_analysis"))
-        or (c.get("resume_url") and not c.get("resume_analysis"))
-    ]
+    if not role["candidates"]:
+        return {"message": "No candidates found. Check that the Google Sheet is shared publicly (Anyone with the link) and has data."}
 
-    if not unanalyzed:
-        if not role["candidates"]:
-            return {"message": "No candidates found. Check that the Google Sheet is shared publicly (Anyone with the link) and has data."}
+    if force:
+        # Force mode: clear old results and re-analyze ALL candidates
+        print(f"[Analyze] FORCE mode — re-analyzing ALL {len(role['candidates'])} candidates for role '{role['name']}'")
+        to_analyze = list(role["candidates"].items())
+        for cid, c in to_analyze:
+            c.pop("evaluation", None)
+            c.pop("github_analysis", None)
+            c.pop("resume_analysis", None)
+        _save()
+    else:
+        # Normal mode: only un-analyzed or incomplete
+        to_analyze = [
+            (cid, c) for cid, c in role["candidates"].items()
+            if not c.get("evaluation")
+            or (c.get("github_username") and not c.get("github_analysis"))
+            or (c.get("resume_url") and not c.get("resume_analysis"))
+        ]
+
+    if not to_analyze:
         return {"message": "All candidates already analyzed"}
 
-    for cid, _ in unanalyzed:
+    for cid, _ in to_analyze:
         threading.Thread(
             target=_analyze_candidate_async,
             args=(role_id, cid),
             daemon=True
         ).start()
 
-    msg = f"Triggered analysis for {len(unanalyzed)} candidates"
+    msg = f"Triggered analysis for {len(to_analyze)} candidate(s)"
     if imported > 0:
         msg = f"Imported {imported} from sheet. {msg}"
     return {"message": msg}

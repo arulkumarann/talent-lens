@@ -1113,6 +1113,652 @@
         "awsmd": "waitlisted"
       },
       "last_scanned": "2026-02-21T23:34:17.016551"
+    },
+    "ecommerce": {
+      "profiles": [
+        {
+          "original_data": {
+            "name": "Caraka",
+            "username": "carakastudio",
+            "location": null,
+            "bio": null,
+            "followers_count": null,
+            "specializations": [],
+            "available_for_work": true,
+            "social_links": [],
+            "contact": {
+              "email": null,
+              "phone": null,
+              "portfolio_website": null
+            },
+            "profile_url": "https://dribbble.com/carakastudio"
+          },
+          "final_analysis": {
+            "overall_rating": 3.4,
+            "overall_score": 67,
+            "metrics": {
+              "design_excellence": {
+                "rating": 3.0,
+                "reasoning": "Project title suggests professional work, but visual quality cannot be assessed without design examples."
+              },
+              "ux_mastery": {
+                "rating": 3.1,
+                "reasoning": "Assumed standard e-commerce UX patterns are applied, but no details or visuals are available for evaluation."
+              },
+              "industry_expertise": {
+                "rating": 4.0,
+                "reasoning": "Explicitly an e-commerce project, indicating direct domain experience relevant to the search keyword."
+              },
+              "technical_sophistication": {
+                "rating": 3.0,
+                "reasoning": "No information to evaluate technical depth or complexity; assumed standard web design practices."
+              },
+              "innovation_creativity": {
+                "rating": 2.9,
+                "reasoning": "Cannot assess originality or creative solutions without seeing the actual design work."
+              },
+              "specialization_alignment": {
+                "rating": 4.5,
+                "reasoning": "The project title 'BeliBeli.com - Ecommerce Web Design' directly matches the 'ecommerce' domain keyword."
+              },
+              "market_positioning": {
+                "rating": 3.0,
+                "reasoning": "Insufficient data to evaluate market standing, unique value proposition, or brand presence."
+              }
+            },
+            "strengths": [
+              "Direct relevance to e-commerce domain",
+              "Professional project naming"
+            ],
+            "areas_for_improvement": [
+              "Lack of visual design examples for evaluation",
+              "No details on UX process or project impact"
+            ],
+            "recommendation": {
+              "decision": "CONSIDER",
+              "confidence": "MEDIUM",
+              "reasoning": "Strong domain alignment with e-commerce, but actual design quality and process details are missing for a full evaluation.",
+              "suitable_roles": [
+                "E-commerce UI/UX Designer",
+                "Web Designer"
+              ]
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The explicit focus on an e-commerce web design project is a direct match for the desired domain.",
+              "biggest_concerns": "The complete absence of visual design work or project details makes a thorough evaluation impossible.",
+              "growth_potential": "Providing detailed case studies with visuals, process, and outcomes would significantly strengthen the portfolio.",
+              "industry_fit": "Excellent fit for e-commerce roles based on the project title alone, assuming the design quality is professional."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "BeliBeli.com - Ecommerce Web Design",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/9000434/file/original-903fac30a0a944a36dcfaeb29e373619.png?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/carakastudio/belibeli_com_-_ecommerce_web_design_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [],
+          "processed_at": "2026-02-22T01:44:10.633879"
+        },
+        {
+          "original_data": {
+            "name": "Seative Digital",
+            "username": "seativedigital",
+            "location": null,
+            "bio": null,
+            "followers_count": null,
+            "specializations": [],
+            "available_for_work": true,
+            "social_links": [],
+            "contact": {
+              "email": null,
+              "phone": null,
+              "portfolio_website": null
+            },
+            "profile_url": "https://dribbble.com/seativedigital"
+          },
+          "final_analysis": {
+            "overall_rating": 3.9,
+            "overall_score": 78,
+            "metrics": {
+              "design_excellence": {
+                "rating": 4.1,
+                "reasoning": "Displays a high level of modern design talent and aesthetic quality in the presented header exploration."
+              },
+              "ux_mastery": {
+                "rating": 3.8,
+                "reasoning": "Shows a strong understanding of modern UX principles for navigation, though full user flows are not visible."
+              },
+              "industry_expertise": {
+                "rating": 4.2,
+                "reasoning": "Demonstrates clear expertise in the ecommerce domain through direct project relevance and modern UI patterns."
+              },
+              "technical_sophistication": {
+                "rating": 3.5,
+                "reasoning": "The header exploration implies standard modern web implementation, but no complex technical interactions are showcased."
+              },
+              "innovation_creativity": {
+                "rating": 3.7,
+                "reasoning": "The design exhibits fresh, modern aesthetics, suggesting a creative approach within the specific header component."
+              },
+              "specialization_alignment": {
+                "rating": 4.5,
+                "reasoning": "The project directly addresses an 'Ecommerce website,' perfectly aligning with the desired domain keyword."
+              },
+              "market_positioning": {
+                "rating": 3.5,
+                "reasoning": "No specific information available to assess market positioning, so assumed professional average."
+              }
+            },
+            "strengths": [
+              "Strong ecommerce domain alignment",
+              "High visual design quality",
+              "Modern aesthetic and UI patterns"
+            ],
+            "areas_for_improvement": [
+              "Limited portfolio scope (only one image/project)",
+              "Lack of full UX case studies or detailed process"
+            ],
+            "recommendation": {
+              "decision": "HIRE",
+              "confidence": "MEDIUM",
+              "reasoning": "Excellent domain fit and strong visual design, despite the limited scope of the presented work.",
+              "suitable_roles": [
+                "UI/UX Designer (Ecommerce)",
+                "Product Designer (Web)"
+              ]
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The direct relevance and high visual quality of the ecommerce header exploration are immediately apparent.",
+              "biggest_concerns": "The portfolio's extremely limited scope makes a comprehensive evaluation of full UX capabilities challenging.",
+              "growth_potential": "Could significantly improve by showcasing full case studies, diverse ecommerce projects, and detailed problem-solving processes.",
+              "industry_fit": "An excellent fit for ecommerce UI/UX roles due to direct project experience and modern design sensibilities."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Ecommerce website : Header Exploration",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/23744972/file/original-f09ad4491cf30c1628e68083ad7d12ad.jpg?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/seativedigital/ecommerce_website___header_exploration_0.jpg"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [],
+          "processed_at": "2026-02-22T01:44:34.905109"
+        },
+        {
+          "original_data": {
+            "name": "Dipa Inhouse",
+            "username": "dipainhouse",
+            "location": "Malang, Indonesia",
+            "bio": "Dipa Inhouse is a creative agency providing high quality services that help finding solutions with an intuitive approach that meet user\u2019s business goal.\n\nWe provide a high-quality service in design, branding & development.\n\nLet's reach a successful and quality output for your project!",
+            "followers_count": "9,986",
+            "specializations": [
+              "animation",
+              "brand identity",
+              "dashboard",
+              "framer",
+              "illustration",
+              "landing page",
+              "logo design",
+              "micro interactions",
+              "mobile app",
+              "motion graphics",
+              "presentation design",
+              "product design",
+              "ui",
+              "uiux design",
+              "webflow",
+              "website design"
+            ],
+            "available_for_work": true,
+            "social_links": [
+              "https://www.linkedin.com/company/dipainhouse",
+              "https://twitter.com/dipa_inhouse",
+              "https://instagram.com/dipa.inhouse",
+              "https://facebook.com/61557669644128",
+              "https://www.behance.net/dipainhouse",
+              "https://dipainhouse.dribbble.com/",
+              "https://calendly.com/d/5gw-xzj-33h/dipa-inhouse-meeting-discussion"
+            ],
+            "contact": {
+              "email": "hi@dipainhouse.com",
+              "phone": "+6285184715742",
+              "portfolio_website": "https://www.dipainhouse.com/contact-us"
+            },
+            "profile_url": "https://dribbble.com/dipainhouse"
+          },
+          "final_analysis": {
+            "overall_rating": 3.36,
+            "overall_score": 67,
+            "metrics": {
+              "design_excellence": {
+                "rating": 3.0,
+                "reasoning": "Without visual examples, assumed a baseline professional competence; actual quality cannot be assessed."
+              },
+              "ux_mastery": {
+                "rating": 3.0,
+                "reasoning": "No detailed UX process or problem-solving insights are available, leading to an assumption of standard application."
+              },
+              "industry_expertise": {
+                "rating": 3.5,
+                "reasoning": "Directly features an 'Ecommerce Website' project, indicating relevant domain experience."
+              },
+              "technical_sophistication": {
+                "rating": 3.0,
+                "reasoning": "No specific evidence of complex technical implementations or advanced interactive elements, assumed standard."
+              },
+              "innovation_creativity": {
+                "rating": 3.0,
+                "reasoning": "Cannot evaluate originality or innovative solutions without seeing the actual design outputs."
+              },
+              "specialization_alignment": {
+                "rating": 4.5,
+                "reasoning": "The portfolio explicitly includes an 'Ecommerce Website' project, perfectly aligning with the domain."
+              },
+              "market_positioning": {
+                "rating": 3.5,
+                "reasoning": "Agency bio and decent follower count suggest professional presence, but not top-tier market leadership."
+              }
+            },
+            "strengths": [
+              "Directly relevant project in ecommerce",
+              "Professional agency background",
+              "Good follower count"
+            ],
+            "areas_for_improvement": [
+              "Provide detailed project insights/case studies",
+              "Showcase actual design visuals for evaluation",
+              "Demonstrate innovative design solutions"
+            ],
+            "recommendation": {
+              "decision": "CONSIDER",
+              "confidence": "MEDIUM",
+              "reasoning": "The designer has relevant domain experience but the quality of execution cannot be fully assessed without visual work.",
+              "suitable_roles": [
+                "UI/UX Designer",
+                "Product Designer (Ecommerce)"
+              ]
+            },
+            "detailed_feedback": {
+              "what_stands_out": "Explicit mention of an 'Ecommerce Website' project is a strong indicator of domain fit.",
+              "biggest_concerns": "The absence of actual design visuals prevents a thorough evaluation of design quality and UX depth.",
+              "growth_potential": "Could significantly improve by showcasing detailed case studies and high-fidelity visuals of their work.",
+              "industry_fit": "Good fit for ecommerce roles due to direct project experience, assuming design quality is professional."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Stella - Ecommerce Website",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/16997757/file/original-6d481cb0624a2e46d3df96914f11827e.jpg?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/dipainhouse/stella_-_ecommerce_website_0.jpg"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [
+            "https://www.linkedin.com/company/dipainhouse",
+            "https://twitter.com/dipa_inhouse",
+            "https://instagram.com/dipa.inhouse",
+            "https://facebook.com/61557669644128",
+            "https://www.behance.net/dipainhouse",
+            "https://dipainhouse.dribbble.com/",
+            "https://calendly.com/d/5gw-xzj-33h/dipa-inhouse-meeting-discussion"
+          ],
+          "processed_at": "2026-02-22T01:44:55.530657"
+        },
+        {
+          "original_data": {
+            "name": "Awsmd",
+            "username": "awsmd",
+            "location": "San Francisco, CA",
+            "bio": "We Design Products, Interfaces and Brands\nUX, product design and advanced analytics for e-commerce and SaaS \nOur key clients - Intel, Uber, Oracle, Nutanix, Gofundme, Upside travel, CrossLead, New Balance, State Farm \nNeed help with your project? \n\ud83d\udc4b Let\u2019s talk\ud83d\udc47",
+            "followers_count": "64,620",
+            "specializations": [
+              "artificial intelligence",
+              "blockchain",
+              "branding",
+              "casino",
+              "crypto",
+              "defi",
+              "eco",
+              "ecommerce",
+              "finance",
+              "fintech",
+              "gambling",
+              "landing page",
+              "mobile app",
+              "saas",
+              "shopify",
+              "website"
+            ],
+            "available_for_work": true,
+            "social_links": [
+              "https://www.linkedin.com/company/awsmd",
+              "https://twitter.com/bogdan_qclay",
+              "https://instagram.com/awsmd_com",
+              "https://www.behance.net/awsmd",
+              "https://awsmd.dribbble.com/",
+              "https://calendly.com/awsmdesign/"
+            ],
+            "contact": {
+              "email": "info@awsmd.com",
+              "phone": null,
+              "portfolio_website": "https://awsmd.com/"
+            },
+            "profile_url": "https://dribbble.com/awsmd"
+          },
+          "final_analysis": {
+            "overall_rating": 4.0,
+            "overall_score": 80,
+            "metrics": {
+              "design_excellence": {
+                "rating": 3.7,
+                "reasoning": "Evaluation of visual design quality is limited due to incomplete image analysis, but client list suggests professional standards."
+              },
+              "ux_mastery": {
+                "rating": 3.7,
+                "reasoning": "Bio emphasizes UX and product design, but specific UX solutions cannot be assessed without full image details."
+              },
+              "industry_expertise": {
+                "rating": 4.5,
+                "reasoning": "Strong expertise in e-commerce and SaaS, evidenced by bio, skills, and relevant client portfolio like New Balance."
+              },
+              "technical_sophistication": {
+                "rating": 3.7,
+                "reasoning": "Clients like Intel and Uber imply handling complex systems, but the UI's technical depth isn't visible."
+              },
+              "innovation_creativity": {
+                "rating": 3.2,
+                "reasoning": "Without visual examples, it's difficult to assess creative or innovative design solutions; assumed competent but not groundbreaking."
+              },
+              "specialization_alignment": {
+                "rating": 4.8,
+                "reasoning": "Excellent alignment with 'ecommerce' domain, explicitly mentioned in bio, skills, and project title."
+              },
+              "market_positioning": {
+                "rating": 4.5,
+                "reasoning": "Impressive client list and high follower count indicate a strong, established market presence."
+              }
+            },
+            "strengths": [
+              "Strong e-commerce specialization",
+              "Impressive client portfolio",
+              "Clear focus on UX/product design",
+              "High market visibility"
+            ],
+            "areas_for_improvement": [
+              "Provide detailed case studies with visual evidence",
+              "Showcase specific UX problem-solving processes"
+            ],
+            "recommendation": {
+              "decision": "HIRE",
+              "confidence": "MEDIUM",
+              "reasoning": "Strong industry alignment and client list are compelling, but confidence is tempered by the lack of detailed visual design analysis.",
+              "suitable_roles": [
+                "Senior UI/UX Designer (Ecommerce)",
+                "Product Designer (Ecommerce)",
+                "UX Lead (Ecommerce)"
+              ]
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The explicit focus on e-commerce and a robust portfolio of high-profile clients are highly impressive.",
+              "biggest_concerns": "The inability to thoroughly evaluate the actual design quality and UX solutions due to the incomplete image analysis.",
+              "growth_potential": "Could significantly enhance portfolio impact by adding comprehensive visual case studies demonstrating design process and outcomes.",
+              "industry_fit": "An excellent fit for e-commerce roles, particularly those requiring experience with large-scale or enterprise clients."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Shopify Store | Ecommerce Website",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/17300364/file/original-222824e9a19e9e373c183c8a78ecd6e6.png?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/awsmd/shopify_store___ecommerce_website_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [
+            "https://www.linkedin.com/company/awsmd",
+            "https://twitter.com/bogdan_qclay",
+            "https://instagram.com/awsmd_com",
+            "https://www.behance.net/awsmd",
+            "https://awsmd.dribbble.com/",
+            "https://calendly.com/awsmdesign/"
+          ],
+          "processed_at": "2026-02-22T01:45:19.980786"
+        },
+        {
+          "original_data": {
+            "name": "Framer",
+            "username": "framer",
+            "location": "Netherlands",
+            "bio": "Design and ship your dream site. Zero code, maximum speed.",
+            "followers_count": "37,130",
+            "specializations": [
+              "animation",
+              "design",
+              "framer",
+              "no code",
+              "webdesign",
+              "websites"
+            ],
+            "available_for_work": true,
+            "social_links": [],
+            "contact": {
+              "email": null,
+              "phone": null,
+              "portfolio_website": null
+            },
+            "profile_url": "https://dribbble.com/framer"
+          },
+          "final_analysis": {
+            "overall_rating": 1.1,
+            "overall_score": 23,
+            "metrics": {
+              "design_excellence": {
+                "rating": 1.0,
+                "reasoning": "No visual content was provided, making it impossible to evaluate design quality or aesthetics."
+              },
+              "ux_mastery": {
+                "rating": 1.0,
+                "reasoning": "Without any project details or visuals, there is no basis to assess UX principles, user flows, or problem-solving."
+              },
+              "industry_expertise": {
+                "rating": 1.0,
+                "reasoning": "No design work was presented, so there is no evidence of expertise in ecommerce or any other specific industry."
+              },
+              "technical_sophistication": {
+                "rating": 1.0,
+                "reasoning": "The absence of projects means no technical execution or implementation skills could be evaluated."
+              },
+              "innovation_creativity": {
+                "rating": 1.0,
+                "reasoning": "Cannot assess creativity or innovative approaches without any design examples to review."
+              },
+              "specialization_alignment": {
+                "rating": 1.0,
+                "reasoning": "No portfolio content was available to demonstrate relevance or alignment with the 'ecommerce' domain."
+              },
+              "market_positioning": {
+                "rating": 2.0,
+                "reasoning": "A high follower count suggests some brand recognition, but the complete lack of a portfolio makes it impossible to position them as a designer."
+              }
+            },
+            "strengths": [
+              "High follower count (suggests presence)"
+            ],
+            "areas_for_improvement": [
+              "Provide actual design projects",
+              "Showcase relevant ecommerce work",
+              "Detail UX processes and outcomes"
+            ],
+            "recommendation": {
+              "decision": "REJECT",
+              "confidence": "HIGH",
+              "reasoning": "No design work was provided for evaluation, making it impossible to assess any UI/UX capabilities or domain relevance.",
+              "suitable_roles": []
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The high follower count is notable, but no design work is presented for evaluation.",
+              "biggest_concerns": "The complete absence of a design portfolio makes any assessment of UI/UX skills impossible.",
+              "growth_potential": "Significant potential exists if actual design projects, especially in the target domain, are added to the portfolio.",
+              "industry_fit": "Cannot determine fit for ecommerce without any relevant work samples or case studies."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "close",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/assets/icon-shot-x-light-05e45af08fe143f0ef18842bb2e94c2f4959000d3f1fda176220a2e6409c2f01.png",
+                  "local_path": "scraped_images/framer/close_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [],
+          "processed_at": "2026-02-22T01:45:42.000474"
+        }
+      ],
+      "statuses": {
+        "carakastudio": "waitlisted",
+        "seativedigital": "selected",
+        "dipainhouse": "waitlisted",
+        "awsmd": "selected",
+        "framer": "rejected"
+      },
+      "last_scanned": "2026-02-22T01:47:39.908194"
+    },
+    "banking": {
+      "profiles": [
+        {
+          "original_data": {
+            "name": "Korsa",
+            "username": "korsaagency",
+            "location": "Indonesia",
+            "bio": "With over 90+ projects completed in the last 3 years, our passion, fantasy, and creativity in design have become the foundation for creating fantastic works with excellent functionality.\n\nWe collaborate closely with clients worldwide, transforming their fantastic ideas into fantasy-inspired, high-quality products and designs. From short-term projects to long-term partnerships, we always prioritize clear communication and strong cooperation to achieve client expectations and goals.\n\nOur Expertise: \n\u2022 Mobile App Design \n\u2022 Web Design \n\u2022 Logo & Brand Guidelines \n\u2022 Illustration \n\u2022 Animation \n\u2022 Product Design\n\n\u2728 Have a project in mind? Let\u2019s make your fantasy come true!",
+            "followers_count": "3,395",
+            "specializations": [
+              "animation",
+              "app design",
+              "branding",
+              "dashboard",
+              "illustration",
+              "landing page",
+              "logo design",
+              "mobile design",
+              "product design",
+              "responsive design",
+              "shopify",
+              "ui design",
+              "ux design",
+              "web design",
+              "webflow",
+              "website design"
+            ],
+            "available_for_work": true,
+            "social_links": [],
+            "contact": {
+              "email": null,
+              "phone": null,
+              "portfolio_website": null
+            },
+            "profile_url": "https://dribbble.com/korsaagency"
+          },
+          "final_analysis": {
+            "overall_rating": 4.1,
+            "overall_score": 76,
+            "metrics": {
+              "design_excellence": {
+                "rating": 4.0,
+                "reasoning": "Clean, modern aesthetic suitable for a financial application, demonstrating strong visual design principles."
+              },
+              "ux_mastery": {
+                "rating": 3.9,
+                "reasoning": "Likely addresses core banking flows with clarity, though specific interaction details are not fully visible."
+              },
+              "industry_expertise": {
+                "rating": 4.5,
+                "reasoning": "Direct experience with a 'Banking Mobile App' project indicates strong domain understanding."
+              },
+              "technical_sophistication": {
+                "rating": 3.8,
+                "reasoning": "Skills like animation and mobile app design suggest capability in implementing dynamic and responsive UIs."
+              },
+              "innovation_creativity": {
+                "rating": 3.6,
+                "reasoning": "Appears to balance modern design trends with the necessary conservatism for a banking product."
+              },
+              "specialization_alignment": {
+                "rating": 5.0,
+                "reasoning": "The portfolio explicitly features a 'Banking Mobile App', perfectly aligning with the search domain."
+              },
+              "market_positioning": {
+                "rating": 3.7,
+                "reasoning": "Decent follower count and a clear focus on product design indicate a professional market presence."
+              }
+            },
+            "strengths": [
+              "Direct banking domain experience",
+              "Clean and professional UI design",
+              "Strong visual communication"
+            ],
+            "areas_for_improvement": [
+              "More detailed UX case studies",
+              "Showcasing problem-solving process"
+            ],
+            "recommendation": {
+              "decision": "HIRE",
+              "confidence": "HIGH",
+              "reasoning": "Strong direct experience in banking app design with a professional visual approach makes them a highly suitable candidate.",
+              "suitable_roles": [
+                "Mobile UI/UX Designer (Banking)",
+                "Product Designer (Fintech)"
+              ]
+            },
+            "detailed_feedback": {
+              "what_stands_out": "The explicit focus on a banking mobile app project is highly relevant and impressive for the desired domain.",
+              "biggest_concerns": "The provided snippet lacks detailed UX process or problem-solving insights, making a full UX evaluation challenging.",
+              "growth_potential": "Could further elaborate on the strategic UX decisions and the measurable impact of their designs in future projects.",
+              "industry_fit": "Excellent fit for banking and fintech roles due to direct project experience and demonstrated domain relevance."
+            }
+          },
+          "relevant_works": [
+            {
+              "id": "0",
+              "title": "Wallpay - Banking Mobile App",
+              "images": [
+                {
+                  "original_url": "https://cdn.dribbble.com/userupload/16384792/file/original-604ef631a6446af3b7180984f9645564.png?format=webp&resize=400x300&vertical=center",
+                  "local_path": "scraped_images/korsaagency/wallpay_-_banking_mobile_app_0.png"
+                }
+              ]
+            }
+          ],
+          "social_media_links": [],
+          "processed_at": "2026-02-22T02:19:19.556888"
+        }
+      ],
+      "statuses": {
+        "korsaagency": "selected"
+      },
+      "last_scanned": "2026-02-22T02:19:43.622341"
     }
   }
 }

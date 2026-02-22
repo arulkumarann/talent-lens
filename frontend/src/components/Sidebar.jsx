@@ -13,6 +13,7 @@ export default function Sidebar({
     const devNav = [
         { id: 'roles', num: '01', label: 'roles' },
         { id: 'candidates', num: '02', label: 'candidates' },
+        { id: 'stats', num: '03', label: 'stats' },
     ]
 
     const navItems = mode === 'devs' ? devNav : designerNav

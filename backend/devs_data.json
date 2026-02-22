@@ -18,7 +18,7 @@
           "github_username": "arulkumarann",
           "linkedin": "https://www.linkedin.com/in/arul-kumaran-p/",
           "current_ctc": "6LPA",
-          "status": "selected",
+          "status": "rejected",
           "submitted_at": "2026-02-21 18:11:02",
           "evaluation": {
             "overall_rating": 4.4,
@@ -287,13 +287,533 @@
             ],
             "certifications": [],
             "summary": "Highly motivated B.Tech Computer Science and Engineering student specializing in AIML, with a strong foundation in deep learning, programming, and development tools. Possessing practical experience through internships in ML development, software development, and research, focusing on building AI/ML systems, RAG, and automation. Eager to apply expertise in artificial intelligence and machine learning to innovative projects and contribute to cutting-edge technological advancements."
+          },
+          "assessment_status": "assessment_sent"
+        },
+        "817a6Jx": {
+          "submission_id": "817a6Jx",
+          "name": "Nihal",
+          "phone": "919856352415",
+          "email": "nihal@mail.com",
+          "resume_url": "https://storage.tally.so/private/Arul_Resume_Apr25.pdf?id=OoyPoR&accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ik9veVBvUiIsImZvcm1JZCI6IlZMMHhleSIsImlhdCI6MTc3MTcwNzUwMX0.ISHtUJg9Dv1NTfibfHa_kR0dKr-OObjMtm1cKT_5SYc&signature=deb776d7b34638ecf7f978c6405c8193a2931933b45e73b537abfa53fdc1dc07",
+          "github_username": "n1hal06",
+          "linkedin": "nihal.com",
+          "current_ctc": "20LPA",
+          "status": "waitlisted",
+          "submitted_at": "2026-02-21 20:58:19",
+          "evaluation": {
+            "overall_rating": 3.0,
+            "overall_score": 50,
+            "metrics": {
+              "technical_depth": {
+                "rating": 3.0,
+                "reasoning": "Could not fully evaluate"
+              },
+              "project_quality": {
+                "rating": 3.0,
+                "reasoning": "Could not fully evaluate"
+              },
+              "experience_relevance": {
+                "rating": 3.0,
+                "reasoning": "Could not fully evaluate"
+              },
+              "github_activity": {
+                "rating": 3.0,
+                "reasoning": "Could not fully evaluate"
+              },
+              "skill_match": {
+                "rating": 3.0,
+                "reasoning": "Could not fully evaluate"
+              },
+              "overall_fit": {
+                "rating": 3.0,
+                "reasoning": "Could not fully evaluate"
+              }
+            },
+            "strengths": [
+              "Pending full evaluation"
+            ],
+            "areas_for_improvement": [
+              "Pending full evaluation"
+            ],
+            "recommendation": {
+              "decision": "CONSIDER",
+              "confidence": "LOW",
+              "reasoning": "Analysis incomplete \u2014 could not fully evaluate candidate."
+            },
+            "detailed_feedback": {
+              "technical_assessment": "Pending evaluation",
+              "culture_fit": "Pending evaluation",
+              "growth_potential": "Pending evaluation",
+              "salary_alignment": "Pending evaluation"
+            }
+          },
+          "github_analysis": {
+            "username": "n1hal06",
+            "name": "Nihal",
+            "bio": "I am a back end developer with an ambition to continue learning.",
+            "company": null,
+            "location": "Chennai, India",
+            "created_at": "2023-12-27T06:57:51Z",
+            "followers": 1,
+            "following": 1,
+            "total_repos": 12,
+            "own_repos": 12,
+            "total_stars": 1,
+            "top_languages": [
+              {
+                "language": "Python",
+                "count": 5
+              },
+              {
+                "language": "Jupyter Notebook",
+                "count": 3
+              },
+              {
+                "language": "JavaScript",
+                "count": 1
+              },
+              {
+                "language": "TypeScript",
+                "count": 1
+              },
+              {
+                "language": "HTML",
+                "count": 1
+              }
+            ],
+            "pinned_repos": [],
+            "contributions": {
+              "total": 56,
+              "commits": 45,
+              "pull_requests": 0,
+              "issues": 0,
+              "repos_created": 10
+            },
+            "top_repos": [
+              {
+                "name": "LearnNewToday",
+                "description": "This is a facts page, where people can get to know new facts and even get to add facts that they kno",
+                "stars": 1,
+                "forks": 0,
+                "language": "JavaScript"
+              },
+              {
+                "name": "Crop-Health-Classifier",
+                "description": "",
+                "stars": 0,
+                "forks": 0,
+                "language": "Jupyter Notebook"
+              },
+              {
+                "name": "Infosys-Assessment-2",
+                "description": "",
+                "stars": 0,
+                "forks": 0,
+                "language": "Python"
+              },
+              {
+                "name": "Infosys-Assessment-3",
+                "description": "",
+                "stars": 0,
+                "forks": 0,
+                "language": "Jupyter Notebook"
+              },
+              {
+                "name": "Infosys-Snips-NLU-2.4-Assessment",
+                "description": "",
+                "stars": 0,
+                "forks": 0,
+                "language": "Python"
+              }
+            ]
+          },
+          "resume_analysis": {
+            "skills": [
+              "PyTorch",
+              "Tensorflow",
+              "Computer Vision",
+              "Transformers",
+              "CNNs",
+              "GANs",
+              "LLMs",
+              "Python",
+              "C",
+              "C++",
+              "Java",
+              "FastAPI",
+              "Git",
+              "GitHub",
+              "VS Code",
+              "Vector Databases",
+              "Jupyter Notebook",
+              "Data Analysis",
+              "Model Optimization",
+              "Fine-tuning LLMs"
+            ],
+            "experience_years": 0.5,
+            "education": [
+              {
+                "degree": "B. Tech Computer Science and Engineering w/s AIML",
+                "institution": "SRM Institute of Science and Technology",
+                "year": "2027"
+              }
+            ],
+            "work_experience": [
+              {
+                "title": "Research Intern",
+                "company": "Samsung Research Institute",
+                "duration": "Mar 2025 - Present",
+                "highlights": "Collaborating on industry-level AI research, developing and optimizing AI/ML solutions with a focus on innovation, efficiency, scalability, and real-world deployment, achieving \u226590% accuracy."
+              },
+              {
+                "title": "AI Engineer Intern",
+                "company": "XR Vizion",
+                "duration": "Feb 2025 - Present",
+                "highlights": "Pioneered deployment of production-ready RAG system utilizing LangChain, Pinecone, and FastAPI, enabling a 35% faster property recommendation engine and increased user engagement by 15%."
+              },
+              {
+                "title": "Trainee Software Engineer Intern",
+                "company": "C4Scale, Gettr Technologies Pvt. Ltd.",
+                "duration": "Sep 2024 - Dec 2024",
+                "highlights": "Conducted comprehensive research on prompt security in large language models (LLMs), focusing on effectively safeguarding against 10+ diverse attacks, including adversarial, DAN, and injection attacks."
+              },
+              {
+                "title": "Undergraduate Researcher",
+                "company": "SRM Institute of Science and Technology",
+                "duration": "Sep 2024 - Present",
+                "highlights": "Conducting research on 4 XAI techniques and 4 adversarial attacks analyzing and evaluating model interpretability."
+              }
+            ],
+            "projects": [
+              {
+                "name": "Legal Document RAG Chatbot",
+                "description": "Designed a legal document RAG system using Pinecone for semantic search, FastAPI for scalable backend, and LangChain with Llama 3.3, improving retrieval accuracy by 7%.",
+                "tech_stack": [
+                  "Pinecone",
+                  "FastAPI",
+                  "LangChain",
+                  "Llama 3.3"
+                ]
+              },
+              {
+                "name": "GAN-based Augmentation for Imbalanced Datasets",
+                "description": "Constructed a Conditional GAN (cGAN) architecture to generate high-quality synthetic samples for underrepresented minority classes, significantly improving overall classification performance by 22%.",
+                "tech_stack": [
+                  "Conditional GAN (cGAN)"
+                ]
+              },
+              {
+                "name": "U-Net Image Segmentation Implementation",
+                "description": "Engineered U-Net architecture for image segmentation tasks, achieving 98% accuracy and 95% IoU.",
+                "tech_stack": [
+                  "U-Net"
+                ]
+              }
+            ],
+            "certifications": [],
+            "summary": "An ambitious B.Tech Computer Science and Engineering student specializing in AIML, with a strong foundation in AI/ML, LLMs, and development tools. Possessing practical experience as an AI Engineer Intern and Research Intern, adept at deploying production-ready RAG systems, optimizing AI/ML solutions, and researching prompt security. Demonstrated ability to innovate and deliver efficient, scalable solutions with a focus on real-world impact."
           }
         }
       },
       "created_at": "2026-02-21T23:27:38.877704"
+    },
+    "5c892af7": {
+      "name": "Frontend Dev",
+      "jd": "About the Role\n\nWe are looking for a skilled Front-End Developer to build responsive, high-performance web interfaces. You will work closely with designers, backend engineers, and product teams to deliver scalable and user-friendly applications.\n\nKey Responsibilities\n\nDevelop responsive and interactive web applications using modern front-end technologies\n\nTranslate UI/UX designs into clean, maintainable code\n\nOptimize applications for performance, scalability, and accessibility\n\nIntegrate front-end components with APIs and backend services\n\nEnsure cross-browser compatibility and mobile responsiveness\n\nParticipate in code reviews and maintain coding standards\n\nDebug and resolve UI issues and bugs\n\nRequired Skills & Qualifications\n\nProficiency in HTML, CSS, and JavaScript\n\nExperience with modern frameworks such as React, Vue, or Angular\n\nStrong understanding of responsive design and CSS frameworks\n\nFamiliarity with version control systems like Git\n\nKnowledge of REST APIs and asynchronous programming\n\nGood problem-solving and debugging skills\n\nPreferred Qualifications\n\nExperience with TypeScript\n\nFamiliarity with state management libraries (Redux, Zustand, Pinia, etc.)\n\nKnowledge of testing frameworks (Jest, Cypress, Playwright)\n\nUnderstanding of web performance optimization techniques\n\nExperience working in Agile environments\n\nSoft Skills\n\nStrong communication and collaboration skills\n\nAttention to detail\n\nAbility to work independently and manage time effectively\n\nBenefits\n\nCompetitive salary\n\nFlexible working hours\n\nLearning and development opportunities\n\nHealth benefits and paid leave",
+      "ctc": "8LPA",
+      "positions": 3,
+      "tally_link": "https://tally.so/r/aQ6yab",
+      "tally_form_id": "aQ6yab",
+      "sheet_url": "https://docs.google.com/spreadsheets/d/1jku91Bh34v0HgQTDQHIc4G05egs76ZFcP6Yo9R9EcXc/edit?usp=sharing",
+      "candidates": {
+        "LZRKWYO": {
+          "submission_id": "LZRKWYO",
+          "name": "Arul Kumaran",
+          "phone": "918489976758",
+          "email": "arulkumaranp02@gmail.com",
+          "resume_url": "https://storage.tally.so/private/Arul_Resume_Jan26.pdf?id=NRyMlW&accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ik5SeU1sVyIsImZvcm1JZCI6ImFRNnlhYiIsImlhdCI6MTc3MTcyNTc3Nn0.rSix6sHCHTenBLaQk1gLDu3OCwtaHtR_wQdkjzIP2eQ&signature=0e8ba9d29a47275c5faa6ef75a82b04e6ac84eae009106dbda1c668b9367f528",
+          "github_username": "arulkumarann",
+          "linkedin": "NA",
+          "current_ctc": "5LPA",
+          "status": "rejected",
+          "submitted_at": "2026-02-22 2:02:55",
+          "evaluation": {
+            "overall_rating": 1.5,
+            "overall_score": 30,
+            "metrics": {
+              "technical_depth": {
+                "rating": 2.0,
+                "reasoning": "Deep in ML/AI and Python, but lacks demonstrated proficiency in core frontend technologies required for the role."
+              },
+              "project_quality": {
+                "rating": 2.0,
+                "reasoning": "Projects are high-quality and complex, but entirely focused on ML/AI and backend, not frontend development."
+              },
+              "experience_relevance": {
+                "rating": 1.0,
+                "reasoning": "All work experience is in ML/AI and backend development, with no direct relevance to frontend engineering."
+              },
+              "github_activity": {
+                "rating": 2.5,
+                "reasoning": "GitHub shows consistent activity and numerous repositories, but the primary languages and projects are not frontend-focused."
+              },
+              "skill_match": {
+                "rating": 1.0,
+                "reasoning": "Candidate lacks critical frontend framework experience (React, Vue, Angular) and demonstrated proficiency in modern HTML/CSS/JS."
+              },
+              "overall_fit": {
+                "rating": 1.0,
+                "reasoning": "The candidate's profile is that of an ML/AI specialist, not a frontend developer, resulting in a poor fit for this role."
+              }
+            },
+            "strengths": [
+              "Strong ML/AI and Python expertise",
+              "Active GitHub contributor",
+              "Experience with Git and API integration (backend)",
+              "Demonstrated problem-solving skills"
+            ],
+            "areas_for_improvement": [
+              "Lack of modern frontend framework experience (React, Vue, Angular)",
+              "Limited demonstrated proficiency in core HTML, CSS, JavaScript for UI",
+              "No experience with responsive design or state management libraries"
+            ],
+            "recommendation": {
+              "decision": "REJECT",
+              "confidence": "HIGH",
+              "reasoning": "The candidate's extensive experience and projects are almost exclusively in ML/AI and backend development, with a significant lack of required frontend skills and framework experience."
+            },
+            "detailed_feedback": {
+              "technical_assessment": "Candidate demonstrates strong technical depth in ML/AI, Python, and related backend technologies, but lacks the specific frontend framework and UI development skills essential for this role.",
+              "culture_fit": "Cannot be assessed from the provided data, but general programming background suggests potential adaptability.",
+              "growth_potential": "High in ML/AI domain; however, significant upskilling would be required to transition into a dedicated frontend role.",
+              "salary_alignment": "The proposed salary is attractive compared to current CTC, but the skill mismatch makes this irrelevant."
+            }
+          },
+          "github_analysis": {
+            "username": "arulkumarann",
+            "name": "Arul ",
+            "bio": "deep in learning\r\n",
+            "company": "SRM Institue of Science and Technology",
+            "location": "Chennai, India",
+            "created_at": "2022-09-11T10:58:48Z",
+            "followers": 19,
+            "following": 44,
+            "total_repos": 54,
+            "own_repos": 50,
+            "total_stars": 17,
+            "top_languages": [
+              {
+                "language": "Python",
+                "count": 25
+              },
+              {
+                "language": "Jupyter Notebook",
+                "count": 14
+              },
+              {
+                "language": "TypeScript",
+                "count": 3
+              },
+              {
+                "language": "HTML",
+                "count": 2
+              },
+              {
+                "language": "JavaScript",
+                "count": 1
+              },
+              {
+                "language": "Dockerfile",
+                "count": 1
+              }
+            ],
+            "pinned_repos": [
+              {
+                "name": "legalRAG",
+                "description": "A FastAPI-based Retrieval-Augmented Generation (RAG) system for legal document analysis, powered by Pinecone, LangChain, and Llama 3.3",
+                "stars": 9,
+                "language": "Python",
+                "url": "https://github.com/arulkumarann/legalRAG"
+              },
+              {
+                "name": "cgan-augumentation",
+                "description": "Generate synthetic images using Conditional GANs to balance imbalanced datasets and improve classification performance.",
+                "stars": 1,
+                "language": "Python",
+                "url": "https://github.com/arulkumarann/cgan-augumentation"
+              },
+              {
+                "name": "u-net-implementation",
+                "description": "A comprehensive PyTorch implementation U-Net architecture for image segmentation tasks, including data preparation, model training, and result visualization.",
+                "stars": 0,
+                "language": "Jupyter Notebook",
+                "url": "https://github.com/arulkumarann/u-net-implementation"
+              },
+              {
+                "name": "vqa_implementation",
+                "description": "vanilla vqa_v1 PyTorch implementation",
+                "stars": 0,
+                "language": "Jupyter Notebook",
+                "url": "https://github.com/arulkumarann/vqa_implementation"
+              },
+              {
+                "name": "indian_sign_language_recognition",
+                "description": "This project employs Convolutional Neural Networks (CNNs) to recognize Indian Sign Language (ISL) gestures and translate them into text ",
+                "stars": 0,
+                "language": "Python",
+                "url": "https://github.com/arulkumarann/indian_sign_language_recognition"
+              },
+              {
+                "name": "qnn",
+                "description": "Benchmarking Convolutional Neural Networks (CNNs) and Quantum Neural Networks (QNNs) on image classification tasks",
+                "stars": 1,
+                "language": "Python",
+                "url": "https://github.com/arulkumarann/qnn"
+              }
+            ],
+            "contributions": {
+              "total": 240,
+              "commits": 213,
+              "pull_requests": 6,
+              "issues": 0,
+              "repos_created": 21
+            },
+            "top_repos": [
+              {
+                "name": "legalRAG",
+                "description": "A FastAPI-based Retrieval-Augmented Generation (RAG) system for legal document analysis, powered by ",
+                "stars": 9,
+                "forks": 2,
+                "language": "Python"
+              },
+              {
+                "name": "visual-sense",
+                "description": "",
+                "stars": 3,
+                "forks": 2,
+                "language": "Python"
+              },
+              {
+                "name": "safetrip-intern",
+                "description": "",
+                "stars": 1,
+                "forks": 0,
+                "language": "Python"
+              },
+              {
+                "name": "cgan-augumentation",
+                "description": "Generate synthetic images using Conditional GANs to balance imbalanced datasets and improve classifi",
+                "stars": 1,
+                "forks": 0,
+                "language": "Python"
+              },
+              {
+                "name": "qnn",
+                "description": "Benchmarking Convolutional Neural Networks (CNNs) and Quantum Neural Networks (QNNs) on image classi",
+                "stars": 1,
+                "forks": 0,
+                "language": "Python"
+              }
+            ]
+          },
+          "resume_analysis": {
+            "skills": [
+              "PyTorch",
+              "Tensorflow",
+              "Computer Vision",
+              "Transformers",
+              "CNNs",
+              "GANs",
+              "LLMs",
+              "Python",
+              "C",
+              "C++",
+              "Java",
+              "FastAPI",
+              "Git",
+              "GitHub",
+              "VS Code",
+              "Vector Databases",
+              "Jupyter Notebook",
+              "Linux/UNIX",
+              "APIs",
+              "Selenium",
+              "Excel",
+              "Database Management",
+              "Web Scraping"
+            ],
+            "experience_years": 0.5,
+            "education": [
+              {
+                "degree": "B. Tech Computer Science and Engineering w/s AIML",
+                "institution": "SRM Institute of Science and Technology",
+                "year": "2027"
+              }
+            ],
+            "work_experience": [
+              {
+                "title": "ML Development Consultant",
+                "company": "Hexo AI",
+                "duration": "Oct 2025 - Present",
+                "highlights": "Built and optimized deep learning workflows for model training, evaluation, and benchmarking across 5+ architectures, implementing custom performance analysis and reproducibility frameworks, and benchmarked LLM agents on 4+ evaluation techniques."
+              },
+              {
+                "title": "Software Development Intern",
+                "company": "Hyundai Motor India Ltd.",
+                "duration": "Dec 2025",
+                "highlights": "Developed a RAG system enabling natural language queries to relational databases, implementing SQL query generation with 95%+ accuracy, intelligent fallback mechanisms, and error handling for enterprise data access."
+              },
+              {
+                "title": "Research Intern",
+                "company": "Indian Institute of Technology (IIT) Roorkee",
+                "duration": "May 2025 - Sep 2025",
+                "highlights": "Analyzed vehicle trajectory data at roundabouts to detect anomalies and perform 4+ analyses including lane discipline, speed compliance, speed violations, and gap acceptance, supporting predictive traffic safety systems."
+              },
+              {
+                "title": "Junior AI Engineer",
+                "company": "Share Ventures",
+                "duration": "June 2025 - Aug 2025",
+                "highlights": "Conceptualized and developed automation processes integrating 10+ APIs for data ingestion, building custom databases with intelligent fallback mechanisms, improving operational efficiency for FinTech and VC clients, and documented automated agent systems reducing manual effort by 60%."
+              }
+            ],
+            "projects": [
+              {
+                "name": "Legal Document RAG Chatbot",
+                "description": "Designed a legal document RAG system using Pinecone for semantic search, FastAPI for scalable backend, and LangChain with Llama 3.3, improving retrieval accuracy by 7% while enabling contextual legal understanding.",
+                "tech_stack": [
+                  "Pinecone",
+                  "FastAPI",
+                  "LangChain",
+                  "Llama 3.3"
+                ]
+              },
+              {
+                "name": "GAN-based Augmentation for Imbalanced Datasets",
+                "description": "Constructed a Conditional GAN to generate high-quality synthetic samples for underrepresented minority classes, significantly improving overall classification performance by 22% under class imbalance scenarios.",
+                "tech_stack": [
+                  "Conditional GAN"
+                ]
+              },
+              {
+                "name": "U-Net Image Segmentation Implementation",
+                "description": "Engineered U-Net architecture for image segmentation, achieving 98% accuracy and 95% IoU through careful model design, loss optimization, and extensive evaluation across datasets benchmarks consistently at scale.",
+                "tech_stack": [
+                  "U-Net architecture"
+                ]
+              }
+            ],
+            "certifications": [],
+            "summary": "Highly motivated B.Tech student specializing in AIML with a strong academic background and practical experience in deep learning, LLM benchmarking, and RAG system development. Proficient in Python, PyTorch, TensorFlow, and various development tools, consistently delivering impactful AI solutions. Eager to apply advanced AI/ML skills to solve complex challenges and drive innovation."
+          }
+        }
+      },
+      "created_at": "2026-02-22T07:32:00.020665"
     }
   },
   "sheet_last_ids": [
-    "gDKeRgO"
+    "817a6Jx",
+    "gDKeRgO",
+    "LZRKWYO"
   ]
 }
